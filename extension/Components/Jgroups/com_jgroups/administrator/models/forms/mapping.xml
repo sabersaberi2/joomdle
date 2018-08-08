@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name='mapping' addfieldpath="/administrator/components/com_jgroups/models/fields">
+
+		<field name="id" type="hidden" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+                    readonly="true" class="readonly"
+                    description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="moodle_group_id" type="group"
+		   readonly="true" class="readonly"
+            label="COM_JGROUPS_FORM_LBL_MAPPING_MOODLE_GROUP_ID"
+            description="COM_JGROUPS_FORM_DESC_MAPPING_MOODLE_GROUP_ID" 
+                filter="safehtml" /> 
+
+       <field name="joomla_group_id" type="usergroup" class="inputbox"
+            label="COM_JGROUPS_FORM_LBL_MAPPING_JOOMLA_GROUP_ID"
+            description="COM_JGROUPS_FORM_DESC_MAPPING_JOOMLA_GROUP_ID" 
+                filter="safehtml" />
+
+	</fieldset>
+
+</form>

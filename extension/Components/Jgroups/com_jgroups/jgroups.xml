@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+    <name>com_jgroups</name>
+    <creationDate>2012-08-21</creationDate>
+	<author>Qontori Pte Ltd</author>  
+	<copyright>Copyright (C) 2014 Qontori Pte Ltd</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<authorEmail>development@qontori.com</authorEmail>
+	<authorUrl>www.qontori.com</authorUrl>
+    <version>1.0.1</version>
+    <description>Manage Moodle groups</description>
+    
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>jgroups.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+    </files>
+    <languages folder="site">
+        <language tag="en-GB">language/en-GB.com_jgroups.ini
+        </language>
+    </languages>
+    <administration>
+        <menu img="components/com_jgroups/assets/images/s_com_jgroups.png" >COM_JGROUPS</menu>
+        <submenu>
+            
+			<menu link="option=com_jgroups&amp;view=mappings" view="mappings" img="components/com_jgroups/assets/images/s_mappings.png" alt="Jgroups/Mappings">COM_JGROUPS_MAPPINGS</menu>
+
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>jgroups.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="administrator">
+            <language tag="en-GB">language/en-GB.com_jgroups.ini
+            </language>
+            <language tag="en-GB">language/en-GB.com_jgroups.sys.ini
+            </language>
+        </languages>
+    </administration>
+</extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.notwebdesign.com/joomla-component-creator/ -->

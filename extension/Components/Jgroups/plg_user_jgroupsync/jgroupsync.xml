@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="user" client="site" order="100" folder="jgroupsync" method="upgrade">
+	<name>Jgroup sync</name>
+	<author>Qontori Pte Ltd</author>  
+	<copyright>Copyright (C) 2014 Qontori Pte Ltd</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<authorEmail>development@qontori.com</authorEmail>
+	<authorUrl>www.qontori.com</authorUrl>
+	<version>1.0</version>
+	<description>Sync Joomla groups to Moodle groups</description>
+	<files>
+		<filename plugin="jgroupsync">jgroupsync.php</filename>
+	</files>
+	  <languages>
+	  </languages>
+	<params>
+	</params>
+</extension>
