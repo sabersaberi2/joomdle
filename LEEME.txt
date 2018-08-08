@@ -1,0 +1,7 @@
+Joomdle. Integración Moodle - Joomla
+
+Extensiones para Moodle y Joomla para integrar ambos sistemas.
+
+Sitio web: http://www.joomdle.com
+
+Autor: Qontori Pte Ltd (development@joomdle.com)

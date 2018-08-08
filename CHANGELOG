@@ -1,0 +1,281 @@
+Joomdle 1.1.4 for Joomla 3.x
+-----------------------------
+- Moodle auth plugin updated to use Admin Settings API
+- Moodle events forwarded to Joomla to enable custom plugin development
+- Added new auto-height method for cross-domain, integrating iframe-resizer (https://github.com/davidjbradshaw/iframe-resizer)
+- Added support for logout from Moodle when "remember me" is set on a multiple domain setup
+- Added option to regenerate Joomla token
+- Teachers abc and coursemates views updated to use full user pics instead of thumbnails
+- Fixed bug that prevented password being sent on children registration email
+- Fixed problem when trying to cancel config in Joomla when it was not complete
+- Fixed: not Joomdle users with the same username were doing SSO
+
+Joomdle 1.1.3 for Joomla 3.x
+-----------------------------
+- Fixed problem assigning courses to children
+- Fixed problem with redirect after login in some setups
+- Changed dob user profile field format to adapt to newer Joomla versions
+- Fixed redirect problem when login from Moodle
+
+Joomdle 1.1.2 for Joomla 3.x
+-----------------------------
+- Fixed problem on login when no return url is set
+- Fixed incompatibility with User check plugin (change missing in previous release)
+- Started code style change in Moodle auth plugin to adapt to Moodle coding style
+
+Joomdle 1.1.1 for Joomla 3.x
+-----------------------------
+- Package updated to meet new Joomla Extension Directory requirements
+- Fixed incompatibility with User check plugin
+- Fixed availability info missing in course progress return data
+
+Joomdle 1.1.0 for Joomla 3.x
+-----------------------------
+- Fixed potential security issue (Thanks to Mariano Maccarrone)
+- Improved UTF-8 support for PHP 7 and other recent PHP 5.x versions
+- Simplified Moodle installation/upgrade with auto-setup of Moodle requisites
+- Fixed SSO problem when auto login guests is enabled in Moodle
+- Moodle logout code improved to use Moodle API
+- Fixed bug that prevented Acymailing lists from being populated with current students on list creation
+- Added missing strings to enrol plugin
+- Fixed problem when changing password from Moodle
+- Fixed blank password when creating users from Moodle
+- Fixed problem when enroling from course details page
+- Fixed problems with course images when force login is enabled
+- Added support for new completion_progress Moodle block
+- Fixed language sync bug
+
+Joomdle 1.0.9 for Joomla 3.x
+-----------------------------
+- Added support for Joomla Update System
+- Backend users view updated to use "Search Tools" and show limit box   		
+- Added suport for username changing in Joomla              
+- Added new view to show user certificates
+- Added support for Moodle custom certificate module
+- Fixed warning on user logout form Moodle on Joomdla < 3.6
+- Removed old DS constants in childrengrades view
+
+Joomdle 1.0.7 for Joomla 3.x
+-----------------------------
+- Added changes for PHP 7.0 compatibility
+- Fixed problem in course list when there are not-ascii chars (introduced in 1.0.6)
+- Added raw reply log files to help troubleshooting connection issues
+- Added new item in system check to check Joomdle version is the same in Joomla and Moodle
+- Added new view to show user completed courses
+- Added new view to show user courses progress, integrating Moodle's block_progress
+- Fixed problem with redirect-less SSO in most recent Joomla versions
+- XML replies trimmed to work around problems with empty lines in 3rd party code
+- Improved Moodle user sync performance
+- Profile data truncated to fit Moodle
+- Updated to work with Joomla 3.6+ new "remember me" cookie
+- Forum integration updated to work with Kunena v4/v5
+
+Joomdle 1.0.6 for Joomla 3.x
+-----------------------------
+- Removed unused parameter for Moodle 3.1 compatibility
+- Fixed login redirection problem when using additional data source
+- Added code so that Acymailing campaings are triggered for Joomdle users
+- Fixed some problems in User list
+- Added fix for setting focus at the start of wrapper when auto-height is disabled (Dave)
+- Fixed some warnings in enrolment plugin
+- Modified shop confirmation email parameter to allow HTML
+- Fixed problem when having courses to assign to children when they are deleted in Moodle
+- Removed spaces from button links, that caused problems with SEF components like sh404sef
+- Fixed bundles purchases for children
+- Removed database entries for old Moodle events system
+
+Joomdle 1.0.5 for Joomla 3.x
+-----------------------------
+- Fixed problem in profile sync
+- User listing code optimized
+
+Joomdle 1.0.4 for Joomla 3.x
+-----------------------------
+- Fixed password problem in user sync
+
+Joomdle 1.0.3 for Joomla 3.x
+-----------------------------
+- Moodle packages updated to be compatible with Moodle 3.0
+- Events observers updated to follow new Moodle's Events2 API
+- Password sync system improved to support Moodle bulk upload and password changes
+- Show description in course view if Moodle configured to do it
+- Course mods not visible not shown in course view
+- My events view no longer shows user events
+- Event type error fix in calendar module
+- Added option to show summary and course images in "my courses" view (Mattia)
+- Fixed incorrect user activation in children registration when activation by admin was enabled in Joomla
+- Use "Send Password" Joomla configuration option in children registration
+- Added handler to modify forum name on Kunena when modified in Moodle
+- Added span tag for "no courses" message in "my courses" view
+- Fixed reset button in users and mappings backend views
+- Fixed some deprecated errors in Moodle
+- Fixed problem with Vimeo full screen videos in wrapper
+
+Joomdle 1.0.2 for Joomla 3.x
+-----------------------------
+- "Remember me" function updated to work with newest Joomla versions
+- Changed default event for user login to onUserAfterLogin in joomdlehooks plugin
+- Added new social group related events to get id/url
+- Added profile related event to get user profile url
+- Added new Moodle fields for mappings: lastnamephonetic, firstnamephonetic, middlename, alternatename
+- Added new option to show parent user in assign courses view
+- User group set as configured in Joomla when creating new users from Moodle
+- Fixed problem with videos in labels in course view
+- Fixed problem with category grades in grade report
+- Fixed problems with some deprecated Moodle functions
+- General code review to remove some warnings
+
+Joomdle 1.0.1 for Joomla 3.x
+-----------------------------
+- Added support for course summary files
+- Added support for badges
+- Added new option to Joomdlehooks plugin to choose event to use for SSO
+- Added new option to enable/disable welcome email on course purchases
+- Added support for profile images residing outside Joomla
+- Fixed SSO for users with exdended chars in username
+- User not allowed to log in to Moodle if blocked in Joomla
+- Fixed problems with course images in Joomdle views in newer Moodle versions
+- Fixed error in Kunena version detect function
+- Fixed encoding problem when creating user groups in Joomla
+
+Joomdle 1.0 for Joomla 3.x
+---------------------------
+- Removed support for Moodle 1.9
+- Removed support for J1.5 in Moodle plugin
+- Most 3rd party integration code moved to plugins
+- Changed security for Joomdle web services in Joomla, to use auh token instead of IP source check
+- Added new config option in Moodle to control redirect on logout
+- Fixed user sync from Moodle to Joomla in Postgresql
+- Fixed typo in event trigger for reload courses event in shop
+- Removed need for Jquery in random question module
+- Fixed CSS problem in random question module
+- Added spanish translation in random question module
+- Updated "My certificates" module to support Simplecertificate Moodle mod
+- Fixed issues when sending certificates using "My certificates" module
+- Improved Hikashop integration plugin to handle products with characteristics
+- Added new option to course content plugin to override button text
+- Changed all get_context_instance calls to context_*::instance, as required by latest Moodle
+- update_course function will only overwrite idnumber if it is set
+- Fixed missing filetype images in package
+- list_courses function updated to rewrite plugin file URLs in category description (Jordi)
+- Course view opens resources in new window if configured to open pop up in Moodle
+- Added new option to "my courses" view and module to show unenrol links next to courses
+- Course list "show only enrollable courses" parameter changed to "show only self-enrollable courses"
+- User deleted in Joomla when deleted in Moodle
+- Fixed broken images in labels in course view
+- Fixed problem with UTF8 chars when creating user from Moodle
+- Fixed problems with group events
+- Fixed version detection for Kunena
+- Fixed problem creating "grading system" menu items
+- Fixed some issues in mod_joomdle_randomquestion module to make it valid HTML (Rob Kuhlig)
+- Modified enrol message in joomdle plugin, so it is customizable in each instance
+- Reworked language files for search plugins
+- Enabled limit option in search plugins
+- Fixed incomplete URLs in xmap XML site map
+- Changed joomla_url configuration option to save it in the right table (it was in mdl_config instead of mdl_config_plugins)
+
+Joomdle 0.95 for Joomla 3.x
+------------------------------------
+- Added file type icons in course view
+- Fixed pagination in user list
+- Fixed: users migrated from Moodle incorrectly had "Receive System emails" on
+- Fixed: category with sub-categories, but no courses, not shown in courses by category view
+- Fixed broken config screen when selecting a non-installed profile component
+- General code review to remove E_STRICT errors and some warnings
+- User created on course enrolment with multiple_enrol function
+- Added support for Kunena 3.0.4
+- Added some changes for Jomsocial 3.x compatibility
+- Default Jomsocial avatar taken according to gender
+- Fixed search error on newest Joomla
+- Fixed some file inclusion problems in plugins for Community Builder
+- Backend French translation fixed
+- Backend French translation updated (Raymi)
+- Fixed problems with email sending when configuration was not default one
+
+Joomdle 0.94 for Joomla 3.x
+------------------------------------
+- Fixed problem saving configuration in Joomla 3.2
+- Fixed problem with "Joomdle courses" module in J3.2
+- Fixed problem with content plugin in J3.2
+- Fixed Random question module to work with J3.x
+- Added redirectless SSO to Moodle, to support Moodle Mobile app
+- Some fixes for PostgreSQL
+- Fixed PDF/MP3 file images in course contents view
+
+Joomdle 0.93 for Joomla 3.x
+------------------------------------
+- New plugin for Akeeba Subscriptions integration
+- New plugin for Payplans 3 integration
+- Added compatibilty with PostgreSQL
+- New activity in Jomsocial stream: course completed
+- New rule to give karma points on course completed
+- New view to show children grades
+- New configuration option to select parent category for Kunena course forums
+- New configuration option to select category for course Jomsocial groups
+- Fixed some problems in user search in backend
+- Some fixes in search plugins
+- Fixes in redirect-less logout (Paul Johnson & Ian Wild)
+- Fixed duplicate insert bug when adding users to Joomla groups
+- Fixed "add to general joomla student/teacher" group when course group is not created
+- Fixed category description in get_course_info function
+- Fixed bundle email sending on automatic payments
+- Added option to sort courses by category in "My courses" module
+- Optimized course sort by category in "My courses" view
+- Added warning about mandatory fields on course requests
+- Fixed file permissions in Moodle packages
+- Added option to hide "Go to course" button on course details page
+- Fixed translation issue in Jomsocial My courses plugin
+
+Joomdle 0.92 for Joomla 3.x
+------------------------------------
+- Added profile type selection for children
+- New course categories module
+- New teachers module
+- Added Xmap plugin
+- Added Kunena support
+- Added new configuration option, Moodle Cookie Path, to improve redirectless SSO
+- Added events to allow creation of plugins for shop and profile data integration
+- Added activity restriction info on course view
+- Added Moodle guest support
+- Improved usage of Moodle filters, so that embedded videos work on joomdle views
+- Enabled re-enrolment in courses after enrol time expiration
+- Search plugins adapted for newer Joomla versions
+- Updated Payplans integration to work with newer versions
+- Added PDF links in mygrades view
+- Updated joomdlesession plugin to work with newer Moodle versions
+- Updated certificate module to work with newer versions of the Moodle certificate mod
+- Fixed joomdlehooks plugin when Remember me was set
+- Fixed broken image when removing Community Builder profile pic
+- Fixed encoding problem of special chars in Joomla profile integration
+- Fixed encoding problem when updating profile from Moodle to Joomla
+- Fixed "Empty response from Moodle" problem in J3 - Moodle 1.9 integration
+- Fixed problem unpublishing courses in shop
+- Fixed french translation encoding
+
+Joomdle 0.91 for Joomla 3.x
+-----------------------------
+- Added Jomsocial support
+- Added option to course list view to show/hide course description
+- Added sort option to course list view
+- Added support for mailing lists for parents
+- Added support for PDF export of course grades
+- Added support for multi-language filter (Ivan)
+- Added support for multimedia filter 
+- Added support for images in categories description
+- Added support for Moodle 2.4 in jsgroup Moodle block
+- Hidden sections not shown in course view
+- Fixed children registration
+- Fixed missing enrolment duration in course details
+- Added parameters check to random question module
+- Teachers suspended/disabled not shown in teachersabc view
+- Teachers with no visible courses not shown in teachersabc viev
+- Rubrics support improved
+- Children accounts synced to Moodle automatically on creation
+- Fixed labels in course view with Moodle 1.9 (Terry Carter)
+- Enroling into a course redirects to course view if configured
+- Fixed getout_login page (macsgv)
+- Fixed Joomla 1.6+ profile plugin integration
+
+Joomdle 0.9 for Joomla 3.0
+------------------------------------
+- First release for Joomla 3.0
