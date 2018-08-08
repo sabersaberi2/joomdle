@@ -16,7 +16,10 @@
             description="COM_COURSEGROUPS_COURSES" 
 			multiple="true"
          />
-
+         
+       <field name="publishtime" type="calendar" class="input-medium"
+            label="Select a date" description=""
+            format="%d-%m-%Y %H:%M:%S" showtime="true" default="" filter="user_utc" />
 	</fieldset>
 
 </form>

@@ -99,6 +99,18 @@ class CoursegroupsHelper
 		return $groups;
 	}
 
+	public static function get_course_publish_time ($id)
+	{
+		$db           = JFactory::getDBO();
+
+        $query = "SELECT publishtime from #__coursegroups_groups" .
+                " WHERE usergroups_id = ". $db->Quote($id);
+
+        $db->setQuery($query);
+        $publishtime = $db->loadResult();
+
+		return $publishtime;
+	}
 
     public static function get_group_courses ($usergroups_id)
     {

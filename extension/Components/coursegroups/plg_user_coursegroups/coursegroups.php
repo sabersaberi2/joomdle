@@ -51,8 +51,14 @@ class plgUserCoursegroups extends JPlugin
 				$c[] = $course;
 			}
 
-			JoomdleHelperContent::call_method ('multiple_enrol', $username, $c, 5);
+            $publish_time = CoursegroupsHelper::get_course_publish_time ($group->group_id);
+            $publish_time = strtotime ($publish_time);
+            $now_time = date('Y-m-d H:i:s');
+            $now_time = strtotime ($now_time);
 
+            if ($now_time >= $publish_time) { 
+                JoomdleHelperContent::call_method ('multiple_enrol', $username, $c, 5);
+            }
 		}
 	}
 }
