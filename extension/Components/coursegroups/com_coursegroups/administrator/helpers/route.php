@@ -1,10 +1,8 @@
 <?php
 /**
-* @version		1.0
-* @package		com_coursegroups
-* @copyright	Qontori Pte Ltd
-* @license		http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
-*/
+ * @package		Coursegroups
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
 
 // no direct access
 defined('_JEXEC') or die;

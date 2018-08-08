@@ -1,13 +1,16 @@
 <?php
 /**
-* @version		1.0
-* @package		com_coursegroups
-* @copyright	Qontori Pte Ltd
-* @license		http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
-*/
+ * @version     1.0.0
+ * @package     com_coursegroups
+ * @copyright   Copyright (C) 2012. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @author      Created by com_combuilder - http://www.notwebdesign.com
+ */
 
 // No direct access
 defined('_JEXEC') or die;
+
+require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/content.php');
 
 /**
  * Coursegroups helper.
@@ -52,9 +55,9 @@ class CoursegroupsHelper
 		return $result;
 	}
 
-	function get_course_groups ($id)
+	public static function get_course_groups ($id)
 	{
-		$db           =& JFactory::getDBO();
+		$db           = JFactory::getDBO();
 
         $query = "SELECT courses from #__coursegroups_groups" .
                 " WHERE usergroups_id = ". $db->Quote($id);
@@ -70,9 +73,9 @@ class CoursegroupsHelper
 		return $courses_array;
 	}
 
-	function get_coursegroup_id ($id)
+	public static function get_coursegroup_id ($id)
 	{
-		$db           =& JFactory::getDBO();
+		$db           = JFactory::getDBO();
 
         $query = "SELECT id from #__coursegroups_groups" .
                 " WHERE usergroups_id = ". $db->Quote($id);
@@ -83,9 +86,9 @@ class CoursegroupsHelper
 		return $id;
 	}
 
-	function get_user_groups ($user_id)
+	public static function get_user_groups ($user_id)
 	{
-		$db           =& JFactory::getDBO();
+		$db           = JFactory::getDBO();
 
         $query = "SELECT group_id from #__user_usergroup_map" .
                 " WHERE user_id = ". $db->Quote($user_id);
@@ -97,5 +100,29 @@ class CoursegroupsHelper
 	}
 
 
+    public static function get_group_courses ($usergroups_id)
+    {
+        static $courses;
+
+        if (!$courses)
+            $courses = JoomdleHelperContent::getCourseList ();
+
+        $c = array ();
+        foreach ($courses as $course)
+        {
+            $c[$course['remoteid']] = $course['fullname'];
+        }
+
+        $group_courses = CoursegroupsHelper::get_course_groups ($usergroups_id);
+        $str = '';
+        foreach ($group_courses as $gc)
+        {
+            if ($str)
+                $str .= " | ";
+            $name = $c[$gc];
+            $str .= $name;
+        }
+        return $str;
+    }
 
 }

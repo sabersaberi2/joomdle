@@ -1,10 +1,11 @@
 <?php
 /**
-* @version		1.0
-* @package		com_coursegroups
-* @copyright	Qontori Pte Ltd
-* @license		http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
-*/
+ * @version     1.0.0
+ * @package     com_coursegroups
+ * @copyright   Copyright (C) 2012. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @author      Created by com_combuilder - http://www.notwebdesign.com
+ */
 
 // No direct access
 defined('_JEXEC') or die;
@@ -52,7 +53,7 @@ class CoursegroupsViewItems extends JViewLegacy
 		JToolBarHelper::addNew('item.add','JTOOLBAR_NEW');
 		JToolBarHelper::editList('item.edit','JTOOLBAR_EDIT');
 
-		JToolBarHelper::deleteList('', 'mappings.delete','JTOOLBAR_DELETE');
+		JToolBarHelper::deleteList('', 'items.delete','JTOOLBAR_DELETE');
 
         JHtmlSidebar::setAction('index.php?option=com_coursegroups&view=items');
 	}

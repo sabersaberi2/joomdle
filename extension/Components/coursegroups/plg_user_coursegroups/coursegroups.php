@@ -14,10 +14,6 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_coursegroups/helpers/coursegro
 
 class plgUserCoursegroups extends JPlugin
 {
-	function plgUserJoomdlegroups(& $subject, $config) {
-                parent::__construct($subject, $config);
-        }
-
 	function onUserAfterSave ($user, $isnew, $success, $msg)
 	{
 		$this->update_enrolments ($user);
@@ -30,9 +26,9 @@ class plgUserCoursegroups extends JPlugin
 	
 	function update_enrolments ($user)
 	{
-		$mainframe =& JFactory::getApplication('site');
+		$mainframe = JFactory::getApplication('site');
 
-		$comp_params = &JComponentHelper::getParams( 'com_joomdle' );
+		$comp_params = JComponentHelper::getParams( 'com_joomdle' );
 
 		$username = $user['username'];
 		$user_id = JUserHelper::getUserId($username);
@@ -59,8 +55,6 @@ class plgUserCoursegroups extends JPlugin
 
 		}
 	}
-
-	
 }
 
 ?>

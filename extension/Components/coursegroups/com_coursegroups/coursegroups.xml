@@ -2,12 +2,12 @@
 <extension type="component" version="1.6.0" method="upgrade">
 	<name>coursegroups</name>
 	<creationDate>2012-05-16</creationDate>
-	<author>Qontori Pte Ltd</author>  
-	<copyright>Copyright (C) 2014 Qontori Pte Ltd</copyright>
-	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-	<authorEmail>development@qontori.com</authorEmail>
-	<authorUrl>www.qontori.com</authorUrl>
-	<version>1.0.1</version>
+	<copyright>Copyright (C) 2012. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <author>Antonio Durán Terrés</author>
+	<authorEmail>antonio@joomdle.com</authorEmail>
+	<authorUrl>http://www.joomdle.com</authorUrl>
+	<version>1.0.0</version>
 	<description>Map Joomla groups to Moodle enrolments</description>
 
 	<install> <!-- Runs on install -->
