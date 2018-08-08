@@ -109,7 +109,15 @@ class JoomdleHelperMappings
 		{
 			if ('cf_'.$field['id'] == $field_id)
 			{
-				$data = utf8_decode ($field['data']);
+				// $data = utf8_decode ($field['data']); // مهدی آنیلی
+                // مهدی آنیلی {
+                if ($use_utf8_decode)
+                    $data = utf8_decode ($field['data']);
+                else
+                    // ***
+                    $data = $field['data'];
+                    // ***
+                // } مهدی آنیلی
 				break;
 			}
 		}
@@ -536,7 +544,11 @@ class JoomdleHelperMappings
 //			$user_info[$mapping->moodle_field] = json_encode ($user_info[$mapping->moodle_field]);
 			if (strncmp ($mapping->moodle_field, 'cf_', 3) == 0)
 			{
-				$data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field);
+				// $data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field); // مهدی آنیلی
+                // مهدی آنیلی {
+				$data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field, $use_utf8_decode);
+                $additional_info[$mapping->joomla_field] = $data; /* OPTIONAL */
+                // } مهدی آنیلی
 				JoomdleHelperMappings::set_field_value_joomla16 ($mapping->joomla_field, $data, $id);
 			}
 			else

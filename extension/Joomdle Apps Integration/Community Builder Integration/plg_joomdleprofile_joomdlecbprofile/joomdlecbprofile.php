@@ -174,7 +174,11 @@ class  plgJoomdleprofileJoomdlecbprofile extends JPlugin
             // Custom moodle fields
             if (strncmp ($mapping->moodle_field, 'cf_', 3) == 0)
             {
-                $data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field);
+                // $data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field); // مهدی آنیلی
+                // مهدی آنیلی {
+				$data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field, $use_utf8_decode);
+                $additional_info[$mapping->joomla_field] = $data; /* OPTIONAL */
+                // } مهدی آنیلی
                 $this->set_field_value ($mapping->joomla_field, $data, $id);
             }
             else
