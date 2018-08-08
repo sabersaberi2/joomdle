@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name='item' addfieldpath="/administrator/components/com_coursegroups/models/fields">
+
+		<field name="id" type="hidden" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+                    readonly="true" class="readonly"
+                    description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="usergroups_id" type="usergroup" class="inputbox"
+            label="COM_COURSEGROUPS_GROUP"
+            description="COM_COURSEGROUPS_GROUP" 
+                filter="safehtml" />
+
+       <field name="courses" type="CourseList" class="inputbox"
+            label="COM_COURSEGROUPS_COURSES"
+            description="COM_COURSEGROUPS_COURSES" 
+			multiple="true"
+         />
+
+	</fieldset>
+
+</form>

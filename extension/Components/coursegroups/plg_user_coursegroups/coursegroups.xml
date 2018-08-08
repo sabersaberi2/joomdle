@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="user" client="site" order="100" folder="coursehooks">
+	<name>course groups</name>
+	<author>Antonio Duran Terres</author>
+	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
+	<authorUrl>www.course.com</authorUrl>
+	<version>1.0.1</version>
+	<description>course groups</description>
+	<files>
+		<filename plugin="coursegroups">coursegroups.php</filename>
+	</files>
+	  <languages>
+		
+	  </languages>
+	<params>
+	</params>
+</extension>
