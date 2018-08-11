@@ -365,6 +365,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         )));
         $response = file_get_contents($joomla_xmlrpc_url, false, $context);
 
+        $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
         $data = xmlrpc_decode($response, 'utf-8');
 
@@ -424,6 +425,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $response = curl_exec( $ch ); // Run!
         curl_close($ch);
 
+        $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
         $data = xmlrpc_decode($response, 'utf-8');
 
@@ -479,6 +481,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $tmp_file = $CFG->dataroot.'/temp/'.'joomdle_system_check.xml';
         file_put_contents ($tmp_file, $response);
 
+        $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
         $data = xmlrpc_decode($response);
 
@@ -542,6 +545,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $tmp_file = $CFG->dataroot.'/temp/'.'joomdle_system_check.xml';
         file_put_contents ($tmp_file, $response);
 
+        $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
         $data = xmlrpc_decode($response);
 
