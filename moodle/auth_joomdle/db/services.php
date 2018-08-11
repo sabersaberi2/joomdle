@@ -688,6 +688,22 @@ $functions = array(
         'description' => 'Remove user from cohorts',
         'type'        => 'read',
     ),
+// مهدی آنیلی {
+    'joomdle_get_groups' => array(
+        'classname'   => 'joomdle_helpers_external',
+        'methodname'  => 'get_groups',
+        'classpath'   => 'auth/joomdle/helpers/externallib.php',
+        'description' => 'Get groups',
+        'type'        => 'read',
+    ),
+    'joomdle_multiple_add_group_member' => array(
+        'classname'   => 'joomdle_helpers_external',
+        'methodname'  => 'multiple_add_group_member',
+        'classpath'   => 'auth/joomdle/helpers/externallib.php',
+        'description' => 'Add user to groups',
+        'type'        => 'read',
+    ),
+// } مهدی آنیلی
     'joomdle_get_courses_and_groups' => array(
         'classname'   => 'joomdle_helpers_external',
         'methodname'  => 'get_courses_and_groups',

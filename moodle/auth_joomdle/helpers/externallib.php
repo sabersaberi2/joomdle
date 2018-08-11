@@ -3312,13 +3312,13 @@ class joomdle_helpers_external extends external_api {
         return new external_function_parameters(
                         array(
                             'username' => new external_value(PARAM_TEXT, 'username'),
-                     'cohorts' => new external_multiple_structure(
-                           new external_single_structure(
-                              array(
-                                 'id' => new external_value(PARAM_INT, 'cohort id'),
-                              )
-                           )
-                        ),
+                            'cohorts' => new external_multiple_structure(
+                                new external_single_structure(
+                                    array(
+                                       'id' => new external_value(PARAM_INT, 'cohort id'),
+                                    )
+                                )
+                            ),
                         )
         );
     }
@@ -3338,6 +3338,75 @@ class joomdle_helpers_external extends external_api {
 
         return $id;
     }
+
+// مهدی آنیلی {
+
+    /* get_groups */
+    public static function get_groups_parameters() {
+        return new external_function_parameters(
+                        array(
+                        )
+        );
+    }
+
+    public static function get_groups_returns() {
+        return new external_multiple_structure(
+            new external_single_structure(
+               array(
+                  'id' => new external_value(PARAM_INT, 'group id'),
+                  'courseid' => new external_value(PARAM_INT, 'group course id'),
+                  'name' => new external_value(PARAM_TEXT, 'group name'),
+               )
+            )
+            );
+    }
+
+    public static function get_groups() {
+        global $CFG, $DB;
+
+        $params = self::validate_parameters(self::get_groups_parameters(), array());
+
+        $auth = new auth_plugin_joomdle();
+        $return = $auth->get_groups();
+
+        return $return;
+    }
+
+    /* multiple_add_group_member */
+    public static function multiple_add_group_member_parameters() {
+        return new external_function_parameters(
+                        array(
+                            'username' => new external_value(PARAM_TEXT, 'username'),
+                            'groups' => new external_multiple_structure(
+                                  new external_single_structure(
+                                     array(
+                                        'id' => new external_value(PARAM_INT, 'group id'),
+                                        'courseid' => new external_value(PARAM_INT, 'group course id'),
+                                        'name' => new external_value(PARAM_TEXT, 'group name'),
+                                     )
+                                  )
+                               ),
+                        )
+        );
+    }
+
+    public static function multiple_add_group_member_returns() {
+        return new  external_value(PARAM_INT, 'user enroled');
+    }
+
+    public static function multiple_add_group_member($username, $groups) {
+        global $CFG, $DB;
+
+        $params = self::validate_parameters(self::multiple_add_group_member_parameters(),
+                array('username' => $username, 'groups' => $groups));
+
+        $auth = new  auth_plugin_joomdle ();
+        $id = $auth->multiple_add_group_member ($username, $groups);
+
+        return $id;
+    }
+
+// } مهدی آنیلی
 
     /* multiple_remove_cohort_member */
     public static function multiple_remove_cohort_member_parameters() {

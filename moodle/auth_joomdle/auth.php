@@ -5979,6 +5979,69 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         return $rdo;
     }
 
+// مهدی آنیلی {
+
+    public function get_groups () {
+        global $CFG, $DB;
+
+        $query = "SELECT id, courseid, name
+          FROM {$CFG->prefix}groups";
+
+        $groups = $DB->get_records_sql($query);
+
+        $rdo = array ();
+        foreach ($groups as $group) {
+            $c['id'] = $group->id;
+            $c['courseid'] = $group->courseid;
+            $c['name'] = $group->name;
+
+            $rdo[] = $c;
+        }
+
+        return $rdo;
+    }
+
+    // Groups: group names separated by commas.
+    public function multiple_add_group_member ($username, $groups) {
+        global $CFG, $DB;
+
+        $username = strtolower ($username);
+        $conditions = array ('username' => $username);
+        $user = $DB->get_record('user', $conditions);
+
+        if (!$user)
+            return 0;
+
+        // $groups structure : Array ( [id] => int, [courseid] => int, [name] => text ) 
+        foreach ($groups as $group) {
+            $conditions = array ('id' => $group['id'], 'name' => $group['name']);
+            $Mgroup = $DB->get_record ('groups', $conditions);
+
+            if (!$Mgroup) {
+                continue;
+
+                // DONT RUN
+                // Create group if it does not exist.
+                $group = new stdClass();
+                $group->courseid = $group['courseid'];
+                $group->name = $group['name'];
+                //$groupid = groups_create_group($group);
+                groups_create_group ($group);
+            }
+
+            // If user already in group, do nothing.
+            $user_groups = groups_get_user_groups ($group['courseid'], $user->id); // $user_groups[0] : ignore groupings and user_groups 0 is all groups.
+
+            if (count ($user_groups[0]) > 0) // Already in a group.
+                if (in_array($group['id'], $user_groups[0])) // Already in group.
+                    continue;
+
+            groups_add_member ($Mgroup->id, $user->id);
+        }
+    }
+
+// } مهدی آنیلی
+
     public function get_themes () {
         $availablethemes = core_component::get_plugin_list('theme');
 
