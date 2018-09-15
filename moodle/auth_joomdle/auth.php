@@ -1004,6 +1004,38 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
             $c = get_object_vars ($curso);
 
+			// مهدی آنیلی {
+			$params = array ($curso->remoteid);
+			$query = "SELECT count(*)
+				FROM
+				{$CFG->prefix}course_sections
+				WHERE
+				course = ? and section != 0 and visible=1
+				";
+
+			$c['numsections'] = $DB->count_records_sql($query, $params);
+			// } مهدی آنیلی
+			// مهدی آنیلی {
+			$where          = '( c.id = "' . $curso->remoteid . '" )';
+			$query = "SELECT distinct (u.id), u.username, c.id as courseid, u.firstname, u.lastname
+					 FROM {$CFG->prefix}course as c, {$CFG->prefix}role_assignments AS ra,
+					{$CFG->prefix}user AS u, {$CFG->prefix}context AS ct
+					 WHERE c.id = ct.instanceid AND ra.roleid =3 AND ra.userid = u.id AND ct.id = ra.contextid
+						 AND c.visible=1 and u.suspended=0 AND $where";
+			$query .= " ORDER BY lastname, firstname";
+
+			$teachers_records = $DB->get_records_sql($query, $params);
+			$data = array ();
+			foreach ($teachers_records as $p) {
+				$e = array ();
+				$e['firstname'] = $p->firstname;
+				$e['lastname'] = $p->lastname;
+				$e['username'] = $p->username;
+
+				$data[] = $e;
+			}
+			$c['teachers'] = $data;
+			// } مهدی آنیلی
             $c['self_enrolment'] = 0;
             $c['guest'] = 0;
             $in = true;
@@ -1800,7 +1832,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         }
         $where          = '(' . implode( ' OR ', $likes ) . ')';
 
-        $query = "SELECT distinct (u.id), u.username, u.firstname, u.lastname
+        $query = "SELECT distinct (u.id), u.username, c.id as courseid, u.firstname, u.lastname
                  FROM {$CFG->prefix}course as c, {$CFG->prefix}role_assignments AS ra,
                 {$CFG->prefix}user AS u, {$CFG->prefix}context AS ct
                  WHERE c.id = ct.instanceid AND ra.roleid =3 AND ra.userid = u.id AND ct.id = ra.contextid
@@ -1815,6 +1847,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $e['firstname'] = $p->firstname;
             $e['lastname'] = $p->lastname;
             $e['username'] = $p->username;
+			$e['courseid'] = $p->courseid;
 
             $data[] = $e;
         }
