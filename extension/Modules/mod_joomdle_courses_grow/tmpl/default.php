@@ -15,7 +15,7 @@ require_once(JPATH_ADMINISTRATOR.'/'.'components'.'/'.'com_joomdle'.'/'.'helpers
 //document object
 $jdoc = JFactory::getDocument();
 //add the stylesheet
-$jdoc->addStyleSheet(JURI::root ().'modules/mod_joomdle_courses/assets/css/mod_joomdle.css');
+$jdoc->addStyleSheet(JURI::root ().'modules/mod_joomdle_courses_grow/assets/css/mod_joomdle.css');
 
 $itemid = JoomdleHelperContent::getMenuItem();
 

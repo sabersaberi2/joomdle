@@ -76,7 +76,7 @@ if  ( $params->get( 'courses_shown' ))
 	else
 		$courses_shown = array ( $params->get( 'courses_shown' ));
 
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
+	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
 }
 if  ( $params->get( 'categories_shown' ))
 {
@@ -85,12 +85,12 @@ if  ( $params->get( 'categories_shown' ))
 	else
 		$cats_shown = array ( $params->get( 'categories_shown' ));
 
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
+	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
 }
 if  ( $params->get( 'free courses only' ))
 {
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cost', array (0) );
+	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'cost', array (0) );
 }
 
 
-require(JModuleHelper::getLayoutPath('mod_joomdle_courses'));
+require(JModuleHelper::getLayoutPath('mod_joomdle_courses_grow'));

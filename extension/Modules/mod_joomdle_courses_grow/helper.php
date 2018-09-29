@@ -8,7 +8,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class modJoomdleCoursesHelper 
+class modJoomdleCoursesGrowHelper 
 {
 	static function filter_by_value ($array, $index, $value)
 	{

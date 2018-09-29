@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="1.6.0" client="site" method="upgrade">
-	<name>Joomdle courses</name>
+	<name>Joomdle courses grow</name>
 	<author>Antonio Duran</author>
 	<creationDate>October 2009</creationDate>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
 	<authorUrl>www.joomdle.com</authorUrl>
 	<version>1.0</version>
-	<description>Joomdle courses</description>
+	<description>Joomdle courses grow</description>
 	<files>
-		<filename module="mod_joomdle_courses">mod_joomdle_courses.php</filename>
-		<filename module="mod_joomdle_courses">index.html</filename>
-		<filename module="mod_joomdle_courses">helper.php</filename>
-		<filename module="mod_joomdle_courses">tmpl/default.php</filename>
-		<filename module="mod_joomdle_courses">assets/css/mod_joomdle.css</filename>
+		<filename module="mod_joomdle_courses_grow">mod_joomdle_courses_grow.php</filename>
+		<filename module="mod_joomdle_courses_grow">index.html</filename>
+		<filename module="mod_joomdle_courses_grow">helper.php</filename>
+		<filename module="mod_joomdle_courses_grow">tmpl/default.php</filename>
+		<filename module="mod_joomdle_courses_grow">assets/css/mod_joomdle.css</filename>
 
 	</files>
 	<languages>
-		<language tag="en-GB">language/en-GB.mod_joomdle_courses.sys.ini</language>
-		<language tag="en-GB">language/en-GB.mod_joomdle_courses.ini</language>
-		<language tag="es-ES">language/es-ES.mod_joomdle_courses.ini</language>
-		<language tag="pt-BR">language/pt-BR.mod_joomdle_courses.ini</language>
-		<language tag="de-DE">language/de-DE.mod_joomdle_courses.ini</language>
-		<language tag="fr-FR">language/fr-FR.mod_joomdle_courses.ini</language>
-		<language tag="it-IT">language/it-IT.mod_joomdle_courses.sys.ini</language>
-		<language tag="it-IT">language/it-IT.mod_joomdle_courses.ini</language>
+		<language tag="en-GB">language/en-GB.mod_joomdle_courses_grow.sys.ini</language>
+		<language tag="en-GB">language/en-GB.mod_joomdle_courses_grow.ini</language>
+		<language tag="es-ES">language/es-ES.mod_joomdle_courses_grow.ini</language>
+		<language tag="pt-BR">language/pt-BR.mod_joomdle_courses_grow.ini</language>
+		<language tag="de-DE">language/de-DE.mod_joomdle_courses_grow.ini</language>
+		<language tag="fr-FR">language/fr-FR.mod_joomdle_courses_grow.ini</language>
+		<language tag="it-IT">language/it-IT.mod_joomdle_courses_grow.sys.ini</language>
+		<language tag="it-IT">language/it-IT.mod_joomdle_courses_grow.ini</language>
 	</languages>
 <config><fields name="params"><fieldset name="basic">
 		<field name="linkto" type="list" default="description" label="COM_JOOMDLE_LINKTO" description="COM_JOOMDLE_LINKTO_DESCRIPTION">

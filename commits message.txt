@@ -31,7 +31,7 @@ __________________
 • به روز رسانی هسته joomdle به نسخه جومدل شخصی شده v1.2-B
 
   B :
-  اضافه کردن سرویس های مورد نیاز برای راه اندازی کامپوننت شخصی Jgroups به XML-RPC server
+  اضافه کردن سرویس های مورد نیاز زیر برای راه اندازی کامپوننت شخصی Jgroups به XML-RPC server
 
       get_groups
       multiple_add_group_member
@@ -84,5 +84,10 @@ __________________
     - تغییر نحوه نمایش اطلاعات درس
     - دادن آرگومان نام کاربری به دستور JoomdleHelperContent::getCourseList
     - اضافه کردن استایل و پوشه assets
+__________________
+__________________
+• تغییر نام ماژول mod_joomdle_courses نسخه جومدل شخصی شده v1.1.4-A به mod_joomdle_courses_grow
+
+  - تغییر نام mod_joomdle_courses به mod_joomdle_courses_grow
 __________________
 __________________
