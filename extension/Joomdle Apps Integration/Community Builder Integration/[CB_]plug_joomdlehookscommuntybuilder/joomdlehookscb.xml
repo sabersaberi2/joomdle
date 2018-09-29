@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>Joomdlehooks Communty Builder</name>
+	<author>Antonio Duran Terres</author>
+	<creationDate>August 2010</creationDate>
+	<copyright>Copyright (C) 2010 Antonio Duran</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
+	<authorUrl>www.joomdle.com</authorUrl>
+	<version>2.0.2</version>
+	<description>Call Joomdle hooks in response to Community Builder events
+	</description>
+	
+	<!-- Files to install -->
+	<files>
+		<filename plugin="joomdlehookscb">joomdlehookscb.php</filename>
+		<filename>index.html</filename>
+		<filename>lang/english.php</filename>
+		<filename>lang/index.html</filename>
+	</files>
+
+	<!-- Admin page params -->
+	<params>
+	</params>
+
+	<!-- CB tabs -->
+	<tabs>
+	</tabs>   
+
+	<!-- Install info -->
+	<install>
+		<queries>
+	  </queries>
+	</install>
+	<installfile>joomdlehookscb.php</installfile>
+
+	<!-- Uninstall info -->
+	<uninstall>
+		<queries>
+		</queries>
+	</uninstall>       
+	<uninstallfile>joomdlehookscb.php</uninstallfile>
+
+</cbinstall>
