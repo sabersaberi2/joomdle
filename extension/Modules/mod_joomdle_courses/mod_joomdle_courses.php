@@ -54,14 +54,16 @@ switch ($sort_by)
 
 if  ( $params->get( 'latest courses only' ))
 {
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
+    // CUSTOM : added $username arg
+	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
 	$limit = $params->get( 'latest courses only' );
 }
 else
 {
 	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
 	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
+    // CUSTOM : added $username arg
+	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
 	$limit = PHP_INT_MAX; //no limit
 }
 

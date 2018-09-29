@@ -1,0 +1,68 @@
+/* CUSTOM : '/components/com_joomdle/css/joomdle.css' File optimized */
+
+/* General list definition */
+/* ok */
+.joomdle_item_title {
+	border-style: solid;
+	border-color:#e5e5e5;
+	border-width: 1px 1px 1px 1px;
+	background: #f2f2f2; 
+    margin-bottom: 5px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	font-weight:bold;
+	padding: 5px; 
+    margin-bottom: 2px;
+	overflow:auto;
+}
+
+/* items shown with no description (4 round corners) */
+/* ok */
+.joomdle_item_full {
+    border-style: solid;
+    border-color:#e5e5e5;
+    border-width: 1px 1px 1px 1px;
+    background: #f2f2f2;
+    margin-bottom: 5px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    font-weight:bold;
+    padding: 5px;
+    margin-bottom: 2px;
+    overflow:auto;
+}
+/* ok */
+.joomdle_item_content {
+	-moz-border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+	border-style: solid;
+	border-color:#e5e5e5;
+	border-width: 1px 1px 1px 1px;
+	background: #f5fcf5; 
+    margin-bottom: 10px;
+	padding: 5px; 
+	overflow:auto;
+	padding-bottom:1px;
+}
+
+
+/* Course / Category Lists Views */
+/* ok */
+.joomdle_course_list_item_title {
+}
+/* ok */
+.joomdle_course_list_item_description {
+}
+
+
+/* Course Detail View */
+/* TODO: add definitios for elemnts in detail view */
+/* ok */
+.joomdle-courselist h4 {
+	margin-bottom:10px;
+}
+/* ok */
+.joomdle_course_description {
+	overflow:auto;
+	padding-bottom:1px;
+}

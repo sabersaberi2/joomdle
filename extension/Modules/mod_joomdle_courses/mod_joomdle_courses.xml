@@ -13,6 +13,7 @@
 		<filename module="mod_joomdle_courses">index.html</filename>
 		<filename module="mod_joomdle_courses">helper.php</filename>
 		<filename module="mod_joomdle_courses">tmpl/default.php</filename>
+		<filename module="mod_joomdle_courses">assets/css/mod_joomdle.css</filename>
 
 	</files>
 	<languages>
