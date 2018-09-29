@@ -13,8 +13,7 @@
 		<filename module="mod_joomdle_courses_grow">index.html</filename>
 		<filename module="mod_joomdle_courses_grow">helper.php</filename>
 		<filename module="mod_joomdle_courses_grow">tmpl/default.php</filename>
-		<filename module="mod_joomdle_courses_grow">assets/css/mod_joomdle.css</filename>
-
+        <folder   module="mod_joomdle_courses_grow">assets</folder>
 	</files>
 	<languages>
 		<language tag="en-GB">language/en-GB.mod_joomdle_courses_grow.sys.ini</language>
@@ -46,9 +45,9 @@
 		</field>
 		<field name="latest courses only" type="text" size="3" default="" label="COM_JOOMDLE_LATEST_COURSES_ONLY" description="COM_JOOMDLE_LATEST_COURSES_ONLY_DESCRIPTION" />
 
-<field name="courses_shown" multiple="multiple" type="courselist" size="5" default="" label="COM_JOOMDLE_SELECT_COURSES" description="COM_JOOMDLE_SELECT_COURSES_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/fields"/>
+<field name="courses_shown" multiple="multiple" type="courselist" size="5" default="" label="COM_JOOMDLE_SELECT_COURSES" description="COM_JOOMDLE_SELECT_COURSES_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/models/fields"/>
 
-<field name="categories_shown" type="coursecategorylist" default="" multiple="multiple" label="COM_JOOMDLE_SELECT_CATEGORIES"  description="COM_JOOMDLE_SELECT_CATEGORIES_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/fields" />
+<field name="categories_shown" type="coursecategorylist" default="" multiple="multiple" label="COM_JOOMDLE_SELECT_CATEGORIES"  description="COM_JOOMDLE_SELECT_CATEGORIES_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/models/fields" />
 	<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
 
 

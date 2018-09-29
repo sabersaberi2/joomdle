@@ -35,9 +35,9 @@
 ?>
     <div class="joomdlecourses<?php echo $moduleclass_sfx; ?>" style="display: block; margin: 0 auto;">
 <?php
-    $i = 0;
-    if (is_array($cursos))
-        $count=0;
+    $courseShowLimit = 0;
+    // if (is_array($cursos))
+        // $cursCounter=0;
     foreach ($cursos as $id => $curso)
     {
         $id = $curso['remoteid'];
@@ -98,6 +98,7 @@
                     <!-- TEACHER PHOTO SECTION -->
                     <div class="profcircle jf_col grid_3 last-column joomdle_course_columns_profcircle" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); text-align: center;display: inline-block; right: 50%; position: absolute; transform: translate(50%, -50%); -ms-transform: translate(50%, -50%); border-radius: 50%;">
 <?php
+                        /* require (JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/mappings.php') */
                         $teacher_user_info = JoomdleHelperMappings::get_user_info_for_joomla ($teacher['username']);
                         // if (!count ($teacher_user_info)) //not a Joomla user
                             // continue;
@@ -190,7 +191,10 @@
                 echo '</div>'; 
             echo '</div>'; 
         echo '</div>'; 
-        $count++;
+        // $cursCounter++;
+        $courseShowLimit++;
+        if ($courseShowLimit >= $limit) // Show only this number of latest courses
+            break;
     }
 ?>
     </div>
