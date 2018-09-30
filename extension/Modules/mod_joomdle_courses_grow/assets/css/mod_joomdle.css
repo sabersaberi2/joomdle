@@ -14,6 +14,7 @@
 	padding: 5px; 
     margin-bottom: 2px;
 	overflow:auto;
+	
 }
 
 /* items shown with no description (4 round corners) */
@@ -134,11 +135,12 @@ img.img {
     object-fit: cover; 
 } 
 .profnme{
-display: inline-block;
-    float: left;
-	   /* padding-top: 4px;
-		padding-left: 8px;*/
-		    font-weight: 900 !important;
+    display: block;
+    /* float: right; */
+    padding-right: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 900 !important;
     color: #88ba48 !important;
 }
 .profnme > a {    font-weight: 800;
@@ -147,8 +149,8 @@ display: inline-block;
 	color: #00adef !important;
 }
 .card-main{
-    overflow:hidden;	
-    padding-top:15px; /* add by ahmad */
+    /* overflow:hidden;	 */
+    /* padding-top:15px; */ /* add by ahmad */ 
 }
 .joomdle_course_topicsnumber {
     display: inline-block;
@@ -175,18 +177,21 @@ background-image: linear-gradient(to top,#ffffff,#88ba48,#88ba48,#88ba48) !impor
 	color:#88ba48;
 }
 
-.ovimg{
-background: rgba(0, 173, 239, 0.82);
-    /* opacity: 0.8; */
-border-radius: 14px 14px 0px 0px;
-overflow: hidden;
-    background-image: linear-gradient(to top,#ffffff,#00adefd1,#00adefd1,#00adefd1);
-	    cursor: zoom-in;
-}
-.ovimg > img{
-    height: 165px;
-    width: 100%;
-    opacity: 0.23;	
+.sumimg{
+    /* background: rgba(0, 173, 239, 0.82); */
+    /* opacity: 0.7; */
+    /* border-radius: 14px 14px 0px 0px; */
+    /* overflow: hidden; */
+    /* background-image: linear-gradient(to top,#ffffff,#1cb3ec,#00adef94,#00adef); */
+    /* cursor: zoom-in; */
+    /* min-height: 165px; */
+    /* max-height: 165px; */
+    height: auto;
+} 
+.sumimg > img{
+    /* height: 165px; */
+    /* width: 100%; */
+    opacity: 0.15;	
 }	
 .modalovimg{
 background: rgba(0, 173, 239, 0.82);
@@ -210,7 +215,7 @@ overflow: hidden;
 
 @media only screen and (max-width: 767px){
 .profcircle.jf_col.grid_3.last-column {
-    width: 20%;
+    /* width: 20%; */
 }
 .counterbox {
     text-align: center;
@@ -236,41 +241,38 @@ font-size:1.3rem;
 .profimg > img{
 	max-height:58px;
 }
+}
 
-}
 .jf_linkhover2:before{
- background-color: #88ba48 !important;
+ /* background-color: #88ba48 !important; */
 }
+
 @media screen and (max-width: 380px)
-mod_joomdle.css:223
+{
 .modalprofnme {
     font-size: 1.2rem;
     font-weight: bolder;
     padding-top: 6px !important;
 }
+}
 /* add by ahmad */
 .joomdle_course_columns{
-    padding:5px;
-    height:300px;
-    float:right;
+    margin:5px;
+    /* height:300px; */
+    /* float:right; */
+}
+
+.corstitle {
+    margin-top: 1.5rem;
 }
 
 .joomdle_course_columns_titr{
-    margin: 0px;
-    padding: 10px 0;
     text-align: center;
-    position: absolute;
-    margin: 0 auto;
     vertical-align: middle;
-    z-index: 222;
-    top: 46%;
-    left: 50%;
-    color: aliceblue;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    color: black;
     font-size: 17px;
     font-weight: 900;
-    width: 100%;
+	filter: drop-shadow(2px 2px 5px black);
 }
 
 .joomdle_course_columns_profcircle{
@@ -282,4 +284,13 @@ mod_joomdle.css:223
     transform: translate(50%, -50%);
     -ms-transform: translate(50%, -50%);
     border-radius: 50%;
+}
+
+.corssummary{
+    padding-right: 8px;
+    margin-bottom: 10px;
+    min-height: 165px;
+    max-height: 165px;
+    height: 165px;
+    overflow: hidden;
 }
