@@ -53,80 +53,103 @@
             $id = $curso['remoteid'];
             $course_info = JoomdleHelperContent::getCourseInfo($id, $username);
 
-            $teachers = JoomdleHelperContent::getCourseTeachers($id);
-            // $teachers = array("firstname"=>"محمد", "lastname"=>"زنجانی", "username"=>"7555");
+            $haveTeacher = false;
+            $teachers = JoomdleHelperContent::getCourseTeachers($id); // $teachers = array("firstname"=>"محمد", "lastname"=>"زنجانی", "username"=>"7555");
             if (count($teachers) == count($teachers, COUNT_RECURSIVE))
-                // array is not multidimensional
-                $teacher = $teachers;
+                $teacher = $teachers; // array is not multidimensional
             else
                 if (is_array ($teachers))
                     $teacher = array_shift($teachers);
-
+            if (!($teacher==null))
+                $haveTeacher = true;
+/*
+            $haveSummaryFiles = false;
             $summary_files = $curso['summary_files'];
+            $summary_file = $summary_files;
             if (is_array ($summary_files))
                 $summary_file = array_shift($summary_files);
+            if (!($summary_file==null))
+                $haveSummaryFiles = true;
+*/
 ?>
             <div class="grid_4 last-column joomdle_course_columns">
                 <div class="card-main">
 <?php
-                    if ($curso['summary']) {
-                        /* SUMMARY FILES SECTION */
-                        if (count ($curso['summary_files'])) {
-                            // foreach ($curso['summary_files'] as $file) {
-?>
-                                <!-- SUMMARY FILE IMAGE SECTION -->
-                                <div class="sumimg<?php echo $curso['cat_id']; ?> sumimg">
-<?php
-                                    echo '<img class="img" hspace="0" vspace="5" align="center" data-lazy="'.$summary_file['url'].'" data-src="'.$summary_file['url'].'" >';
-                                echo '</div>';
-                                
-                                /* COURSE TITLE SECTION */
-                                echo '<div class="corstitle',$curso['cat_id'],' corstitle">';
-                                    echo '<p class="joomdle_course_columns_titr" style="">';
-                                        if ($linkto == 'moodle') {
-                                            if ($default_itemid)
-                                                $itemid = $default_itemid;
-                                            if ($username) {
-                                                echo $curso['fullname'];
-                                            }
-                                            else
-                                                if ($open_in_wrapper)
-                                                    echo $curso['fullname'];
-                                                else
-                                                    echo $curso['fullname'];
-                                        }
-                                        else {
-                                            if ($joomdle_itemid)
-                                                $itemid = $joomdle_itemid;
-                                            $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$curso['cat_id']."&course_id=".$curso['remoteid']."&Itemid=$itemid");
-                                            // $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$curso['cat_id'].":"."&course_id=".$curso['remoteid'].':'."&Itemid=$itemid");
-                                            echo $curso['fullname'];
-                                        }
-                                    echo '</p>';
-                                echo '</div>';
+                    /* SUMMARY IMAGE FILES SECTION */
+                    if (count ($curso['summary_files']) == 0)
+                        $curso['summary_files'][0]["url"] = JURI::root ().'modules/mod_joomdle_courses_grow/assets/image/no-image-min.png';
 
-                                /* COURSE SUMMARY SECTION */
-                                $curso_summary = trim(strip_tags($curso['summary']));
-                                $curso_summary = substr($curso_summary, 0, 250);
-                                $curso_summary = trim(substr($curso_summary, 0, strrpos($curso_summary, ' '))) . " ...";
-                                echo '<div class="corssummary" style="">';
-                                    // echo $curso_summary;
-                                    echo trim(JoomdleHelperSystem::fix_text_format(trim($curso['summary'])));
-                                echo '</div>';
-                            // }
+                    if (count ($curso['summary_files'])) {
+                        foreach ($curso['summary_files'] as $imageFileID => $imageFile) {
+?>
+                            <!-- SUMMARY FILE IMAGE SECTION -->
+                            <div class="sumimg<?php echo $curso['cat_id']; ?> sumimg">
+<?php
+                                echo '<img class="img'.$imageFileID.' img" hspace="0" vspace="5" align="center" data-lazy="'.$imageFile['url'].'" data-src="'.$imageFile['url'].'" >';
+                            echo '</div>';
                         }
                     }
 
-                    /* COURSE MORE LINK SECTION */
-                    echo '<div style="float: left; padding-left: 8px; padding-top: 10px; padding-bottom: 10px;">';
-                        echo "<a style=\"direction:rtl\" "."href=\"".$url."\">[اطلاعات بیشتر]</a><br>";
+                    /* COURSE TITLE SECTION */
+                    echo '<div class="corstitle',$curso['cat_id'],' corstitle">';
+                        echo '<p class="joomdle_course_columns_titr" style="">';
+                            if ($linkto == 'moodle') {
+                                if ($default_itemid)
+                                    $itemid = $default_itemid;
+                                if ($username) {
+                                    echo $curso['fullname'];
+                                }
+                                else
+                                    if ($open_in_wrapper)
+                                        echo $curso['fullname'];
+                                    else
+                                        echo $curso['fullname'];
+                            }
+                            else {
+                                if ($joomdle_itemid)
+                                    $itemid = $joomdle_itemid;
+
+                                $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$curso['cat_id']."&course_id=".$curso['remoteid']."&Itemid=$itemid");
+                                // $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$curso['cat_id'].":"."&course_id=".$curso['remoteid'].':'."&Itemid=$itemid");
+
+                                echo $curso['fullname'];
+                            }
+                        echo '</p>';
                     echo '</div>';
-?>
-                    <!-- TEACHER NAME SECTION -->
-                    <div class="profnme<?php echo $course_info['cat_id']; ?> profnme" >
-                        <a href="<?php if($teacher['username']){ echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");} ?>"><?php if($teacher['lastname']){ echo "مدرس : استاد ".$teacher['lastname']; }?></a>
-                    </div>
-<?php
+
+                    /* COURSE SUMMARY SECTION */
+                    if ($curso['summary']) {
+                        $curso_summary = trim(strip_tags($curso['summary']));
+                        $curso_summary = substr($curso_summary, 0, 250);
+                        $curso_summary = trim(substr($curso_summary, 0, strrpos($curso_summary, ' '))) . " ...";
+                        echo '<div class="corssummary" style="">';
+                            // echo $curso_summary;
+                            echo trim(JoomdleHelperSystem::fix_text_format(trim($curso['summary'])));
+                        echo '</div>';
+                    }
+
+                    /* COURSE MORE LINK SECTION */
+                    if ($linkto != 'moodle') {
+                        echo '<div style="float: left; padding-left: 8px; padding-top: 10px; padding-bottom: 10px;">';
+                            echo "<a style=\"direction:rtl\" "."href=\"".$url."\">[اطلاعات بیشتر]</a><br>";
+                        echo '</div>';
+                    }
+
+                    /* TEACHER NAME SECTION */
+                    echo '<div class="profnme' . $course_info['cat_id'] . ' profnme" >';
+                        if ($haveTeacher==true){
+                            if ($teacher['username'])
+                                $teacherLink = JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");
+                            if ($teacher['lastname'])
+                                $teacherPresentation = "مدرس : استاد " . $teacher['lastname'];
+                        }
+                        else {
+                            $teacherLink = "#";
+                            $teacherPresentation = "مدرس : نامشخص";
+                        }
+                        echo '<a href="' . $teacherLink . '">' . $teacherPresentation . '</a>';
+                    echo '</div>';
+
                     /* COURSE ENROLL BUTTON SECTION */
                     echo '<div class="inlineForm center" style="padding:10px" >';
                         echo JoomdleHelperSystem::actionbutton ( $curso );
@@ -143,12 +166,29 @@
                 </div>
 <?php
             echo '</div>'; 
-
             // $cursCounter++;
+
             $courseShowLimit++;
             if ($courseShowLimit >= $limit) // Show only this number of latest courses
                 break; 
         }
+// if (isset($_GET['width']) AND isset($_GET['height'])) {
+  // // output the geometry variables
+  // echo "Screen width is: ". $_GET['width'] ."<br />\n";
+  // echo "Screen height is: ". $_GET['height'] ."<br />\n";
+// } else {
+  // // pass the geometry variables
+  // // (preserve the original query string
+    // // -- post variables will need to handled differently)
+  // echo "<script language='javascript'>\n";
+  // echo "\$(document).ready(function(){\n";
+    // echo "var divWidth = " . "\$" . "('.sumimg" . $curso['cat_id'] . "').height();\n";
+  // echo "});\n";
+  // echo "  location.href=\"${_SERVER['SCRIPT_NAME']}?${_SERVER['QUERY_STRING']}"
+            // . "&width=\" + screen.width + \"&height=\" + screen.height;\n";
+  // echo "</script>\n";
+  // exit();
+// }
 ?>
     </div>
 <!--
@@ -166,6 +206,15 @@
     </script>
 -->
 
+<!--
+    <script type="text/javascript">
+    jQuery(document).ready(function($){
+        var divWidth = $('.sumimg').width();
+        var divheight = $('.sumimg').height();
+        location.href="/index.php?&width=" + screen.width + "&height=" + screen.height;
+    });
+    </script>
+-->
     <script type="text/javascript">
         jQuery(document).ready(function($){
             $('.owl-carousel').slick({
