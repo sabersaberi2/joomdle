@@ -55,19 +55,19 @@ switch ($sort_by)
 if  ( $params->get( 'latest courses only' ))
 {
     // CUSTOM : added $username arg
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
+	$courses = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
 	$limit = $params->get( 'latest courses only' );
 }
 else
 {
-	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
-	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
+	//$courses = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
+	//$courses = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
     // CUSTOM : added $username arg
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
+	$courses = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only, $username);
 	$limit = PHP_INT_MAX; //no limit
 }
 
-//print_r ($cursos);
+//print_r ($courses);
 
 if  ( $params->get( 'courses_shown' ))
 {
@@ -76,7 +76,7 @@ if  ( $params->get( 'courses_shown' ))
 	else
 		$courses_shown = array ( $params->get( 'courses_shown' ));
 
-	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
+	$courses = modJoomdleCoursesGrowHelper::filter_by_value ($courses, 'remoteid', $courses_shown );
 }
 if  ( $params->get( 'categories_shown' ))
 {
@@ -85,11 +85,11 @@ if  ( $params->get( 'categories_shown' ))
 	else
 		$cats_shown = array ( $params->get( 'categories_shown' ));
 
-	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
+	$courses = modJoomdleCoursesGrowHelper::filter_by_value ($courses, 'cat_id', $cats_shown );
 }
 if  ( $params->get( 'free courses only' ))
 {
-	$cursos = modJoomdleCoursesGrowHelper::filter_by_value ($cursos, 'cost', array (0) );
+	$courses = modJoomdleCoursesGrowHelper::filter_by_value ($courses, 'cost', array (0) );
 }
 
 
