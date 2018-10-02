@@ -20,5 +20,5 @@ $i = 0;
         <div id="j-main-container">
     <?php endif;?>
 
-	<?php echo $this->message; ?>
+    <?php echo $this->message; ?>
 </div>

@@ -24,31 +24,31 @@ class JFormFieldTheme extends JFormFieldList
 
         function getOptions()
         {
-			$options = array ();
-			$val = '';
-			$text = JText::_ ('COM_JOOMDLE_DEFAULT');
-			$options[] = JHtml::_('select.option', $val, $text);
+            $options = array ();
+            $val = '';
+            $text = JText::_ ('COM_JOOMDLE_DEFAULT');
+            $options[] = JHtml::_('select.option', $val, $text);
 
-			// If Joomdle not configured, return
-			$params = JComponentHelper::getParams( 'com_joomdle' );
-			if ($params->get( 'MOODLE_URL' ) == "")
-				return $options;
+            // If Joomdle not configured, return
+            $params = JComponentHelper::getParams( 'com_joomdle' );
+            if ($params->get( 'MOODLE_URL' ) == "")
+                return $options;
 
-			// If any fatal error in system check, return
-			if (!JoomdleHelperContent::system_ok ())
-				return $options;
+            // If any fatal error in system check, return
+            if (!JoomdleHelperContent::system_ok ())
+                return $options;
 
-			$themes = JoomdleHelperContent::call_method ('get_themes');
-			$c = array ();
+            $themes = JoomdleHelperContent::call_method ('get_themes');
+            $c = array ();
 
-			foreach ($themes as $theme)
-			{
-				$val = $theme['name'];
-				$text = $theme['name'];
-				$options[] = JHtml::_('select.option', $val, $text);
-			}
+            foreach ($themes as $theme)
+            {
+                $val = $theme['name'];
+                $text = $theme['name'];
+                $options[] = JHtml::_('select.option', $val, $text);
+            }
 
-			return $options;
+            return $options;
         }
 }
 

@@ -16,23 +16,23 @@ require_once( JPATH_COMPONENT.'/helpers/applications.php' );
 class JoomdleViewCourseapplications extends JViewLegacy {
     function display($tpl = null) {
 
-		$cursos = JoomdleHelperContent::getCourseList ();
-		$i = 0;
-		$c = array ();
-		foreach ($cursos as $curso)
-		{
-				$c[$i] = new JObject ();
-				$c[$i]->id = $curso['remoteid'];
-				$c[$i]->fullname = $curso['fullname'];
-				$i++;
-		}
+        $cursos = JoomdleHelperContent::getCourseList ();
+        $i = 0;
+        $c = array ();
+        foreach ($cursos as $curso)
+        {
+                $c[$i] = new JObject ();
+                $c[$i]->id = $curso['remoteid'];
+                $c[$i]->fullname = $curso['fullname'];
+                $i++;
+        }
 
-		$this->courses = $c;
+        $this->courses = $c;
 
         $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
-		$this->course_id = JFactory::getApplication()->input->get('course_id');
+        $this->course_id = JFactory::getApplication()->input->get('course_id');
 
         parent::display($tpl);
     }

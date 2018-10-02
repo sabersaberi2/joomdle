@@ -13,102 +13,102 @@ jimport('joomla.application.component.modeladmin');
 
 class JoomdleModelConfig extends JModelAdmin
 {
-	/**
-	 * @var		string	The prefix to use with controller messages.
-	 * @since	1.6
-	 */
-	protected $text_prefix = 'COM_JOOMDLE';
+    /**
+     * @var     string  The prefix to use with controller messages.
+     * @since   1.6
+     */
+    protected $text_prefix = 'COM_JOOMDLE';
 
 
-	/**
-	 * Returns a reference to the a Table object, always creating it.
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	 */
-	public function getTable($type = 'mappings', $prefix = 'JoomdleTable', $config = array())
-	{
-		return JTable::getInstance($type, $prefix, $config);
-	}
+    /**
+     * Returns a reference to the a Table object, always creating it.
+     *
+     * @param   type    The table type to instantiate
+     * @param   string  A prefix for the table class name. Optional.
+     * @param   array   Configuration array for model. Optional.
+     * @return  JTable  A database object
+     * @since   1.6
+     */
+    public function getTable($type = 'mappings', $prefix = 'JoomdleTable', $config = array())
+    {
+        return JTable::getInstance($type, $prefix, $config);
+    }
 
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param	array	$data		An optional array of data for the form to interogate.
-	 * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
-	 * @return	JForm	A JForm object on success, false on failure
-	 * @since	1.6
-	 */
-	public function getForm($data = array(), $loadData = true)
-	{
-		// Initialise variables.
-		$app	= JFactory::getApplication();
+    /**
+     * Method to get the record form.
+     *
+     * @param   array   $data       An optional array of data for the form to interogate.
+     * @param   boolean $loadData   True if the form is to load its own data (default case), false if not.
+     * @return  JForm   A JForm object on success, false on failure
+     * @since   1.6
+     */
+    public function getForm($data = array(), $loadData = true)
+    {
+        // Initialise variables.
+        $app    = JFactory::getApplication();
 
-		// Get the form.
-		$form = $this->loadForm('com_joomdle.config', 'config', array('control' => 'jform', 'load_data' => $loadData));
-		if (empty($form)) {
-			return false;
-		}
+        // Get the form.
+        $form = $this->loadForm('com_joomdle.config', 'config', array('control' => 'jform', 'load_data' => $loadData));
+        if (empty($form)) {
+            return false;
+        }
 
-		return $form;
-	}
+        return $form;
+    }
 
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.6
-	 */
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_joomdle.edit.mapping.data', array());
+    /**
+     * Method to get the data that should be injected in the form.
+     *
+     * @return  mixed   The data for the form.
+     * @since   1.6
+     */
+    protected function loadFormData()
+    {
+        // Check the session for previously entered form data.
+        $data = JFactory::getApplication()->getUserState('com_joomdle.edit.mapping.data', array());
 
-		if (empty($data)) {
-			$data = $this->getItem();
-		}
+        if (empty($data)) {
+            $data = $this->getItem();
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	/**
-	 * Method to get a single record.
-	 *
-	 * @param	integer	The id of the primary key.
-	 *
-	 * @return	mixed	Object on success, false on failure.
-	 * @since	1.6
-	 */
-	public function getItem($pk = null)
-	{
-		if ($item = parent::getItem($pk)) {
+    /**
+     * Method to get a single record.
+     *
+     * @param   integer The id of the primary key.
+     *
+     * @return  mixed   Object on success, false on failure.
+     * @since   1.6
+     */
+    public function getItem($pk = null)
+    {
+        if ($item = parent::getItem($pk)) {
 
-			// Set Joomla component for new mappings
-			if (!$item->joomla_app)
-				$item->joomla_app = 'joomla16';
-		}
+            // Set Joomla component for new mappings
+            if (!$item->joomla_app)
+                $item->joomla_app = 'joomla16';
+        }
 
-		return $item;
-	}
+        return $item;
+    }
 
     function save ($data)
-	{
-		$app    = JFactory::getApplication();
-		if (file_exists (JPATH_SITE . '/components/com_config/model/cms.php'))
-			require_once JPATH_SITE . '/components/com_config/model/cms.php';
-		if (file_exists (JPATH_SITE . '/components/com_config/model/form.php'))
-			require_once JPATH_SITE . '/components/com_config/model/form.php';
-		if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/model/component.php'))
-			require_once JPATH_ADMINISTRATOR . '/components/com_config/model/component.php';
-		if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/models/component.php'))
-			require_once JPATH_ADMINISTRATOR . '/components/com_config/models/component.php';
+    {
+        $app    = JFactory::getApplication();
+        if (file_exists (JPATH_SITE . '/components/com_config/model/cms.php'))
+            require_once JPATH_SITE . '/components/com_config/model/cms.php';
+        if (file_exists (JPATH_SITE . '/components/com_config/model/form.php'))
+            require_once JPATH_SITE . '/components/com_config/model/form.php';
+        if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/model/component.php'))
+            require_once JPATH_ADMINISTRATOR . '/components/com_config/model/component.php';
+        if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/models/component.php'))
+            require_once JPATH_ADMINISTRATOR . '/components/com_config/models/component.php';
 
         $model = new ConfigModelComponent ();
 
-		//Get joomdle extension id
+        //Get joomdle extension id
         $db           = JFactory::getDBO();
         $query = 'SELECT extension_id '.
                 ' FROM #__extensions'.
@@ -118,14 +118,14 @@ class JoomdleModelConfig extends JModelAdmin
 
         $option = 'com_joomdle';
 
-		// Generate auth token if needed
-		if ($data['joomla_auth_token'] == '')
-		{
-			$token = JUserHelper::genRandomPassword(32);
-			$token = preg_replace('/[\x00-\x1F\x7F]/', '', $token);
+        // Generate auth token if needed
+        if ($data['joomla_auth_token'] == '')
+        {
+            $token = JUserHelper::genRandomPassword(32);
+            $token = preg_replace('/[\x00-\x1F\x7F]/', '', $token);
 
-			$data['joomla_auth_token'] = $token;
-		}
+            $data['joomla_auth_token'] = $token;
+        }
 
         $data['license_key'] = trim ($data['license_key']);
         $license_key = $data['license_key'];
@@ -140,8 +140,8 @@ class JoomdleModelConfig extends JModelAdmin
                     );
         $return = $model->save($data);
 
-		// Update license key in update_sites table
-		if ($license_key != '')
+        // Update license key in update_sites table
+        if ($license_key != '')
         {
             $query = 'update' .
                 ' #__update_sites' .
@@ -152,8 +152,8 @@ class JoomdleModelConfig extends JModelAdmin
             $db->query();
         }
 
-		return $return;
-	}
+        return $return;
+    }
 
     public function getData()
     {
@@ -164,19 +164,19 @@ class JoomdleModelConfig extends JModelAdmin
 
     public function regenerate_joomla_token ()
     {
-		$app    = JFactory::getApplication();
-		if (file_exists (JPATH_SITE . '/components/com_config/model/cms.php'))
-			require_once JPATH_SITE . '/components/com_config/model/cms.php';
-		if (file_exists (JPATH_SITE . '/components/com_config/model/form.php'))
-			require_once JPATH_SITE . '/components/com_config/model/form.php';
-		if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/model/component.php'))
-			require_once JPATH_ADMINISTRATOR . '/components/com_config/model/component.php';
-		if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/models/component.php'))
-			require_once JPATH_ADMINISTRATOR . '/components/com_config/models/component.php';
+        $app    = JFactory::getApplication();
+        if (file_exists (JPATH_SITE . '/components/com_config/model/cms.php'))
+            require_once JPATH_SITE . '/components/com_config/model/cms.php';
+        if (file_exists (JPATH_SITE . '/components/com_config/model/form.php'))
+            require_once JPATH_SITE . '/components/com_config/model/form.php';
+        if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/model/component.php'))
+            require_once JPATH_ADMINISTRATOR . '/components/com_config/model/component.php';
+        if (file_exists (JPATH_ADMINISTRATOR . '/components/com_config/models/component.php'))
+            require_once JPATH_ADMINISTRATOR . '/components/com_config/models/component.php';
 
         $model = new ConfigModelComponent ();
 
-		//Get joomdle extension id
+        //Get joomdle extension id
         $db           = JFactory::getDBO();
         $query = 'SELECT extension_id '.
                 ' FROM #__extensions'.
@@ -196,7 +196,7 @@ class JoomdleModelConfig extends JModelAdmin
         $data_o = json_decode ($params);
         $data = (array) $data_o;
 
-		// Generate auth token
+        // Generate auth token
         $token = JUserHelper::genRandomPassword(32);
         $token = preg_replace('/[\x00-\x1F\x7F]/', '', $token);
         $data['joomla_auth_token'] = $token;
@@ -208,7 +208,7 @@ class JoomdleModelConfig extends JModelAdmin
                     );
         $return = $model->save($data);
 
-		return $return;
+        return $return;
     }
 
 }

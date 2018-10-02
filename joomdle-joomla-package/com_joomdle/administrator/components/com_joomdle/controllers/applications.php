@@ -18,12 +18,12 @@ require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/applications.
 class JoomdleControllerApplications extends JControllerAdmin
 {
 
-	public function approve ()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    public function approve ()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $course_id   = $this->input->get('course_id', 0);
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
 
         JArrayHelper::toInteger($cid);
 
@@ -37,14 +37,14 @@ class JoomdleControllerApplications extends JControllerAdmin
 
         $this->setRedirect( 'index.php?option=com_joomdle&view=applications&course_id='.$course_id );
 
-	}
+    }
 
     function reject ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $course_id   = $this->input->get('course_id', 0);
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {

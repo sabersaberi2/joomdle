@@ -14,15 +14,15 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/content.php');
 
 class JoomdleControllerQuestion extends JControllerLegacy
 {
-	public function get_correct_answer ()
-	{
-		$question_id   = $this->input->get('question_id', '');
+    public function get_correct_answer ()
+    {
+        $question_id   = $this->input->get('question_id', '');
 
-		$answer_id = JoomdleHelperContent::call_method ('quiz_get_correct_answer', (int) $question_id);
-		echo $answer_id;
-		
-		exit ();
-	}
+        $answer_id = JoomdleHelperContent::call_method ('quiz_get_correct_answer', (int) $question_id);
+        echo $answer_id;
+        
+        exit ();
+    }
 }
 
 ?>

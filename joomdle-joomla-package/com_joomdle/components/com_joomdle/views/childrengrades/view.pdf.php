@@ -16,24 +16,24 @@ require_once(JPATH_SITE.'/components/com_joomdle/helpers/content.php');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewChildrengrades extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$user = JFactory::getUser();
+        $user = JFactory::getUser();
         $username = $user->username;
-		$this->child = JFactory::getUser($username);
+        $this->child = JFactory::getUser($username);
 
-		$layout = $params->get('layout');
+        $layout = $params->get('layout');
 
-		$this->tasks = JoomdleHelperContent::call_method ("get_children_grade_user_report", $username);
+        $this->tasks = JoomdleHelperContent::call_method ("get_children_grade_user_report", $username);
 
-		$tpl = "catspdf";
+        $tpl = "catspdf";
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
         $this->_prepareDocument();
 
@@ -68,7 +68,7 @@ class JoomdleViewChildrengrades extends JViewLegacy {
 
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

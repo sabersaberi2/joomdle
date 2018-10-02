@@ -14,24 +14,24 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMynews extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$this->my_news = JoomdleHelperContent::getMyNews();
+        $this->my_news = JoomdleHelperContent::getMyNews();
 
-		$this->jump_url =  JoomdleHelperContent::getJumpURL ();
+        $this->jump_url =  JoomdleHelperContent::getJumpURL ();
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
         parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

@@ -18,7 +18,7 @@ class JoomdleControllerBundle extends JControllerForm
 {
     protected $text_prefix = 'COM_JOOMDLE_MAPPING';
 
-	function __construct() {
+    function __construct() {
         $this->view_list = 'shop';
         parent::__construct();
     }

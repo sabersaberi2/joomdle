@@ -22,7 +22,7 @@ class JFormFieldCoursecategoryList extends JFormFieldList
         */
         public    $type = 'CoursecategoryList';
 
-		function getOptions()
+        function getOptions()
         {
             $cats = $this->getCats (0);
             return $cats;

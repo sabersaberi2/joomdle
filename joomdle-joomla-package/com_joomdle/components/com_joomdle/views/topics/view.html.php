@@ -14,35 +14,35 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewTopics extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app                = JFactory::getApplication();
-		$pathway =$app->getPathWay();
-		$app        = JFactory::getApplication();
-		$menus      = $app->getMenu();
-		$menu  = $menus->getActive();
+        $app                = JFactory::getApplication();
+        $pathway =$app->getPathWay();
+        $app        = JFactory::getApplication();
+        $menus      = $app->getMenu();
+        $menu  = $menus->getActive();
 
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$id = $params->get( 'course_id' );
-		if (!$id)
-			$id = $app->input->get('course_id');
+        $id = $params->get( 'course_id' );
+        if (!$id)
+            $id = $app->input->get('course_id');
 
-		$id = (int) $id;
+        $id = (int) $id;
 
-		if (!$id)
-		{
-			echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
-			return;
-		}
+        if (!$id)
+        {
+            echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
+            return;
+        }
 
 
-		$this->course_info = JoomdleHelperContent::getCourseInfo($id);
-		$this->temas = JoomdleHelperContent::getCourseContents($id);
+        $this->course_info = JoomdleHelperContent::getCourseInfo($id);
+        $this->temas = JoomdleHelperContent::getCourseContents($id);
 
-		/* pathway */
+        /* pathway */
         $cat_slug = $this->course_info['cat_id']."-".$this->course_info['cat_name'];
         $course_slug = $this->course_info['remoteid']."-".$this->course_info['fullname'];
 
@@ -52,7 +52,7 @@ class JoomdleViewTopics extends JViewLegacy {
                         $pathway->addItem(JText::_('COM_JOOMDLE_TOPICS'), '');
                 }
 
-		$document = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setTitle($this->course_info['fullname'] . ': ' . JText::_('COM_JOOMDLE_TOPICS'));
 
         $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));

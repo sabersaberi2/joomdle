@@ -14,21 +14,21 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycoursegrades extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
         $this->_prepareDocument();
 
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

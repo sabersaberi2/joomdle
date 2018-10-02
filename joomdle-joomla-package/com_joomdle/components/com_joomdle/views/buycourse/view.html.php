@@ -16,43 +16,43 @@ require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/shop.php' );
  * HTML View class for the Joomdle component
  */
 class JoomdleViewBuycourse extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app                = JFactory::getApplication();
-		$pathway =$app->getPathWay();
+        $app                = JFactory::getApplication();
+        $pathway =$app->getPathWay();
 
-		$menus      = $app->getMenu();
-		$menu  = $menus->getActive();
+        $menus      = $app->getMenu();
+        $menu  = $menus->getActive();
 
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$logged_user = JFactory::getUser();
-		$user_id = $logged_user->id;
+        $logged_user = JFactory::getUser();
+        $user_id = $logged_user->id;
 
-		 $id = $params->get( 'course_id' );
-		 if (!$id)
-			 $id = $app->input->get('course_id');
-		 $id = (int) $id;
+         $id = $params->get( 'course_id' );
+         if (!$id)
+             $id = $app->input->get('course_id');
+         $id = (int) $id;
 
-		$itemid = JoomdleHelperContent::getMenuItem();
-		$link = base64_encode ("index.php?option=com_joomdle&view=detail&course_id=$id&Itemid=$itemid");
-		/* If user is logged, dont redirect */
-		if (!$user_id)
-		{
-			$app->redirect(JURI::base ()."index.php?option=com_users&view=login&return=$link");
-		}
+        $itemid = JoomdleHelperContent::getMenuItem();
+        $link = base64_encode ("index.php?option=com_joomdle&view=detail&course_id=$id&Itemid=$itemid");
+        /* If user is logged, dont redirect */
+        if (!$user_id)
+        {
+            $app->redirect(JURI::base ()."index.php?option=com_users&view=login&return=$link");
+        }
 
-		if (!$id)
-		{
-			echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
-			return;
-		}
+        if (!$id)
+        {
+            echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
+            return;
+        }
 
-		$this->course_info = JoomdleHelperContent::getCourseInfo($id);
+        $this->course_info = JoomdleHelperContent::getCourseInfo($id);
 
-		$this->moodle_url = $params->get( 'MOODLE_URL' );
+        $this->moodle_url = $params->get( 'MOODLE_URL' );
 
         parent::display($tpl);
     }

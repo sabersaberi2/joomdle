@@ -33,12 +33,12 @@ foreach ($this->tasks as  $user) :
         <tr><td><h2><?php echo $user['name']; ?></h2></td></tr>
     <?php
 
-	/* Para cada curso, mostramos sus tareas */
-	foreach ($user['grades'] as  $this->course) :
-			if (count ($this->course['grades']['data']) == 0)
-				continue;
-			echo $this->loadTemplate('course');
-	endforeach; ?>
+    /* Para cada curso, mostramos sus tareas */
+    foreach ($user['grades'] as  $this->course) :
+            if (count ($this->course['grades']['data']) == 0)
+                continue;
+            echo $this->loadTemplate('course');
+    endforeach; ?>
 
 <?php endforeach; ?>
 

@@ -20,11 +20,11 @@ class JoomdleControllerMailinglist extends JControllerForm
 {
     protected $text_prefix = 'COM_JOOMDLE_MAILINGLIST';
 
-	function students_publish ()
+    function students_publish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
 
         JArrayHelper::toInteger($cid);
 
@@ -40,9 +40,9 @@ class JoomdleControllerMailinglist extends JControllerForm
 
     function students_unpublish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {
@@ -57,9 +57,9 @@ class JoomdleControllerMailinglist extends JControllerForm
 
     function teachers_publish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {
@@ -72,11 +72,11 @@ class JoomdleControllerMailinglist extends JControllerForm
         $this->setRedirect( 'index.php?option=com_joomdle&view=mailinglist' );
     }
 
-	function teachers_unpublish ()
+    function teachers_unpublish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {
@@ -89,11 +89,11 @@ class JoomdleControllerMailinglist extends JControllerForm
         $this->setRedirect( 'index.php?option=com_joomdle&view=mailinglist' );
     }
 
-	function parents_publish ()
+    function parents_publish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {
@@ -106,11 +106,11 @@ class JoomdleControllerMailinglist extends JControllerForm
         $this->setRedirect( 'index.php?option=com_joomdle&view=mailinglist' );
     }
 
-	function parents_unpublish ()
+    function parents_unpublish ()
     {
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
         JArrayHelper::toInteger($cid);
 
         if (count( $cid ) < 1) {

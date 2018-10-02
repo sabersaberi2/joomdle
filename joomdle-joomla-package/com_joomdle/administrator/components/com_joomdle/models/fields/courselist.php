@@ -24,18 +24,18 @@ class JFormFieldCourseList extends JFormFieldList
 
         function getOptions()
         {
-			$courses = JoomdleHelperContent::getCourseList (0);
+            $courses = JoomdleHelperContent::getCourseList (0);
 
-			$options = array ();
-			$c = array ();
-			foreach ($courses as $course)
-			{
-				$val = $course['remoteid'];
-				$text = '(' . $course['shortname'] . ') ' . $course['fullname'];
-				$options[] = JHtml::_('select.option', $val, $text);
-			}
+            $options = array ();
+            $c = array ();
+            foreach ($courses as $course)
+            {
+                $val = $course['remoteid'];
+                $text = '(' . $course['shortname'] . ') ' . $course['fullname'];
+                $options[] = JHtml::_('select.option', $val, $text);
+            }
 
-			return $options;
+            return $options;
         }
 }
 

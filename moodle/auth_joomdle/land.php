@@ -42,6 +42,7 @@ $mtype      = optional_param('mtype', '', PARAM_TEXT);
 $day      = optional_param('day', '', PARAM_TEXT);
 $mon      = optional_param('mon', '', PARAM_TEXT);
 $year      = optional_param('year', '', PARAM_TEXT);
+$time      = optional_param('time', '', PARAM_TEXT);
 $itemid      = optional_param('Itemid', '', PARAM_TEXT);
 $lang      = optional_param('lang', '', PARAM_TEXT);
 $topic      = optional_param('topic', '', PARAM_TEXT);
@@ -99,7 +100,7 @@ if ($use_wrapper) {
     {
         case "event":
             $redirect_url .= "/index.php?option=com_joomdle&view=wrapper&moodle_page_type=$mtype&id=$id" .
-                "&day=$day&mon=$mon&year=$year&Itemid=$itemid";
+                "&time=$time&Itemid=$itemid";
             break;
         case "course":
             $redirect_url .= "/index.php?option=com_joomdle&view=wrapper&moodle_page_type=$mtype&id=$id&Itemid=$itemid";
@@ -157,7 +158,7 @@ if ($use_wrapper) {
             $redirect_url .= "/mod/forum/view.php?id=$id";
             break;
         case "event":
-            $redirect_url .= "/calendar/view.php?view=day&cal_d=$day&cal_m=$mon&cal_y=$year";
+            $redirect_url .= "/calendar/view.php?view=day&time=$time";
             break;
         case "user":
             $redirect_url .= "/user/view.php?id=$id";

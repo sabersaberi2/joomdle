@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewNewsitem extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
         global $mainframe;
 
         $app                = JFactory::getApplication();
@@ -64,7 +64,7 @@ class JoomdleViewNewsitem extends JViewLegacy {
         }
 
 
-		$document = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setTitle($this->course_info['fullname'] . ': ' . $this->news_item[0]['subject']);
 
         parent::display($tpl);

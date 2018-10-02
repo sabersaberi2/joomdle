@@ -20,7 +20,7 @@ $i = 0;
         <div id="j-main-container">
     <?php endif;?>
 
-	  <table class="table table-striped" width="100%">
+      <table class="table table-striped" width="100%">
              <thead>
                     <tr>
                            <th width="10">ID</th>
@@ -34,7 +34,7 @@ $i = 0;
                     foreach ($this->courses as $row){
                            $checked = JHTML::_('grid.id', $i, $row['remoteid']);
 
-			   ?>
+               ?>
                            <tr class="<?php echo "row$k";?>">
                                   <td><?php echo $row['remoteid'];?></td>
                                   <td><?php echo $checked; ?></td>

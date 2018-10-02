@@ -16,19 +16,19 @@ require_once(JPATH_SITE.'/components/com_joomdle/helpers/content.php');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMygrades extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$user = JFactory::getUser();
-		$id = $user->get('id');
-		$username = $user->get('username');
+        $user = JFactory::getUser();
+        $id = $user->get('id');
+        $username = $user->get('username');
 
 
-		$layout = $params->get('layout');
+        $layout = $params->get('layout');
 
         if ($layout == 'basic')
         {
@@ -40,14 +40,14 @@ class JoomdleViewMygrades extends JViewLegacy {
             $tpl = 'cats';
         }
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
         parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

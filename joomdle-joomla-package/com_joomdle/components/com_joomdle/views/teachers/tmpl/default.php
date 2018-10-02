@@ -27,7 +27,7 @@ foreach ($this->teachers as  $teacher) : ?>
 ?>
     <div class="joomdle_user_list_item">
         <div class="joomdle_user_list_item_pic">
-			<?php
+            <?php
             // Use thumbs if available
             if ((array_key_exists ('thumb_url', $user_info)) && ($user_info['thumb_url'] != ''))
                 $user_info['pic_url'] = $user_info['thumb_url'];

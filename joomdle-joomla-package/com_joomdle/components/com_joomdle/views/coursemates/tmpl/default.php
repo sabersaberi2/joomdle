@@ -25,12 +25,12 @@ foreach ($this->users as $id => $student) :
 ?>
     <div class="joomdle_user_list_item">
         <div class="joomdle_user_list_item_pic">
-		<?php
-			// Use thumbs if available: no, it can be too small
+        <?php
+            // Use thumbs if available: no, it can be too small
         //    if ((array_key_exists ('thumb_url', $user_info)) && ($user_info['thumb_url'] != ''))
         //        $user_info['pic_url'] = $user_info['thumb_url'];
-		?>
-		<?php   if ((array_key_exists ('profile_url', $user_info)) &&($user_info['profile_url'])) : ?>
+        ?>
+        <?php   if ((array_key_exists ('profile_url', $user_info)) &&($user_info['profile_url'])) : ?>
             <a href="<?php echo JRoute::_($user_info['profile_url']."&Itemid=$itemid"); ?>"><img height='64' width='64' src="<?php echo $user_info['pic_url']; ?>"></a>
         <?php else :?>
             <img height='64' width='64' src="<?php echo $user_info['pic_url']; ?>">
@@ -39,7 +39,7 @@ foreach ($this->users as $id => $student) :
         <div class="joomdle_user_list_item_name">
             <?php
 
-		   if ((array_key_exists ('profile_url', $user_info)) &&($user_info['profile_url']))
+           if ((array_key_exists ('profile_url', $user_info)) &&($user_info['profile_url']))
             {
               //  $link = $user_info['profile_url']."&Itemid=$itemid";
                 $link = $user_info['profile_url'];

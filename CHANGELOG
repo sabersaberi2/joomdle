@@ -1,3 +1,36 @@
+Joomdle 1.2.1 for Joomla 3.x
+-----------------------------
+- Added new view to show mentees certificates
+- Category grades views link to tasks
+- Some improvements in category grades view
+- Moodle password set when creating users from Joomla
+- Added pagination and filtering to shop page in backend
+- Fixed courses params in mod_joomdle_courses module
+- Fixed incorrect default value for "Sync users to Joomla" config option in Moodle
+- Removed use of condition_info, deprecated in newer Moodle versions
+- Fixed group by category in My courses module
+- Calendar code adapted for newer Moodle versions
+- Fixed and changed to select box parent role param in Joomdle config in Moodle
+
+Joomdle 1.2 for Joomla 3.x
+-----------------------------
+- Added support for shop-defined currencies for bundles
+- Changed some text fields in Joomdle configuration in Joomla to use select boxes
+- Added option to send only one email per shop bundle
+- Added support for unicode aliases (Thanks to Saman)
+- Added layout parameter to Courses and My courses modules
+- Added call to user_authenticated_hook when logging from Joomla
+- Added shortname to course listings in shop section
+- Pagespeed mod disabled in web service calls
+- Fixed problem when registering from Moodle
+- Fixed potential enrol button problem in some SEF setups
+- Tokens trimmed on save on config screens
+- Fixed problem in course details page when course name had only non-latin chars and numbers
+- Changed from : to - to separate ids and slugs on course and categories links
+- Don't show field names from apps not selected as data source in Joomdle configuration in mappings view
+- Fixed filter problem when using wrapper with a full url
+- Fixed problem on redirect after regenerate Joomla token
+
 Joomdle 1.1.4 for Joomla 3.x
 -----------------------------
 - Moodle auth plugin updated to use Admin Settings API

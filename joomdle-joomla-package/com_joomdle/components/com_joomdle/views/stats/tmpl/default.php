@@ -15,7 +15,7 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
 <table width="100%" cellpadding="4" cellspacing="0" border="0" align="center" class="contentpane<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
 <tr>
         <td width="90%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<?php echo JText::_('COM_JOOMDLE_PLATFORM_STATS'); ?>
+        <?php echo JText::_('COM_JOOMDLE_PLATFORM_STATS'); ?>
         </td>
 </tr>
 
@@ -24,40 +24,40 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php echo JText::_('COM_JOOMDLE_COURSE_NUMBER'); ?>:&nbsp;</b><?php echo $this->course_no; ?>
+    <td align="left">
+        <b><?php echo JText::_('COM_JOOMDLE_COURSE_NUMBER'); ?>:&nbsp;</b><?php echo $this->course_no; ?>
         </td>
 </tr>
 <!--
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php //echo JText::_('COM_JOOMDLE_ENROLABLE COURSE NUMBER'); ?>:&nbsp;</b><?php //echo $this->e_course_no; ?>
+    <td align="left">
+        <b><?php //echo JText::_('COM_JOOMDLE_ENROLABLE COURSE NUMBER'); ?>:&nbsp;</b><?php //echo $this->e_course_no; ?>
         </td>
 </tr>
 --!>
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php echo JText::_('COM_JOOMDLE_STUDENTS'); ?>:&nbsp;</b><?php echo $this->student_no; ?>
+    <td align="left">
+        <b><?php echo JText::_('COM_JOOMDLE_STUDENTS'); ?>:&nbsp;</b><?php echo $this->student_no; ?>
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php echo JText::_('COM_JOOMDLE_SUBMISSIONS'); ?>:&nbsp;</b><?php echo $this->assignments; ?>
+    <td align="left">
+        <b><?php echo JText::_('COM_JOOMDLE_SUBMISSIONS'); ?>:&nbsp;</b><?php echo $this->assignments; ?>
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php echo JText::_('COM_JOOMDLE_VISITS_LAST_WEEK'); ?>:&nbsp;</b><?php echo $this->stats[0]['stat1']; ?>
+    <td align="left">
+        <b><?php echo JText::_('COM_JOOMDLE_VISITS_LAST_WEEK'); ?>:&nbsp;</b><?php echo $this->stats[0]['stat1']; ?>
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
-		<b><?php echo JText::_('COM_JOOMDLE_UNIQUE_VISITORS'); ?>:&nbsp;</b><?php echo $this->stats[0]['stat2']; ?>
+    <td align="left">
+        <b><?php echo JText::_('COM_JOOMDLE_UNIQUE_VISITORS'); ?>:&nbsp;</b><?php echo $this->stats[0]['stat2']; ?>
         </td>
 </tr>
 <tr>
         <td width="90%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<?php echo JText::_('COM_JOOMDLE_COURSE_STATS'); ?>
+        <?php echo JText::_('COM_JOOMDLE_COURSE_STATS'); ?>
         </td>
 </tr>
 
@@ -72,13 +72,13 @@ $course_id = $curso['remoteid'];
 
 if ($unicodeslugs == 1)
 {
-	$course_slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
-	$cat_slug = JFilterOutput::stringURLUnicodeSlug($curso['cat_name']);
+    $course_slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
+    $cat_slug = JFilterOutput::stringURLUnicodeSlug($curso['cat_name']);
 }
 else
 {
-	$course_slug = JFilterOutput::stringURLSafe($curso['fullname']);
-	$cat_slug = JFilterOutput::stringURLSafe($curso['cat_name']);
+    $course_slug = JFilterOutput::stringURLSafe($curso['fullname']);
+    $cat_slug = JFilterOutput::stringURLSafe($curso['cat_name']);
 }
 
 ?>

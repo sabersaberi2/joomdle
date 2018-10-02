@@ -15,14 +15,14 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/content.php');
  * Content Component Query Helper
  *
  * @static
- * @package		Joomdle
+ * @package     Joomdle
  */
 class JoomdleHelperEvents
 {
-	static function trigger_event ($event, $data)
-	{
+    static function trigger_event ($event, $data)
+    {
         JPluginHelper::importPlugin( 'joomdleevent' );
         $dispatcher = JDispatcher::getInstance();
         $result = $dispatcher->trigger($event, array ($data));
-	}
+    }
 }

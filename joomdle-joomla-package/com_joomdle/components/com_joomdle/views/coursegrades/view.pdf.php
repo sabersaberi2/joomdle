@@ -13,7 +13,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/content.php');
 
 
 class JoomdleViewCoursegrades extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
         $app        = JFactory::getApplication();
         $params = $app->getParams();
@@ -22,7 +22,7 @@ class JoomdleViewCoursegrades extends JViewLegacy {
 
         $this->course_id = $params->get( 'course_id' );
         if (!$this->course_id)
-			$this->course_id = $app->input->get('course_id');
+            $this->course_id = $app->input->get('course_id');
         $this->course_id = (int) $this->course_id;
 
         // Only for logged users
@@ -56,21 +56,21 @@ class JoomdleViewCoursegrades extends JViewLegacy {
         $tpl = "catspdf";
 
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
 
-		$htmlcontent = parent::loadTemplate ($tpl);
+        $htmlcontent = parent::loadTemplate ($tpl);
 
-		require_once(JPATH_SITE. '/libraries/tcpdf/tcpdf.php');
+        require_once(JPATH_SITE. '/libraries/tcpdf/tcpdf.php');
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-		$header = $this->course_info['fullname'];
+        $header = $this->course_info['fullname'];
 
-		$header2 = JText::_('COM_JOOMDLEGRADES_TEACHER') . ': ' . $user->name;
-		$header2 .= ' ' . JText::_('COM_JOOMDLEGRADES_DATE') . ': ' . date ('d-m-Y');
+        $header2 = JText::_('COM_JOOMDLEGRADES_TEACHER') . ': ' . $user->name;
+        $header2 .= ' ' . JText::_('COM_JOOMDLEGRADES_DATE') . ': ' . date ('d-m-Y');
 
-	//	$pdf->SetHeaderData('', 0, $header, $header2);
-		$pdf->SetHeaderData('', 0, $header);
+    //  $pdf->SetHeaderData('', 0, $header, $header2);
+        $pdf->SetHeaderData('', 0, $header);
 
         //set margins
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
@@ -89,12 +89,12 @@ class JoomdleViewCoursegrades extends JViewLegacy {
         $pdf->writeHTML($htmlcontent, true, 0, true, 0); 
 
         $pdf->Output("grades.pdf", 'D');
-		exit ();
+        exit ();
 
-	//parent::display($tpl);
+    //parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

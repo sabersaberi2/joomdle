@@ -1,6 +1,6 @@
 <?php
 /**
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
@@ -15,49 +15,49 @@ require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/shop.php' );
 /**
  * Form Field class for the Joomla Framework.
  *
- * @package		Joomdle
+ * @package     Joomdle
  */
 class JFormFieldShop extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 * @since	1.6
-	 */
-	protected $type = 'Shop';
+    /**
+     * The form field type.
+     *
+     * @var     string
+     * @since   1.6
+     */
+    protected $type = 'Shop';
 
-	/**
-	 * Method to get the field options.
-	 *
-	 * @return	array	The field option objects.
-	 * @since	1.6
-	 */
-	protected function getOptions()
-	{
-		$options = array();
+    /**
+     * Method to get the field options.
+     *
+     * @return  array   The field option objects.
+     * @since   1.6
+     */
+    protected function getOptions()
+    {
+        $options = array();
 
-		$params = JComponentHelper::getParams( 'com_joomdle' );
+        $params = JComponentHelper::getParams( 'com_joomdle' );
 
-		$option = array ('value' => 'no', 'text' => JText::_ ('COM_JOOMDLE_NONE'));
-		$options[] = $option;
+        $option = array ('value' => 'no', 'text' => JText::_ ('COM_JOOMDLE_NONE'));
+        $options[] = $option;
 
-		// Add sources added via plugins
-		JPluginHelper::importPlugin( 'joomdleshop' );
-		$dispatcher = JDispatcher::getInstance();
-		$more_sources = $dispatcher->trigger('onGetShop', array());
-		if (is_array ($more_sources))
-		foreach ($more_sources as  $source)
-		{
-			$keys =  array_keys ($source);
-			$key = $keys[0];
-			$source_name = array_shift ($source);
-			$option['value'] = $key;
-			$option['text'] = $source_name;
+        // Add sources added via plugins
+        JPluginHelper::importPlugin( 'joomdleshop' );
+        $dispatcher = JDispatcher::getInstance();
+        $more_sources = $dispatcher->trigger('onGetShop', array());
+        if (is_array ($more_sources))
+        foreach ($more_sources as  $source)
+        {
+            $keys =  array_keys ($source);
+            $key = $keys[0];
+            $source_name = array_shift ($source);
+            $option['value'] = $key;
+            $option['text'] = $source_name;
 
-			$options[] = $option;
-		}
+            $options[] = $option;
+        }
 
-		return $options;
-	}
+        return $options;
+    }
 }

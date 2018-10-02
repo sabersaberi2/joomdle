@@ -14,7 +14,7 @@ require_once( JPATH_COMPONENT.'/helpers/mappings.php' );
 
 class JoomdleViewMappings extends JViewLegacy {
 
-	protected $items;
+    protected $items;
     protected $pagination;
     protected $state;
 
@@ -35,8 +35,8 @@ class JoomdleViewMappings extends JViewLegacy {
     {
         JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_MAPPINGS_TITLE'), 'mapping');
 
-		JToolbarHelper::addNew('mapping.add');
-		JToolbarHelper::deleteList('', 'mappings.delete');
+        JToolbarHelper::addNew('mapping.add');
+        JToolbarHelper::deleteList('', 'mappings.delete');
 
         JHtmlSidebar::setAction('index.php?option=com_joomdle&view=mappings');
 

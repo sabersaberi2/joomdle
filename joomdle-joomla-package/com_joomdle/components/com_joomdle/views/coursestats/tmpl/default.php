@@ -19,12 +19,12 @@ defined('_JEXEC') or die('Restricted access'); ?>
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
+    <td align="left">
                 <b><?php echo JText::_('COM_JOOMDLE_SUMMARY'); ?>:&nbsp;</b><?php echo JoomdleHelperSystem::fix_text_format($this->course_info['summary']); ?>
         </td>
 </tr>
 <tr class="sectiontableentry">
-	<td align="left">
+    <td align="left">
                 <b><?php echo JText::_('COM_JOOMDLE_STUDENT_NO'); ?>:&nbsp;</b><?php echo $this->student_no; ?>
         </td>
 </tr>
@@ -55,7 +55,7 @@ foreach ($this->daily_stats as  $stat) : ?>
 <tr class="sectiontableentry<?php echo $odd + 1; ?>">
                 <?php $odd++; $odd = $odd % 2; ?>
         <td align="left">
-		<?php echo date('d-m-Y', $stat['timeend']); ?>
+        <?php echo date('d-m-Y', $stat['timeend']); ?>
         </td>
         <td height="20" align="center">
                 <?php echo $stat['stat1']; ?>
@@ -95,16 +95,16 @@ foreach ($this->assignments as  $assignment) : ?>
         </td>
         <td height="20" align="right">
                 <?php //if  (array_key_exists($assignment['tarea'],$this->grades)) printf ("%.2f", $this->grades[$assignment['tarea']]); ?>
-				<?php
-					foreach ($this->grades as $grade)
-					{
-						if ($grade['tarea'] == $assignment['tarea'])
-						{
-							printf ("%.2f", $grade['media']);
-							break;
-						}
-					}
-				?>
+                <?php
+                    foreach ($this->grades as $grade)
+                    {
+                        if ($grade['tarea'] == $assignment['tarea'])
+                        {
+                            printf ("%.2f", $grade['media']);
+                            break;
+                        }
+                    }
+                ?>
         </td>
 </tr>
 <?php endforeach; ?>

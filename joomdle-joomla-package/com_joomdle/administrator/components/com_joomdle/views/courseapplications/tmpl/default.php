@@ -34,7 +34,7 @@ defined('_JEXEC') or die('Restricted access');
                     foreach ($this->courses as $row){
                            $checked = JHTML::_('grid.id', $i, $row->id);
 
-			   ?>
+               ?>
                            <tr class="<?php echo "row$k";?>">
                                   <td><?php echo $row->id;?></td>
                                   <td><?php echo $checked; ?></td>

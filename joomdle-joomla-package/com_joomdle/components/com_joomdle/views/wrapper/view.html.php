@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewWrapper extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
         $app                = JFactory::getApplication();
         $params = $app->getParams();
@@ -59,8 +59,9 @@ class JoomdleViewWrapper extends JViewLegacy {
                 $this->wrapper->url = $params->get( 'MOODLE_URL' ).$path.$id;
                 break;
             case "event" :
-            //	$path = "/calendar/view.php?view=day&course=$id&cal_d=$day&cal_m=$mon&cal_y=$year";
-                $path = "/calendar/view.php?view=day&cal_d=$day&cal_m=$mon&cal_y=$year";
+                $date = new DateTime("$year-$mon-$day");
+                $time = $date->getTimestamp();
+                $path = "/calendar/view.php?view=day&time=$time";
                 $this->wrapper->url = $params->get( 'MOODLE_URL' ).$path;
                 break;
             case "user" :

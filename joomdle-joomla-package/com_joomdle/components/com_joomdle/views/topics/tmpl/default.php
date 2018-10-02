@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 $show_topics_numbers = $this->params->get ('topics_show_numbers');
 ?>
 <div class="joomdle-topiclist<?php echo $this->pageclass_sfx;?>">
-	<h1>
+    <h1>
                 <?php echo $this->course_info['fullname'] . ': '; ?>
                 <?php echo JText::_('COM_JOOMDLE_TOPICS'); ?>
     </h1>
@@ -24,17 +24,17 @@ foreach ($this->temas as  $tema) : ?>
         <div class="joomdle_item_title joomdle_topic_number">
         <?php
                 $title = '';
-				if ($tema['name'])
-					$title = $tema['name'];
-				else
-				{
-					if ($tema['section'])
-					{
-						$title =  JText::_('COM_JOOMDLE_SECTION') . " ";
-						$title .= $tema['section'] ;
-					}
-					else  $title =  JText::_('COM_JOOMDLE_INTRO');
-				}
+                if ($tema['name'])
+                    $title = $tema['name'];
+                else
+                {
+                    if ($tema['section'])
+                    {
+                        $title =  JText::_('COM_JOOMDLE_SECTION') . " ";
+                        $title .= $tema['section'] ;
+                    }
+                    else  $title =  JText::_('COM_JOOMDLE_INTRO');
+                }
                 echo $title;
         ?>
         </div>

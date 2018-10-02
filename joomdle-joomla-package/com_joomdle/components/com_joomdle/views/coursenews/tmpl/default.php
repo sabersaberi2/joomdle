@@ -27,8 +27,8 @@ foreach ($this->news as  $news_item) : ?>
         <div class="joomdle_item_content joomdle_news_list_item_name">
         <?php
 
-			$link = 'index.php?option=com_joomdle&view=newsitem&course_id='.$this->course_info['remoteid'].'&id='.$news_item['discussion'].'&Itemid='.$itemid;
-			echo "<a href=\"$link\">".$news_item['subject']."</a>";
+            $link = 'index.php?option=com_joomdle&view=newsitem&course_id='.$this->course_info['remoteid'].'&id='.$news_item['discussion'].'&Itemid='.$itemid;
+            echo "<a href=\"$link\">".$news_item['subject']."</a>";
 
  /*           $link = $this->jump_url."&mtype=news&id=".$news_item['discussion'];
 

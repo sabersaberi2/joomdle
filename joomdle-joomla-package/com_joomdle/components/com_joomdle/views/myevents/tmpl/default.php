@@ -27,7 +27,7 @@ foreach ($this->my_events as $id => $curso) :
         <h4>
                 <?php echo $curso['fullname']; ?>
         </h4>
-		<br>
+        <br>
 
 <?php
     foreach ($curso['events'] as  $event) : ?>

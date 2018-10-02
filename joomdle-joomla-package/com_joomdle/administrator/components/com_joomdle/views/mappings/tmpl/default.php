@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <form action="index.php?option=com_joomdle&view=mappings" method="POST"  id="adminForm" name="adminForm">
 
-	  <?php if(!empty( $this->sidebar)): ?>
+      <?php if(!empty( $this->sidebar)): ?>
         <div id="j-sidebar-container" class="span2">
         <?php echo $this->sidebar; ?>
         </div>
@@ -28,18 +28,18 @@ defined('_JEXEC') or die('Restricted access');
         </div>
     </div>
 
-	<div class="clearfix"> </div>
+    <div class="clearfix"> </div>
        <table class="table table-striped">
              <thead>
                     <tr>
-						<th width="10">ID</th>
-						<th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
-						<th><?php echo JHTML::_('grid.sort',   JText::_('COM_JOOMDLE_JOOMLA_COMPONENT'), 'joomla_app', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-						<th><?php echo JText::_('COM_JOOMDLE_JOOMLA_FIELD'); ?></th>
-						<th><?php echo JHTML::_('grid.sort',   JText::_('COM_JOOMDLE_MOODLE_FIELD'), 'moodle_field', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th width="10">ID</th>
+                        <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
+                        <th><?php echo JHTML::_('grid.sort',   JText::_('COM_JOOMDLE_JOOMLA_COMPONENT'), 'joomla_app', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th><?php echo JText::_('COM_JOOMDLE_JOOMLA_FIELD'); ?></th>
+                        <th><?php echo JHTML::_('grid.sort',   JText::_('COM_JOOMDLE_MOODLE_FIELD'), 'moodle_field', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                     </tr>              
              </thead>
-		<tfoot>
+        <tfoot>
                         <tr>
                                 <td colspan="10">
                                         <?php echo $this->pagination->getListFooter(); ?>
@@ -52,7 +52,7 @@ defined('_JEXEC') or die('Restricted access');
                     $i = 0;
                     foreach ($this->items as $row){
                            $checked = JHTML::_('grid.id', $i, $row['id']);
-				   ?>
+                   ?>
                            <tr class="<?php echo "row$k";?>">
                                   <td><?php echo $row['id'];?></td>
                                   <td><?php  echo $checked; ?></td>
@@ -73,5 +73,5 @@ defined('_JEXEC') or die('Restricted access');
        <input type="hidden" name="boxchecked" value="0"/>   
        <input type="hidden" name="hidemainmenu" value="0"/> 
        <?php echo JHTML::_( 'form.token' ); ?>
-	</div>
+    </div>
 </form>

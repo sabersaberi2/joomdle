@@ -14,25 +14,25 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewSendcert extends JViewLegacy {
-	function display($tpl = null) {
-	global $mainframe;
+    function display($tpl = null) {
+    global $mainframe;
 
-	$app        = JFactory::getApplication();
+    $app        = JFactory::getApplication();
     $params = $app->getParams();
     $this->assignRef('params',              $params);
 
-	$cert_id = $app->input->get('cert_id');
-	$this->cert_type =  $app->input->get('cert_type');
+    $cert_id = $app->input->get('cert_id');
+    $this->cert_type =  $app->input->get('cert_type');
 
-	$data = $this->getData();
-	if ($data === false) {
+    $data = $this->getData();
+    if ($data === false) {
             return false;
         }
 
-	$this->set('data'  , $data);
+    $this->set('data'  , $data);
 
 
-	parent::display($tpl);
+    parent::display($tpl);
     }
 
     function &getData()
@@ -40,14 +40,14 @@ class JoomdleViewSendcert extends JViewLegacy {
         $user = JFactory::getUser();
         $data = new stdClass();
 
-		$app        = JFactory::getApplication();
-		$data->cert_id = $app->input->get('cert_id');
+        $app        = JFactory::getApplication();
+        $data->cert_id = $app->input->get('cert_id');
 
         // Load with previous data, if it exists
-		$mailto = $app->input->get('mailto');
-		$sender = $app->input->get('sender');
-		$from = $app->input->get('from');
-		$subject = $app->input->get('subject');
+        $mailto = $app->input->get('mailto');
+        $sender = $app->input->get('sender');
+        $from = $app->input->get('from');
+        $subject = $app->input->get('subject');
 
         if ($user->get('id') > 0) {
             $data->sender   = $user->get('name');

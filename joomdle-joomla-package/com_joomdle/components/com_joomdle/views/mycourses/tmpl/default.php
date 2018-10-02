@@ -36,7 +36,7 @@ else
 
 $linkstarget = $this->params->get( 'linkstarget' );
 if ($linkstarget == "new")
-	 $target = " target='_blank'";
+     $target = " target='_blank'";
  else $target = "";
 
 $show_unenrol_link = $this->params->get( 'show_unenrol_link' );
@@ -52,11 +52,11 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
     </h1>
     <?php endif; ?>
 
-	<?php if ($show_images_and_summary) : ?>
+    <?php if ($show_images_and_summary) : ?>
     <div class="joomdle_mycourses_no_list">
-	<?php else : ?>
+    <?php else : ?>
     <div class="joomdle_mycourses">
-	<?php endif; ?>
+    <?php endif; ?>
     <ul>
     <?php
     $lang = JoomdleHelperContent::get_lang ();
@@ -86,46 +86,46 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
                     {
                         // Link to detail view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$curso['id'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
                     else
                     {
                         // Link to course view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=course&course_id=".$curso['id'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
 
-					if ($show_images_and_summary)
-						if (count ($curso['summary_files']))
-						{
-							foreach ($curso['summary_files'] as $file) :
-								echo "<a $target href=\"$redirect_url\">";
-						?>
-								<img style="float:none;" hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
-						<?php
-							   echo "</a";
-							endforeach;
-						}
+                    if ($show_images_and_summary)
+                        if (count ($curso['summary_files']))
+                        {
+                            foreach ($curso['summary_files'] as $file) :
+                                echo "<a $target href=\"$redirect_url\">";
+                        ?>
+                                <img style="float:none;" hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
+                        <?php
+                               echo "</a";
+                            endforeach;
+                        }
 
-					echo $course_link;
+                    echo $course_link;
 
-					if ($show_unenrol_link)
-					{
-						if ($curso['can_unenrol'])
-						{
-							$redirect_url = "index.php?option=com_joomdle&view=course&task=unenrol&course_id=".$curso['id'];
-							echo "<a href=\"".$redirect_url."\"> (".JText::_ ('COM_JOOMDLE_UNENROL').")</a>";
-						}
-					}
+                    if ($show_unenrol_link)
+                    {
+                        if ($curso['can_unenrol'])
+                        {
+                            $redirect_url = "index.php?option=com_joomdle&view=course&task=unenrol&course_id=".$curso['id'];
+                            echo "<a href=\"".$redirect_url."\"> (".JText::_ ('COM_JOOMDLE_UNENROL').")</a>";
+                        }
+                    }
 
-					if ($show_images_and_summary)
-					{
-						echo "<div class='course_summary'>".$curso['summary']."</div>";
-						echo "<div class='clear_float'></div>";
-					}
-					
+                    if ($show_images_and_summary)
+                    {
+                        echo "<div class='course_summary'>".$curso['summary']."</div>";
+                        echo "<div class='clear_float'></div>";
+                    }
+                    
                 ?>
             </li>
         <?php endforeach; ?>

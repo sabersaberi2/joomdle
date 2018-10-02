@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewRubrics extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
         global $mainframe;
 
         $app                = JFactory::getApplication();

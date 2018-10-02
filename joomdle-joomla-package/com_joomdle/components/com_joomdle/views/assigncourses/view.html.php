@@ -15,17 +15,17 @@ require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/parents.php' 
  * HTML View class for the Joomdle component
  */
 class JoomdleViewAssigncourses extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$this->my_courses = JoomdleHelperParents::getUnassignedCourses();
+        $this->my_courses = JoomdleHelperParents::getUnassignedCourses();
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 }
 ?>

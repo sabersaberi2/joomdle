@@ -30,14 +30,14 @@ echo "<b>".JText::_('COM_JOOMDLE_CONFIRMATION_DATE').": </b>".$this->app_info['c
 echo "<b>".JText::_('COM_JOOMDLE_STATUS').": </b>";
 switch ($this->app_info['state'])
 {
-	case JOOMDLE_APPLICATION_STATE_APPROVED:
-		echo '<img src="images/tick.png" width="16" height="16" border="0" alt="" />';
-		break;
-	case JOOMDLE_APPLICATION_STATE_REJECTED:
-		echo '<img src="images/publish_x.png" width="16" height="16" border="0" alt="" />';
-		break;
-	default:
-		echo JText::_('COM_JOOMDLE_PENDING');
+    case JOOMDLE_APPLICATION_STATE_APPROVED:
+        echo '<img src="images/tick.png" width="16" height="16" border="0" alt="" />';
+        break;
+    case JOOMDLE_APPLICATION_STATE_REJECTED:
+        echo '<img src="images/publish_x.png" width="16" height="16" border="0" alt="" />';
+        break;
+    default:
+        echo JText::_('COM_JOOMDLE_PENDING');
 }
 echo "<br>";
 

@@ -37,7 +37,7 @@ else
 
 $linkstarget = $this->params->get( 'linkstarget' );
 if ($linkstarget == "new")
-	 $target = " target='_blank'";
+     $target = " target='_blank'";
  else $target = "";
 
 $show_unenrol_link = $this->params->get( 'show_unenrol_link' );
@@ -59,7 +59,7 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
     $lang = JoomdleHelperContent::get_lang ();
     if (is_array ($this->my_courses))
         foreach ($this->my_courses as $id => $curso) :  ?>
-        	<?php
+            <?php
                 if ($unicodeslugs == 1)
                 {
                     $slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
@@ -68,7 +68,7 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
                 {
                     $slug = JFilterOutput::stringURLSafe($curso['fullname']);
                 }
-			?>
+            ?>
             <li>
                 <?php
                     if ($linkto == 'moodle')
@@ -83,18 +83,18 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
                     {
                         // Link to detail view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$curso['remoteid'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
                     else
                     {
                         // Link to course view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=course&course_id=".$curso['remoteid'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
 
-					echo $course_link;
+                    echo $course_link;
                 ?>
             </li>
         <?php endforeach; ?>

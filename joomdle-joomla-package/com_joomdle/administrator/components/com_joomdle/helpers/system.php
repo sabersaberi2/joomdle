@@ -14,46 +14,46 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/shop.php');
 
 class JoomdleHelperSystem
 {
-	static function check_system ()
-	{
-		$mainframe = JFactory::getApplication();
-		$comp_params = JComponentHelper::getParams( 'com_joomdle' );
+    static function check_system ()
+    {
+        $mainframe = JFactory::getApplication();
+        $comp_params = JComponentHelper::getParams( 'com_joomdle' );
 
-		// If profiles types enabled, check at least 1 is defined to be created in moodle
-		$use_profiletypes = $comp_params->get( 'use_profiletypes' );
-		if ($use_profiletypes)
-		{
-			$profiles = JoomdleHelperProfiletypes::get_profiletypes_to_create ();
-			if (count ($profiles) < 1)
-			{
-				$msg = JText::_('COM_JOOMDLE_NO_PROFILES_TO_CREATE_IN_MOODLE');
-				$mainframe->enqueueMessage($msg);
-			}
-		}
-	}
+        // If profiles types enabled, check at least 1 is defined to be created in moodle
+        $use_profiletypes = $comp_params->get( 'use_profiletypes' );
+        if ($use_profiletypes)
+        {
+            $profiles = JoomdleHelperProfiletypes::get_profiletypes_to_create ();
+            if (count ($profiles) < 1)
+            {
+                $msg = JText::_('COM_JOOMDLE_NO_PROFILES_TO_CREATE_IN_MOODLE');
+                $mainframe->enqueueMessage($msg);
+            }
+        }
+    }
 
-	static function send_registration_email ($username, $password)
-	{
-		$config = JFactory::getConfig();
+    static function send_registration_email ($username, $password)
+    {
+        $config = JFactory::getConfig();
         $params = JComponentHelper::getParams('com_users');
         $useractivation = $params->get('useractivation');
-		$sendpassword = $params->get('sendpassword', 1);
+        $sendpassword = $params->get('sendpassword', 1);
 
-		JPlugin::loadLanguage('com_users', JPATH_SITE);
+        JPlugin::loadLanguage('com_users', JPATH_SITE);
 
-		$data['fromname']   = $config->get('fromname');
+        $data['fromname']   = $config->get('fromname');
         $data['mailfrom']   = $config->get('mailfrom');
         $data['sitename']   = $config->get('sitename');
         $data['siteurl']    = JUri::base();
 
-		$user_id = JUserHelper::getUserId($username);
+        $user_id = JUserHelper::getUserId($username);
         $user = JFactory::getUser ($user_id);
 
-		$data['username'] = $username;
-		$data['password_clear'] = $password;
-		$data['name'] = $user->name;
-		$data['email'] = $user->email;
-		$data['activation'] = $user->activation;
+        $data['username'] = $username;
+        $data['password_clear'] = $password;
+        $data['name'] = $user->name;
+        $data['email'] = $user->email;
+        $data['activation'] = $user->activation;
 
         // Handle account activation/confirmation emails.
         if ($useractivation == 2) // Admin activation
@@ -69,7 +69,7 @@ class JoomdleHelperSystem
                 $data['sitename']
             );
 
-			if ($sendpassword)
+            if ($sendpassword)
             {
                 $emailBody = JText::sprintf(
                     'COM_USERS_EMAIL_REGISTERED_WITH_ADMIN_ACTIVATION_BODY',
@@ -161,11 +161,11 @@ class JoomdleHelperSystem
         }
 
         // Send the registration email.
-		$return = JFactory::getMailer()->sendMail($data['mailfrom'], $data['fromname'], $data['email'], $emailSubject, $emailBody);
+        $return = JFactory::getMailer()->sendMail($data['mailfrom'], $data['fromname'], $data['email'], $emailSubject, $emailBody);
 
-	}
+    }
 
-	/* Gets the first superadmin user id */
+    /* Gets the first superadmin user id */
     static function get_admin_id ()
     {
              $db           = JFactory::getDBO();
@@ -178,10 +178,10 @@ class JoomdleHelperSystem
             return $result;
     }
 
-	static function fix_text_format ($str)
-	{
-		  return $str;
-	}
+    static function fix_text_format ($str)
+    {
+          return $str;
+    }
 
     static function get_icon_url ($mod, $type)
     {
@@ -191,13 +191,13 @@ class JoomdleHelperSystem
         switch ($mod)
         {
             case 'resource':
-				$url = JURI::root(true).'/media/joomdle/images/filetypes/';
+                $url = JURI::root(true).'/media/joomdle/images/filetypes/';
 
-				// Remove -24 from type
+                // Remove -24 from type
                 $parts = explode ("-", $type);
                 $type = $parts[0];
 
-				$filename = $type . "-48.png";
+                $filename = $type . "-48.png";
                 break;
 
             case 'quiz':
@@ -249,12 +249,12 @@ class JoomdleHelperSystem
                 break;
             case 'label':
                 $filename = '';
-				// Special case: no icon to show, return empty string
-				return $filename;
+                // Special case: no icon to show, return empty string
+                return $filename;
                 break;
-			default:
-				$filename = 'default.png';
-		//		return $filename;
+            default:
+                $filename = 'default.png';
+        //      return $filename;
         }
 
         return $url.$filename;
@@ -306,45 +306,45 @@ class JoomdleHelperSystem
                 }
                 break;
             case 'forum':
-				$itemid = JoomdleHelperContent::getMenuItem();
-				if (!$itemid)
-					$itemid =  $params->get( 'joomdle_itemid' );
-				// Deal with news forum
-				if ($type == 'news')
-				{
-					// If is news forum, link to coursenews view instead of forum
-					$link = JRoute::_("index.php?option=com_joomdle&view=coursenews&course_id=$course_id");
-					break;
-				}
+                $itemid = JoomdleHelperContent::getMenuItem();
+                if (!$itemid)
+                    $itemid =  $params->get( 'joomdle_itemid' );
+                // Deal with news forum
+                if ($type == 'news')
+                {
+                    // If is news forum, link to coursenews view instead of forum
+                    $link = JRoute::_("index.php?option=com_joomdle&view=coursenews&course_id=$course_id");
+                    break;
+                }
                 if  ($params->get( 'use_kunena_forums'))
                 {
-					require_once (JPATH_ADMINISTRATOR . '/components/com_joomdle/helpers/forum.php');
+                    require_once (JPATH_ADMINISTRATOR . '/components/com_joomdle/helpers/forum.php');
 
-					$forum_id = JoomdleHelperForum::get_kunena_forum_id ($course_id, $mod_id);
+                    $forum_id = JoomdleHelperForum::get_kunena_forum_id ($course_id, $mod_id);
 
-					$version = JoomdleHelperForum::get_version ();
-					$sub_version = JoomdleHelperForum::get_sub_version ();
-					if ($forum_id)
-					{
-						if ($version >= 4)
-						{
-							$link = JRoute::_("index.php?option=com_kunena&view=category&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
-						}
-						else
-						{
-							if ($sub_version > 3)
-								$link = JRoute::_("index.php?option=com_kunena&view=category&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
-							else
-								$link = JRoute::_("index.php?option=com_kunena&func=showcat&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
-						}
-					}
-					else
-						$link = '';
+                    $version = JoomdleHelperForum::get_version ();
+                    $sub_version = JoomdleHelperForum::get_sub_version ();
+                    if ($forum_id)
+                    {
+                        if ($version >= 4)
+                        {
+                            $link = JRoute::_("index.php?option=com_kunena&view=category&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
+                        }
+                        else
+                        {
+                            if ($sub_version > 3)
+                                $link = JRoute::_("index.php?option=com_kunena&view=category&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
+                            else
+                                $link = JRoute::_("index.php?option=com_kunena&func=showcat&catid=$forum_id&course_id=$course_id&Itemid=$itemid");
+                        }
+                    }
+                    else
+                        $link = '';
                 }
                 break;
-			case 'label':
-				$link = 'none';
-				break;
+            case 'label':
+                $link = 'none';
+                break;
             case 'certificate':
                 $link = $params->get( 'MOODLE_URL' ) . '/mod/certificate/view.php?certificate=1&id='.$mod_id.'&action=review';
                 break;
@@ -369,78 +369,78 @@ class JoomdleHelperSystem
     }
 
 
-	   static function actionbutton ( $course_info, $free_courses_button = 'enrol', $paid_courses_button = 'buy', $button_text = '')
+       static function actionbutton ( $course_info, $free_courses_button = 'enrol', $paid_courses_button = 'buy', $button_text = '')
        {
-			$course_id = $course_info['remoteid'];
-			$user =  JFactory::getUser();
-			$username = $user->username;
-			$is_enroled = $course_info['enroled'];
-			$guest = $course_info['guest'];
+            $course_id = $course_info['remoteid'];
+            $user =  JFactory::getUser();
+            $username = $user->username;
+            $is_enroled = $course_info['enroled'];
+            $guest = $course_info['guest'];
 
-			$params = JComponentHelper::getParams('com_joomdle');
-			$show_experience = $params->get('show_detail_application_experience');
-			$show_motivation = $params->get('show_detail_application_motivation');
-			$goto_course_button = $params->get('goto_course_button');
-			$linkstarget = $params->get('linkstarget');
+            $params = JComponentHelper::getParams('com_joomdle');
+            $show_experience = $params->get('show_detail_application_experience');
+            $show_motivation = $params->get('show_detail_application_motivation');
+            $goto_course_button = $params->get('goto_course_button');
+            $linkstarget = $params->get('linkstarget');
 
-			$html = "";
-			if ((($is_enroled) || ($guest))) {
+            $html = "";
+            if ((($is_enroled) || ($guest))) {
 
 
-				if ($goto_course_button)
-				{
-					if (!$button_text)
-						$button_text = JText::_('COM_JOOMDLE_GO_TO_COURSE');
-					$url = JoomdleHelperContent::get_course_url ($course_id);
+                if ($goto_course_button)
+                {
+                    if (!$button_text)
+                        $button_text = JText::_('COM_JOOMDLE_GO_TO_COURSE');
+                    $url = JoomdleHelperContent::get_course_url ($course_id);
 
-					if ($linkstarget == 'new')
-					{
-						   $html .= '<FORM>
-				   <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
-						ONCLICK="window.open (\''.$url.'\')">
-				   </FORM>';
-					}
-					else
-					{
-						   $html .= '<FORM>
-				   <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
-						ONCLICK="window.location.href=\''.$url.'\'">
-				   </FORM>'; 
-					}
-				}
-		   }
-		   else if (((!array_key_exists ('cost', $course_info)) || (!$course_info['cost'])) &&  (!JoomdleHelperShop::is_course_on_sell ($course_id))) {
+                    if ($linkstarget == 'new')
+                    {
+                           $html .= '<FORM>
+                   <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
+                        ONCLICK="window.open (\''.$url.'\')">
+                   </FORM>';
+                    }
+                    else
+                    {
+                           $html .= '<FORM>
+                   <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
+                        ONCLICK="window.location.href=\''.$url.'\'">
+                   </FORM>'; 
+                    }
+                }
+           }
+           else if (((!array_key_exists ('cost', $course_info)) || (!$course_info['cost'])) &&  (!JoomdleHelperShop::is_course_on_sell ($course_id))) {
                        if ($free_courses_button == 'goto'){
 
-							if (!$button_text)
+                            if (!$button_text)
                                $button_text = JText::_('COM_JOOMDLE_GO_TO_COURSE');
-						   $url = JoomdleHelperContent::get_course_url ($course_id);
+                           $url = JoomdleHelperContent::get_course_url ($course_id);
 
-							if ($linkstarget == 'new')
-							{
-								   $html .= '<FORM>
-						   <INPUT TYPE="BUTTON" VALUE="  '. $button_text.'  "
-								ONCLICK="window.open (\''.$url.'\')">
-						   </FORM>';
-							}
-							else
-							{
-								   $html .= '<FORM>
-						   <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
-								ONCLICK="window.location.href=\''.$url.'\'">
-						   </FORM>'; 
-							}
+                            if ($linkstarget == 'new')
+                            {
+                                   $html .= '<FORM>
+                           <INPUT TYPE="BUTTON" VALUE="  '. $button_text.'  "
+                                ONCLICK="window.open (\''.$url.'\')">
+                           </FORM>';
+                            }
+                            else
+                            {
+                                   $html .= '<FORM>
+                           <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
+                                ONCLICK="window.location.href=\''.$url.'\'">
+                           </FORM>'; 
+                            }
                        }  else if ($free_courses_button == 'enrol') {
 
-							if (!$button_text)
-								$button_text = JText::_('COM_JOOMDLE_ENROL_INTO_COURSE');
-						//	$url = JRoute::_("index.php?option=com_joomdle&task=enrol&course_id=$course_id");
-							$url = (JURI::root (). "index.php?option=com_joomdle&task=enrol&course_id=$course_id");
-							$can_enrol = $course_info['self_enrolment'] && $course_info['in_enrol_date'];
-							if ( $can_enrol){
+                            if (!$button_text)
+                                $button_text = JText::_('COM_JOOMDLE_ENROL_INTO_COURSE');
+                        //  $url = JRoute::_("index.php?option=com_joomdle&task=enrol&course_id=$course_id");
+                            $url = (JURI::root (). "index.php?option=com_joomdle&task=enrol&course_id=$course_id");
+                            $can_enrol = $course_info['self_enrolment'] && $course_info['in_enrol_date'];
+                            if ( $can_enrol){
                                        $html .= '<FORM>
                <INPUT TYPE="BUTTON" VALUE="'. $button_text.'"
-				ONCLICK="window.location.href=\''.$url.'\'">
+                ONCLICK="window.location.href=\''.$url.'\'">
                </FORM>';
 
                                }
@@ -463,11 +463,11 @@ array($course_id, $user->id, &$message));
                <FORM action="index.php?option=com_joomdle" method="post"
 id="josForm" name="josForm" class="form-validate">';
                                                if ($show_motivation != 'no'){
-													   $html .= JText::_('COM_JOOMDLE_MOTIVATION');
-													   if ($show_motivation == 'mandatory')
-														   $html .= '*';
-														$html .= '<br>';
-													   if ($show_motivation == 'mandatory')
+                                                       $html .= JText::_('COM_JOOMDLE_MOTIVATION');
+                                                       if ($show_motivation == 'mandatory')
+                                                           $html .= '*';
+                                                        $html .= '<br>';
+                                                       if ($show_motivation == 'mandatory')
                                                            $html .= '<textarea id="motivation" class="inputbox required" name="motivation" cols="60" rows="4"></textarea><br>';
                                                        else
                                                            $html .= '<textarea id="motivation" name="motivation" cols="60" rows="4"></textarea><br>';
@@ -475,18 +475,18 @@ id="josForm" name="josForm" class="form-validate">';
                                                $html .= '<br>&nbsp;</br>';
                                                if ($show_experience != 'no'){
                                                        $html .= JText::_('COM_JOOMDLE_EXPERIENCE');
-													   if ($show_experience == 'mandatory')
-														   $html .= '*';
-														$html .= '<br>';
-													   if ($show_experience == 'mandatory')
+                                                       if ($show_experience == 'mandatory')
+                                                           $html .= '*';
+                                                        $html .= '<br>';
+                                                       if ($show_experience == 'mandatory')
                                                            $html .= '<textarea id="experience" class="inputbox required" name="experience" cols="60" rows="4"></textarea><br>';
                                                        else
                                                            $html .= '<textarea id="experience" name="experience" cols="60" rows="4"></textarea><br>';
 
                                                }
 
-											   if (($show_motivation == 'mandatory') || ($show_experience == 'mandatory'))
-												   $html .= JText::_ ('COM_JOOMDLE_MARKED_FIELDS_MANDATORY') ."<br>";
+                                               if (($show_motivation == 'mandatory') || ($show_experience == 'mandatory'))
+                                                   $html .= JText::_ ('COM_JOOMDLE_MARKED_FIELDS_MANDATORY') ."<br>";
                                                $html .= '<INPUT TYPE="SUBMIT" VALUE="  '.JText::_('COM_JOOMDLE_APPLICATE_FOR_COURSE').'">
                <INPUT TYPE="hidden" name="course_id" VALUE="  '.$course_id.'  ">
                <INPUT TYPE="hidden" name="option" VALUE="com_joomdle">
@@ -501,25 +501,25 @@ id="josForm" name="josForm" class="form-validate">';
                }
 
                else { //courses in shop
-				   require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/shop.php' );
+                   require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/shop.php' );
                        if ($paid_courses_button == 'buy')
-					   {
+                       {
                                if (JoomdleHelperShop::is_course_on_sell ($course_info['remoteid'])){
 
-									if (!$button_text)
-										$button_text = JText::_('COM_JOOMDLE_BUY_COURSE');
-									$url = JRoute::_(JoomdleHelperShop::get_sell_url ($course_info['remoteid']));
-									$can_enrol = $course_info['in_enrol_date'];
-									if ( $can_enrol){
+                                    if (!$button_text)
+                                        $button_text = JText::_('COM_JOOMDLE_BUY_COURSE');
+                                    $url = JRoute::_(JoomdleHelperShop::get_sell_url ($course_info['remoteid']));
+                                    $can_enrol = $course_info['in_enrol_date'];
+                                    if ( $can_enrol){
                                                $html .= '
-												   <FORM>
-												   <INPUT TYPE="BUTTON" VALUE="  '.$button_text.'  "
-									ONCLICK="window.location.href=\''.$url.'\'">
-												   </FORM>';
+                                                   <FORM>
+                                                   <INPUT TYPE="BUTTON" VALUE="  '.$button_text.'  "
+                                    ONCLICK="window.location.href=\''.$url.'\'">
+                                                   </FORM>';
                                        }
                                }
-					   }
-					   else if ($paid_courses_button == 'paypal'){
+                       }
+                       else if ($paid_courses_button == 'paypal'){
 
                                        $url = JRoute::_ ("index.php?option=com_joomdle&view=buycourse&course_id=$course_id");
                                        $html .= '<br><a href="'.$url.'"><img
@@ -529,80 +529,80 @@ src="https://www.paypal.com/en_US/i/logo/PayPal_mark_60x38.gif"></a>';
 
 
                return $html;
-	}
+    }
 
-	static public function get_my_course_link ($id, $name, $linkto = 'moodle')
-	{
-		$comp_params = JComponentHelper::getParams( 'com_joomdle' );
+    static public function get_my_course_link ($id, $name, $linkto = 'moodle')
+    {
+        $comp_params = JComponentHelper::getParams( 'com_joomdle' );
 
-		$linkstarget = $comp_params->get( 'linkstarget' );
-		$default_itemid = $comp_params->get( 'default_itemid' );
-		$joomdle_itemid = $comp_params->get( 'joomdle_itemid' );
-		$courseview_itemid = $comp_params->get( 'courseview_itemid' );
+        $linkstarget = $comp_params->get( 'linkstarget' );
+        $default_itemid = $comp_params->get( 'default_itemid' );
+        $joomdle_itemid = $comp_params->get( 'joomdle_itemid' );
+        $courseview_itemid = $comp_params->get( 'courseview_itemid' );
 
-		if ($linkto == 'moodle')
-		{
-			if ($default_itemid)
-				$itemid = $default_itemid;
-			else
-				$itemid = JoomdleHelperContent::getMenuItem();
-		}
-		else if ($linkto == 'detail')
-		{
-				$itemid = JoomdleHelperContent::getMenuItem();
+        if ($linkto == 'moodle')
+        {
+            if ($default_itemid)
+                $itemid = $default_itemid;
+            else
+                $itemid = JoomdleHelperContent::getMenuItem();
+        }
+        else if ($linkto == 'detail')
+        {
+                $itemid = JoomdleHelperContent::getMenuItem();
 
-				if ($joomdle_itemid)
-					$itemid = $joomdle_itemid;
-		}
-		else
-		{
-				$itemid = JoomdleHelperContent::getMenuItem();
+                if ($joomdle_itemid)
+                    $itemid = $joomdle_itemid;
+        }
+        else
+        {
+                $itemid = JoomdleHelperContent::getMenuItem();
 
-				if ($joomdle_itemid)
-					$itemid = $joomdle_itemid;
-				if ($courseview_itemid)
-					$itemid = $courseview_itemid;
-		}
+                if ($joomdle_itemid)
+                    $itemid = $joomdle_itemid;
+                if ($courseview_itemid)
+                    $itemid = $courseview_itemid;
+        }
 
-		$moodle_auth_land_url = $comp_params->get( 'MOODLE_URL' ).'/auth/joomdle/land.php';
-		$user = JFactory::getUser();
-		$username = $user->get('username');
+        $moodle_auth_land_url = $comp_params->get( 'MOODLE_URL' ).'/auth/joomdle/land.php';
+        $user = JFactory::getUser();
+        $username = $user->get('username');
 
-		$session                = JFactory::getSession();
-		$token = md5 ($session->getId());
+        $session                = JFactory::getSession();
+        $token = md5 ($session->getId());
 
-		if ($linkstarget == 'wrapper')
-			$open_in_wrapper = 1;
-		else
-			$open_in_wrapper = 0;
+        if ($linkstarget == 'wrapper')
+            $open_in_wrapper = 1;
+        else
+            $open_in_wrapper = 0;
 
-		if ($linkstarget == "new")
-			$target = " target='_blank'";
-		else $target = "";
+        if ($linkstarget == "new")
+            $target = " target='_blank'";
+        else $target = "";
 
-		$html = '';
-		if ($linkto == 'moodle')
-		{
-			$url = $moodle_auth_land_url."?username=$username&token=$token&mtype=course&id=$id&use_wrapper=$open_in_wrapper&Itemid=$itemid";
-	//		if ($lang)
-	//			$url .= "&lang=$lang";
-			$html =  "<a $target href=\"".$url."\">".$name."</a>";
-		}
-		else if ($linkto == 'detail')
-		{
-			// Link to detail view
-			$url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$id.':'.JFilterOutput::stringURLSafe($name)."&Itemid=$itemid");
-			$html = "<a href=\"".$url."\">".$name."</a>";
-		}
-		else
-		{
-			// Link to course view
-			$url = JRoute::_("index.php?option=com_joomdle&view=course&course_id=".$id.':'.JFilterOutput::stringURLSafe($name)."&Itemid=$itemid");
-			$html =  "<a href=\"".$url."\">".$name."</a>";
-		}
+        $html = '';
+        if ($linkto == 'moodle')
+        {
+            $url = $moodle_auth_land_url."?username=$username&token=$token&mtype=course&id=$id&use_wrapper=$open_in_wrapper&Itemid=$itemid";
+    //      if ($lang)
+    //          $url .= "&lang=$lang";
+            $html =  "<a $target href=\"".$url."\">".$name."</a>";
+        }
+        else if ($linkto == 'detail')
+        {
+            // Link to detail view
+            $url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$id.':'.JFilterOutput::stringURLSafe($name)."&Itemid=$itemid");
+            $html = "<a href=\"".$url."\">".$name."</a>";
+        }
+        else
+        {
+            // Link to course view
+            $url = JRoute::_("index.php?option=com_joomdle&view=course&course_id=".$id.':'.JFilterOutput::stringURLSafe($name)."&Itemid=$itemid");
+            $html =  "<a href=\"".$url."\">".$name."</a>";
+        }
 
 
-		return $html;
-	}
+        return $html;
+    }
 
 }

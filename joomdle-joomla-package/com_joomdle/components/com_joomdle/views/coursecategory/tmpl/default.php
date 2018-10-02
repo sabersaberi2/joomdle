@@ -81,8 +81,8 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
     foreach ($this->cursos as  $curso) : ?>
         <div class="joomdle_course_list_item">
             <div class="joomdle_item_title joomdle_course_list_item_title">
-				<?php 
-				if ($unicodeslugs == 1)
+                <?php 
+                if ($unicodeslugs == 1)
                 {
                     $slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
                     $cat_slug = JFilterOutput::stringURLUnicodeSlug($curso['cat_name']);
@@ -94,26 +94,26 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
                 }
 
                 $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$curso['cat_id']."-". $cat_slug . 
-					"&course_id=".$curso['remoteid'].'-'.$slug."&Itemid=$itemid"); ?>
+                    "&course_id=".$curso['remoteid'].'-'.$slug."&Itemid=$itemid"); ?>
                 <?php  echo "<a href=\"$url\">".$curso['fullname']."</a><br>"; ?>
             </diV>
             <?php if ($curso['summary']) : ?>
             <div class="joomdle_item_content joomdle_course_list_item_description">
-				<div class="joomdle_course_description">
-				<?php
-					if (count ($curso['summary_files']))
-					{
-						foreach ($curso['summary_files'] as $file) :
-						?>
-							<img hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
-						<?php
-						endforeach;
-					}
-				?>
+                <div class="joomdle_course_description">
+                <?php
+                    if (count ($curso['summary_files']))
+                    {
+                        foreach ($curso['summary_files'] as $file) :
+                        ?>
+                            <img hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
+                        <?php
+                        endforeach;
+                    }
+                ?>
 
                 <?php echo JoomdleHelperSystem::fix_text_format($curso['summary']); ?>
                 </div>
-				  <?php if ($show_buttons) : ?>
+                  <?php if ($show_buttons) : ?>
                 <div class="joomdle_course_buttons">
                     <?php echo JoomdleHelperSystem::actionbutton ( $curso, $free_courses_button, $paid_courses_button) ?>
                 </div>

@@ -15,14 +15,14 @@
 <table width="100%" cellpadding="4" cellspacing="0" border="0" align="center" class="contentpane<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
 <tr>
         <td width="60%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<?php echo JText::_('COM_JOOMDLE_MY_COURSES'); ?>
+        <?php echo JText::_('COM_JOOMDLE_MY_COURSES'); ?>
         </td>
         <td width="10%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<?php echo JText::_('COM_JOOMDLE_AVAILABLE'); ?>
+        <?php echo JText::_('COM_JOOMDLE_AVAILABLE'); ?>
         </td>
         <td width="90%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<?php echo JText::_('COM_JOOMDLE_CHILDREN'); ?>
-		<a href="<?php echo JRoute::_( 'index.php?option=com_joomdle&view=register' ); ?>">(<?php echo JText::_('COM_JOOMDLE_ADD_NEW'); ?>)</a>
+        <?php echo JText::_('COM_JOOMDLE_CHILDREN'); ?>
+        <a href="<?php echo JRoute::_( 'index.php?option=com_joomdle&view=register' ); ?>">(<?php echo JText::_('COM_JOOMDLE_ADD_NEW'); ?>)</a>
         </td>
 </tr>
 
@@ -35,21 +35,21 @@ foreach ($this->my_courses as $id => $curso) :
                 <?php $odd++; $odd = $odd % 2; ?>
         <td align="left">
                 <?php 
-			echo $curso['name'];
-		?>
+            echo $curso['name'];
+        ?>
 
         </td>
-	<td>
+    <td>
                 <?php 
-			echo $curso['num'];
-		?>
-	</td>
-	<td>
-	<?php
-		$options = JoomdleHelperParents::childrenCheckboxes ($curso['id']);
-	//	echo JHTML::_('select.genericlist', $options, 'children'.'['.$i.']', 'multiple=multiple', 'value', 'text', $value, $control_name.$name );
-	?>
-	</td>
+            echo $curso['num'];
+        ?>
+    </td>
+    <td>
+    <?php
+        $options = JoomdleHelperParents::childrenCheckboxes ($curso['id']);
+    //  echo JHTML::_('select.genericlist', $options, 'children'.'['.$i.']', 'multiple=multiple', 'value', 'text', $value, $control_name.$name );
+    ?>
+    </td>
 </tr>
 <?php endforeach; ?>
 <tr>

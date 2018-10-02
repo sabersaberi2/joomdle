@@ -14,23 +14,23 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewTeachersabc extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$chars = $app->input->get('start_chars');
-		if (!$chars)
-			$chars = $params->get( 'start_chars' );
+        $chars = $app->input->get('start_chars');
+        if (!$chars)
+            $chars = $params->get( 'start_chars' );
 
-		$this->teachers = JoomdleHelperContent::call_method ('teachers_abc', $chars);
+        $this->teachers = JoomdleHelperContent::call_method ('teachers_abc', $chars);
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
     protected function _prepareDocument()

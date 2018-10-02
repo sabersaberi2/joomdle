@@ -213,6 +213,7 @@ class joomdle_helpers_external extends external_api {
                     'idnumber' => new external_value(PARAM_RAW, 'category name'),
                     'summary' => new external_value(PARAM_RAW, 'summary'),
                     'startdate' => new external_value(PARAM_INT, 'start date'),
+                    'enddate' => new external_value(PARAM_INT, 'end date'),
                     'numsections' => new external_value(PARAM_INT, 'number of sections'),
                     'lang' => new external_value(PARAM_RAW, 'lang'),
                     'cost' => new external_value(PARAM_FLOAT, 'cost', VALUE_OPTIONAL),
@@ -1781,7 +1782,7 @@ class joomdle_helpers_external extends external_api {
                   'firstname' => new external_value(PARAM_TEXT, 'firstname'),
                   'lastname' => new external_value(PARAM_TEXT, 'lastname'),
                   'username' => new external_value(PARAM_TEXT, 'username'),
-				  'courseid' => new external_value(PARAM_TEXT, 'courseid'), 
+				  'courseid' => new external_value(PARAM_TEXT, 'courseid'), // مهدی آنیلی
                 )
             )
         );
@@ -2869,6 +2870,9 @@ class joomdle_helpers_external extends external_api {
                                              'finalgrade' => new external_value(PARAM_FLOAT, 'final grade'),
                                              'feedback' => new external_value(PARAM_RAW, 'feedback'),
                                              'letter' => new external_value(PARAM_TEXT, 'grade letter'),
+                                             'module' => new external_value(PARAM_TEXT, 'module'),
+                                             'iteminstance' => new external_value(PARAM_INT, 'item instance'),
+                                             'course_module_id' => new external_value(PARAM_INT, 'course module id'),
                                           )
                                        )
                                     )
@@ -2930,6 +2934,9 @@ class joomdle_helpers_external extends external_api {
                                                 'finalgrade' => new external_value(PARAM_FLOAT, 'final grade'),
                                                 'feedback' => new external_value(PARAM_RAW, 'feedback'),
                                                 'letter' => new external_value(PARAM_TEXT, 'grade letter'),
+                                                'module' => new external_value(PARAM_TEXT, 'module'),
+                                                'iteminstance' => new external_value(PARAM_INT, 'item instance'),
+                                                'course_module_id' => new external_value(PARAM_INT, 'course module id'),
                                              )
                                           )
                                        )
@@ -5043,5 +5050,47 @@ class joomdle_helpers_external extends external_api {
 
         return $return;
     }
+
+    /* get_mentees_certificates */
+    public static function get_mentees_certificates_parameters() {
+        return new external_function_parameters(
+                        array(
+                            'username' => new external_value(PARAM_TEXT, 'username'),
+                            'type' => new external_value(PARAM_TEXT, 'type')
+                        )
+        );
+    }
+
+    public static function get_mentees_certificates_returns() {
+        return new external_multiple_structure(
+            new external_single_structure(
+               array(
+                  'username' => new external_value(PARAM_TEXT, 'username'),
+                  'name' => new external_value(PARAM_TEXT, 'name'),
+                  'certificates' => new external_multiple_structure(
+                           new external_single_structure(
+                              array(
+								'name' => new external_value(PARAM_TEXT, 'name'),
+								'id' => new external_value(PARAM_INT, 'id')
+                              )
+                           )
+                        )
+               )
+            )
+        );
+    }
+
+    public static function get_mentees_certificates($username, $type) {
+        global $CFG, $DB;
+
+        $params = self::validate_parameters(self::get_mentees_certificates_parameters(), array('username' => $username,
+                    'type' => $type));
+
+        $auth = new  auth_plugin_joomdle ();
+        $return = $auth->get_mentees_certificates ($username, $type);
+
+        return $return;
+    }
+
 
 }

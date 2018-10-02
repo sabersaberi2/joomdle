@@ -20,24 +20,24 @@ defined('_JEXEC') or die('Restricted access'); ?>
 <?php
 foreach ($this->tasks as  $user) :
 
-	?>
-		<tr><td><h3><?php echo $user['name']; ?></h3></td></tr>
-	<?php
+    ?>
+        <tr><td><h3><?php echo $user['name']; ?></h3></td></tr>
+    <?php
 
-	foreach ($user['grades'] as  $course) :
-		$tareas = $course['grades'];
+    foreach ($user['grades'] as  $course) :
+        $tareas = $course['grades'];
 
-		if ((!is_array ($tareas)) || (!count ($tareas)))
-			continue;
+        if ((!is_array ($tareas)) || (!count ($tareas)))
+            continue;
 
-		$this->name = $user['name'];
-		$this->tareas = $tareas;
-		$this->course_name = $course['fullname'];
-		/* Para cada curso, mostramos sus tareas */
+        $this->name = $user['name'];
+        $this->tareas = $tareas;
+        $this->course_name = $course['fullname'];
+        /* Para cada curso, mostramos sus tareas */
         echo $this->loadTemplate('coursebasic');
 ?>
 
-	<?php endforeach; ?>
+    <?php endforeach; ?>
 <?php endforeach; ?>
 
 </table>

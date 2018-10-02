@@ -6,7 +6,7 @@
     <creationDate>04/02/2010</creationDate>
 	<copyright>Copyright (C) 2014 Qontori Pte Ltd</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-    <version>1.2</version>
+    <version>1.2.1</version>
     <description>Tools for Joomla - Moodle integration</description>
 
 	<scriptfile>install.php</scriptfile>

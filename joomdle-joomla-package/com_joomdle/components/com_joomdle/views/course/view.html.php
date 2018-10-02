@@ -14,42 +14,42 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewCourse extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app                = JFactory::getApplication();
-		$pathway =$app->getPathWay();
-		$app        = JFactory::getApplication();
-		$menus      = $app->getMenu();
-		$menu  = $menus->getActive();
+        $app                = JFactory::getApplication();
+        $pathway =$app->getPathWay();
+        $app        = JFactory::getApplication();
+        $menus      = $app->getMenu();
+        $menu  = $menus->getActive();
 
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$id = $app->input->get('course_id');
-		if (!$id)
-			$id = $app->input->get('course_id', '', 'STRING');
+        $id = $app->input->get('course_id');
+        if (!$id)
+            $id = $app->input->get('course_id', '', 'STRING');
 
         // Remove slug to get ID
         $id_parts = explode ('-', $id);
         $id = (int) $id_parts[0];
 
-		if (!$id)
-		{
-			echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
-			return;
-		}
+        if (!$id)
+        {
+            echo JText::_('COM_JOOMDLE_NO_COURSE_SELECTED');
+            return;
+        }
 
-		$user = JFactory::getUser();
-		$username = $user->username;
-		$this->course_info = JoomdleHelperContent::getCourseInfo($id, $username);
-		$this->is_enroled = $this->course_info['enroled'];
+        $user = JFactory::getUser();
+        $username = $user->username;
+        $this->course_info = JoomdleHelperContent::getCourseInfo($id, $username);
+        $this->is_enroled = $this->course_info['enroled'];
 
-		if ($this->is_enroled)
-			$this->mods = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, $username);
-		else
-			$this->mods = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, '');
+        if ($this->is_enroled)
+            $this->mods = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, $username);
+        else
+            $this->mods = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, '');
 
-		/* pathway */
+        /* pathway */
         $cat_slug = $this->course_info['cat_id']."-".$this->course_info['cat_name'];
         $course_slug = $this->course_info['remoteid']."-".$this->course_info['fullname'];
 
@@ -62,7 +62,7 @@ class JoomdleViewCourse extends JViewLegacy {
         $document = JFactory::getDocument();
         $document->setTitle($this->course_info['fullname']);
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
         parent::display($tpl);
     }

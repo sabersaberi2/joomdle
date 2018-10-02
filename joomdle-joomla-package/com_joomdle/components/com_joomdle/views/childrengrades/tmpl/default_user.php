@@ -24,15 +24,15 @@ if ((!is_array ($tareas)) || (!count ($tareas)))
 ?>
 <tr>
         <td width="90%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-			<h4>
-				<?php echo JText::_('COM_JOOMDLE_COURSE_TASKS'); ?>:
-				<?php echo $curso['fullname']; ?>
-			</h4>
+            <h4>
+                <?php echo JText::_('COM_JOOMDLE_COURSE_TASKS'); ?>:
+                <?php echo $curso['fullname']; ?>
+            </h4>
         </td>
         <td width="30" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>"  nowrap="nowrap">
-			<h4>
+            <h4>
                 <?php echo JText::_('COM_JOOMDLE_GRADE'); ?>
-			</h4>
+            </h4>
         </td>
 <tr>
 <?php

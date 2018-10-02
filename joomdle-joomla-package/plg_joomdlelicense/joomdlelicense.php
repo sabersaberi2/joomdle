@@ -13,7 +13,7 @@ jimport( 'joomla.plugin.plugin' );
 
 class  plgSystemJoomdlelicense extends JPlugin
 {
-	function onInstallerAfterInstaller ($model, $package, $installer, $result, $msg)
+    function onInstallerAfterInstaller ($model, $package, $installer, $result, $msg)
     {
         $params = JComponentHelper::getParams( 'com_joomdle' );
         $license = $params->get ('license_key');

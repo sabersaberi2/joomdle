@@ -37,7 +37,7 @@ else
 
 $linkstarget = $this->params->get( 'linkstarget' );
 if ($linkstarget == "new")
-	 $target = " target='_blank'";
+     $target = " target='_blank'";
  else $target = "";
 
 $show_unenrol_link = $this->params->get( 'show_unenrol_link' );
@@ -82,29 +82,29 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
                     {
                         // Link to detail view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$curso['id'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
                     else
                     {
                         // Link to course view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=course&course_id=".$curso['id'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link =  "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
 
-					echo $course_link;
-			?>	
-			</div>
-            <div class="barRow">
-			<?php
-			    if ($this->params->get('progress_block') == 'progress')
-					echo $this->get_course_progress ($curso['progress'], $id);
-				else
-					echo $this->get_course_completion_progress ($curso['progress'], $id);
-			?>
+                    echo $course_link;
+            ?>  
             </div>
-			<div><br></div>
+            <div class="barRow">
+            <?php
+                if ($this->params->get('progress_block') == 'progress')
+                    echo $this->get_course_progress ($curso['progress'], $id);
+                else
+                    echo $this->get_course_completion_progress ($curso['progress'], $id);
+            ?>
+            </div>
+            <div><br></div>
         <?php endforeach; ?>
     </div>
     </div>

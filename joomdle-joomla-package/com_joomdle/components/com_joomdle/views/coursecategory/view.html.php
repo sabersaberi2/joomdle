@@ -15,49 +15,49 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewCoursecategory extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app                = JFactory::getApplication();
-		$pathway =$app->getPathWay();
-		$menus      = $app->getMenu();
-		$menu  = $menus->getActive();
+        $app                = JFactory::getApplication();
+        $pathway =$app->getPathWay();
+        $menus      = $app->getMenu();
+        $menu  = $menus->getActive();
 
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$id = $app->input->get('cat_id','', 'STRING');
-		if (!$id)
-			$id = $params->get( 'cat_id' );
-		
-		// Remove slug to get ID
+        $id = $app->input->get('cat_id','', 'STRING');
+        if (!$id)
+            $id = $params->get( 'cat_id' );
+        
+        // Remove slug to get ID
         $id_parts = explode ('-', $id);
         $id = (int) $id_parts[0];
 
-		if (!$id)
-		{
-			echo JText::_('COM_JOOMDLE_NO_CATEGORY_SELECTED');
-			return;
-		}
+        if (!$id)
+        {
+            echo JText::_('COM_JOOMDLE_NO_CATEGORY_SELECTED');
+            return;
+        }
 
-		$this->cat_id = $id;
+        $this->cat_id = $id;
 
-		$this->cat_name = JoomdleHelperContent::call_method ('get_cat_name', $id);
+        $this->cat_name = JoomdleHelperContent::call_method ('get_cat_name', $id);
 
-		$user = JFactory::getUser();
+        $user = JFactory::getUser();
         $username = $user->username;
-		$this->cursos = JoomdleHelperContent::getCourseCategory ($id, $username);
+        $this->cursos = JoomdleHelperContent::getCourseCategory ($id, $username);
 
-		$this->categories = JoomdleHelperContent::getCourseCategories ($id);
+        $this->categories = JoomdleHelperContent::getCourseCategories ($id);
 
-		if(is_object($menu) && $menu->query['view'] != 'coursecategory') {
-							$pathway->addItem($this->cat_name, '');
-					}
+        if(is_object($menu) && $menu->query['view'] != 'coursecategory') {
+                            $pathway->addItem($this->cat_name, '');
+                    }
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$document = JFactory::getDocument();
-		$document->setTitle($this->cat_name);
+        $document = JFactory::getDocument();
+        $document->setTitle($this->cat_name);
 
         parent::display($tpl);
     }

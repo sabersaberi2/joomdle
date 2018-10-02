@@ -26,7 +26,7 @@ class JoomdleViewCustomprofiletype extends JViewLegacy {
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
-			JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
+            JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
             return false;
         }
 

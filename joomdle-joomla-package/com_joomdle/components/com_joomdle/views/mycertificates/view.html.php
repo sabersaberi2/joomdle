@@ -14,28 +14,28 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycertificates extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$this->moodle_url = $params->get( 'MOODLE_URL' );
+        $this->moodle_url = $params->get( 'MOODLE_URL' );
 
-		$this->show_send_certificate = $params->get('show_send_certificate');
-		$this->cert_type = $params->get('certificate_type');
+        $this->show_send_certificate = $params->get('show_send_certificate');
+        $this->cert_type = $params->get('certificate_type');
 
-		$user = JFactory::getUser();
-		$username = $user->username;
-		$this->my_certificates = JoomdleHelperContent::call_method ("my_certificates", $username, $this->cert_type);
+        $user = JFactory::getUser();
+        $username = $user->username;
+        $this->my_certificates = JoomdleHelperContent::call_method ("my_certificates", $username, $this->cert_type);
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

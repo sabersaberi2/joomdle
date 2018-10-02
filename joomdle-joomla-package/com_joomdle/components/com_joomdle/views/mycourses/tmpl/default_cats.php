@@ -19,7 +19,7 @@ if ($linkto == 'moodle')
 }
 else if ($linkto == 'detail')
 {
-		// Get the best menu item id we can get
+        // Get the best menu item id we can get
         $itemid = JoomdleHelperContent::getMenuItem();
 
         if ($joomdle_itemid)
@@ -27,7 +27,7 @@ else if ($linkto == 'detail')
 }
 else // Link to course view
 {
-		// Get the best menu item id we can get
+        // Get the best menu item id we can get
         $itemid = JoomdleHelperContent::getMenuItem();
 
         if ($joomdle_itemid)
@@ -38,7 +38,7 @@ else // Link to course view
 
 $linkstarget = $this->params->get( 'linkstarget' );
 if ($linkstarget == "new")
-	 $target = " target='_blank'";
+     $target = " target='_blank'";
 else $target = "";
 
 $show_unenrol_link = $this->params->get( 'show_unenrol_link' );
@@ -66,46 +66,46 @@ $prev_cat = 0;
 $i = 0;
 if (is_array ($this->my_courses))
 foreach ($this->my_courses as $id => $curso) :
-	$i++;
-	if ($curso['category'] != $prev_cat) :
-		$prev_cat = $curso['category'];
-		$cat_name = $curso['cat_name'];
+    $i++;
+    if ($curso['category'] != $prev_cat) :
+        $prev_cat = $curso['category'];
+        $cat_name = $curso['cat_name'];
 if ($i > 1) :
 ?>
 </ul>
 <?php endif; ?>
 <h4>
-		<?php echo $cat_name; ?>
+        <?php echo $cat_name; ?>
 </h4>
-		<ul>
+        <ul>
 <?php
-	endif;
+    endif;
 ?>
-			<li>
-				<?php
-					if ($unicodeslugs == 1)
-					{
-						$slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
-					}
-					else
-					{
-						$slug = JFilterOutput::stringURLSafe($curso['fullname']);
-					}
-				?>
+            <li>
+                <?php
+                    if ($unicodeslugs == 1)
+                    {
+                        $slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
+                    }
+                    else
+                    {
+                        $slug = JFilterOutput::stringURLSafe($curso['fullname']);
+                    }
+                ?>
 
                 <?php 
-					if ($linkto == 'moodle')
+                    if ($linkto == 'moodle')
                     {
                         $link = $this->jump_url."&mtype=course&id=".$curso['id']."&Itemid=$itemid";
                         if ($lang)
                             $link .= "&lang=$lang";
                         $course_link = "<a $target href=\"$link\">".$curso['fullname']."</a>";
                     }
-					else if ($linkto == 'detail')
+                    else if ($linkto == 'detail')
                     {
                         // Link to detail view
                         $redirect_url = JRoute::_("index.php?option=com_joomdle&view=detail&course_id=".$curso['id'].'-'.$slug.
-							"&Itemid=$itemid");
+                            "&Itemid=$itemid");
                         $course_link = "<a href=\"".$redirect_url."\">".$curso['fullname']."</a>";
                     }
 
@@ -145,10 +145,10 @@ if ($i > 1) :
                         echo "<div class='clear_float'></div>";
                     }
 
-				?>
-			</li>
+                ?>
+            </li>
 
 
 <?php endforeach; ?>
-	</div>
+    </div>
 </div>

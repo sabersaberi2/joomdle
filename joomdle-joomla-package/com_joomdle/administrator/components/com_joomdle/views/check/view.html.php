@@ -13,19 +13,19 @@ jimport( 'joomla.application.component.view');
 class JoomdleViewCheck extends JViewLegacy {
     function display($tpl = null) {
 
-	$params = JComponentHelper::getParams( 'com_joomdle' );
+    $params = JComponentHelper::getParams( 'com_joomdle' );
         if ($params->get( 'MOODLE_URL' ) == "")
         {
-			echo "Joomdle is not configured yet. Please fill Moodle URL setting in Configuration";
-			return;
+            echo "Joomdle is not configured yet. Please fill Moodle URL setting in Configuration";
+            return;
         }
 
 
-		$this->system_info = JoomdleHelperContent::check_joomdle_system ();
+        $this->system_info = JoomdleHelperContent::check_joomdle_system ();
 
-		$this->addToolbar();
-		$this->sidebar = JHtmlSidebar::render();
-		parent::display($tpl);
+        $this->addToolbar();
+        $this->sidebar = JHtmlSidebar::render();
+        parent::display($tpl);
     }
 
     protected function addToolbar()

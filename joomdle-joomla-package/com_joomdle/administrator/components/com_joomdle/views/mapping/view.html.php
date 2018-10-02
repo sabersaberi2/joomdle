@@ -19,40 +19,40 @@ class JoomdleViewMapping extends JViewLegacy {
     protected $item;
 
     function display($tpl = null) {
-	    global $mainframe, $option;
+        global $mainframe, $option;
 
-		$this->form         = $this->get('Form');
+        $this->form         = $this->get('Form');
         $this->item         = $this->get('Item');
 
-		$params = JComponentHelper::getParams( 'com_joomdle' );
-		$additional_data_source = $params->get( 'additional_data_source' );
+        $params = JComponentHelper::getParams( 'com_joomdle' );
+        $additional_data_source = $params->get( 'additional_data_source' );
 
-		if ($additional_data_source == 'no')
-		{
-			echo JText::_ ('COM_JOOMDLE_YOU_NEED_TO_SELECT_AN_ADDITIONAL_DATA_SOURCE');
-			return;
-		}
+        if ($additional_data_source == 'no')
+        {
+            echo JText::_ ('COM_JOOMDLE_YOU_NEED_TO_SELECT_AN_ADDITIONAL_DATA_SOURCE');
+            return;
+        }
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
-			JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
+            JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
             return false;
         }
 
         parent::display($tpl);
-		$this->addToolbar();
+        $this->addToolbar();
 
     }
 
-	protected function addToolbar()
+    protected function addToolbar()
     {
         JFactory::getApplication()->input->set('hidemainmenu', true);
 
         $isNew = ($this->item->id == 0);
 
-		JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_MAPPINGS_TITLE'), 'mapping');
-		JToolbarHelper::apply('mapping.apply');
-		JToolbarHelper::save('mapping.save');
+        JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_MAPPINGS_TITLE'), 'mapping');
+        JToolbarHelper::apply('mapping.apply');
+        JToolbarHelper::save('mapping.save');
 
         if (empty($this->item->id))  {
             JToolbarHelper::cancel('mapping.cancel');

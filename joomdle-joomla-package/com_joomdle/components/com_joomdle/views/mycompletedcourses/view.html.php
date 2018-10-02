@@ -14,31 +14,31 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycompletedcourses extends JViewLegacy {
-	function display($tpl = null) {
-	global $mainframe;
+    function display($tpl = null) {
+    global $mainframe;
 
-	$app        = JFactory::getApplication();
+    $app        = JFactory::getApplication();
     $params = $app->getParams();
     $this->assignRef('params',              $params);
 
 
-	$group_by_category = $params->get( 'group_by_category' );
+    $group_by_category = $params->get( 'group_by_category' );
 
-	$user = JFactory::getUser();
-	$username = $user->username;
-	$this->my_courses = JoomdleHelperContent::call_method('my_completed_courses', $username);
+    $user = JFactory::getUser();
+    $username = $user->username;
+    $this->my_courses = JoomdleHelperContent::call_method('my_completed_courses', $username);
 
-	$this->jump_url =  JoomdleHelperContent::getJumpURL ();
+    $this->jump_url =  JoomdleHelperContent::getJumpURL ();
 
-	$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+    $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-	$this->_prepareDocument();
+    $this->_prepareDocument();
 
-	if ($this->my_courses)
-		parent::display($tpl);
+    if ($this->my_courses)
+        parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

@@ -12,7 +12,7 @@ $itemid = JoomdleHelperContent::getMenuItem();
 ?>
 
 <div class="joomdle-courserequestlist<?php echo $this->pageclass_sfx;?>">
-	<?php if ($this->params->get('show_page_heading', 1)) : ?>
+    <?php if ($this->params->get('show_page_heading', 1)) : ?>
     <h1>
     <?php echo $this->escape($this->params->get('page_heading')); ?>
     </h1>
@@ -42,23 +42,23 @@ foreach ($this->cursos as  $curso) : ?>
 <tr class="sectiontableentry<?php echo $odd + 1; ?>">
                 <?php $odd++; $odd = $odd % 2; ?>
         <td height="20">
-			<?php echo  $curso['fullname']; ?>
+            <?php echo  $curso['fullname']; ?>
         </td>
         <td height="20">
-			<?php echo  $curso['application_date']; ?>
+            <?php echo  $curso['application_date']; ?>
         </td>
         <td align="center"height="20">
 <?php
-			  switch ($curso['state'])
+              switch ($curso['state'])
             {
                 case JOOMDLE_APPLICATION_STATE_APPROVED:
-					echo JHTML::_('image', 'joomdle/' . 'tick.png' , NULL, NULL, 'COM_JOOMDLE_APPROVED' );
+                    echo JHTML::_('image', 'joomdle/' . 'tick.png' , NULL, NULL, 'COM_JOOMDLE_APPROVED' );
                     break;
                 case JOOMDLE_APPLICATION_STATE_REJECTED:
-					 echo JHTML::_('image', 'joomdle/' . 'publish_r.png' , NULL, NULL, 'COM_JOOMDLE_REJECTED' );
+                     echo JHTML::_('image', 'joomdle/' . 'publish_r.png' , NULL, NULL, 'COM_JOOMDLE_REJECTED' );
                     break;
                 default:
-					echo JText::_('COM_JOOMDLE_PENDING');
+                    echo JText::_('COM_JOOMDLE_PENDING');
                     break;
             }
 ?>

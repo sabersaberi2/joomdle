@@ -30,29 +30,29 @@ foreach ($this->rubrics['definitions'] as  $rubric) :
         </td>
 </tr>
                 <?php
-					foreach ($rubric['criteria'] as $item) :
-					?>
-					<tr>
-						<td width="25%">
-							<b>
-							<?php echo $item['description']; ?>
-							</b>
-						</td>
-						<?php 
-						foreach ($item['levels'] as $level) : 
-						?>
-						<td width="10%">
-							<?php 
-								echo $level['definition'];
-								echo "<br>";
-								echo $level['score'] . " " .  JText::_('COM_JOOMDLE_POINTS');
-							?>      
-						</td>
-						<?php endforeach; ?>
-					</tr>
-					<?php
-					endforeach;
-				?>
+                    foreach ($rubric['criteria'] as $item) :
+                    ?>
+                    <tr>
+                        <td width="25%">
+                            <b>
+                            <?php echo $item['description']; ?>
+                            </b>
+                        </td>
+                        <?php 
+                        foreach ($item['levels'] as $level) : 
+                        ?>
+                        <td width="10%">
+                            <?php 
+                                echo $level['definition'];
+                                echo "<br>";
+                                echo $level['score'] . " " .  JText::_('COM_JOOMDLE_POINTS');
+                            ?>      
+                        </td>
+                        <?php endforeach; ?>
+                    </tr>
+                    <?php
+                    endforeach;
+                ?>
 </tr>
 <?php endforeach; ?>
 </table>

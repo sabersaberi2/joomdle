@@ -14,41 +14,41 @@ JFormHelper::loadFieldClass('list');
 /**
  * Renders a list element
  *
- * @package 	Joomla.Framework
- * @subpackage		Parameter
- * @since		1.5
+ * @package     Joomla.Framework
+ * @subpackage      Parameter
+ * @since       1.5
  */
 
 class JFormFieldRole extends JFormFieldList
 {
-	/**
-	* Element type
-	*
-	* @access	protected
-	* @var		string
-	*/
-	var	$_name = 'Role';
+    /**
+    * Element type
+    *
+    * @access   protected
+    * @var      string
+    */
+    var $_name = 'Role';
 
-	function getOptions()
-	{
-		$roles = JoomdleHelperContent::call_method ('get_roles');
+    function getOptions()
+    {
+        $roles = JoomdleHelperContent::call_method ('get_roles');
 
-		$options = array ();
+        $options = array ();
 
-		$option['value'] = 0;
-		$option['text'] = JText::_('COM_JOOMDLE_SELECT_ROLE');
-		$options[] = $option;
+        $option['value'] = 0;
+        $option['text'] = JText::_('COM_JOOMDLE_SELECT_ROLE');
+        $options[] = $option;
 
-		if (is_array ($roles))
-		{
-			foreach ($roles as $role)
-			{
-				$option['value'] = $role['id'];
-				$option['text'] = $role['name'];
-				$options[] = $option;
-			}
-		}
+        if (is_array ($roles))
+        {
+            foreach ($roles as $role)
+            {
+                $option['value'] = $role['id'];
+                $option['text'] = $role['name'];
+                $options[] = $option;
+            }
+        }
 
-		return $options;
-	}
+        return $options;
+    }
 }

@@ -15,40 +15,40 @@ require_once(JPATH_SITE.'/components/com_joomdle/helpers/content.php');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewChildrengrades extends JViewLegacy {
-	function display($tpl = null) {
-		global $mainframe;
+    function display($tpl = null) {
+        global $mainframe;
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$user = JFactory::getUser();
-		$username = $app->input->get('child_username');
+        $user = JFactory::getUser();
+        $username = $app->input->get('child_username');
 
-		$layout = $params->get('layout');
+        $layout = $params->get('layout');
 
-		$user = JFactory::getUser ();
-		$username = $user->username;
+        $user = JFactory::getUser ();
+        $username = $user->username;
 
-		if ($layout == 'basic')
-		{
-			$this->tasks = JoomdleHelperContent::call_method ("get_children_grades", $username);
-		}
-		else
-		{
-			$this->tasks = JoomdleHelperContent::call_method ("get_children_grade_user_report", $username);
-			$tpl = 'cats';
-		}
+        if ($layout == 'basic')
+        {
+            $this->tasks = JoomdleHelperContent::call_method ("get_children_grades", $username);
+        }
+        else
+        {
+            $this->tasks = JoomdleHelperContent::call_method ("get_children_grade_user_report", $username);
+            $tpl = 'cats';
+        }
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
 
         parent::display($tpl);
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

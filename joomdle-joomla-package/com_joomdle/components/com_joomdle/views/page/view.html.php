@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewPage extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
         global $mainframe;
 
         $app                = JFactory::getApplication();
@@ -62,7 +62,7 @@ class JoomdleViewPage extends JViewLegacy {
                 }
 
 
-		$document = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setTitle($this->course_info['fullname'] . ': ' . $this->page['name']);
 
         parent::display($tpl);

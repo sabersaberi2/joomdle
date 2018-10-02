@@ -45,6 +45,6 @@ defined('_JEXEC') or die('Restricted access');
                     ?>
              </tbody>
        </table>
-	   <br>
+       <br>
 <center><?php echo JText::_('COM_JOOMDLE_FOR_PROBLEM_RESOLUTION_SEE'); ?>: <a target='_blank' href="http://www.joomdle.com/wiki/System_health_check">http://www.joomdle.com/wiki/System_health_check</a></center>
 </div>

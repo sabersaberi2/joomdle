@@ -1,9 +1,9 @@
 <?php
 /**
-* @version		
-* @package		Joomdle
-* @copyright	Copyright (C) 2008 - 2010 Antonio Duran Terres
-* @license		GNU/GPL, see LICENSE.php
+* @version      
+* @package      Joomdle
+* @copyright    Copyright (C) 2008 - 2010 Antonio Duran Terres
+* @license      GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
 * is derivative of works licensed under the GNU General Public License or
@@ -30,6 +30,7 @@ $joomdle_itemid = $comp_params->get( 'joomdle_itemid' );
 $courseview_itemid = $comp_params->get( 'courseview_itemid' );
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 $show_unenrol_link = $params->get( 'show_unenrol_link' );
+$group_by_category = $params->get( 'group_by_category' );
 
 $user = JFactory::getUser();
 $username = $user->get('username');
@@ -37,12 +38,16 @@ $username = $user->get('username');
 $session                = JFactory::getSession();
 $token = md5 ($session->getId());
 
-$cursos = JoomdleHelperContent::getMyCourses ();
+if ($group_by_category)
+    $cursos = JoomdleHelperContent::call_method ('my_courses', $username, 1);
+else
+    $cursos = JoomdleHelperContent::getMyCourses();
+
 
 if ($cursos)
 {
     $layout           = $params->get('layout', 'default');
-	require(JModuleHelper::getLayoutPath('mod_joomdle_my_courses', $layout));
+    require(JModuleHelper::getLayoutPath('mod_joomdle_my_courses', $layout));
 }
 else
 {

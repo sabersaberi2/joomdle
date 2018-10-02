@@ -40,7 +40,7 @@ echo "</P>";
     $useremail = $user->email;
     $usercountry = 'US';
 
-	$enrol_id = JoomdleHelperContent::get_enrol_instance_id($course_id, 'paypal');
+    $enrol_id = JoomdleHelperContent::get_enrol_instance_id($course_id, 'paypal');
 
     $joomla_root = JURI::base();
 ?>

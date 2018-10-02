@@ -1,8 +1,8 @@
 <?php
 /**
-* @package		Joomdle
-* @copyright	Copyright (C) 2009 - 2010 Antonio Duran Terres
-* @license		GNU/GPL, see LICENSE.php
+* @package      Joomdle
+* @copyright    Copyright (C) 2009 - 2010 Antonio Duran Terres
+* @license      GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
 * is derivative of works licensed under the GNU General Public License or
@@ -15,7 +15,6 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once (dirname(__FILE__).'/helper.php');
 require_once(JPATH_SITE.'/components/com_joomdle/helpers/content.php');
-
 
 $comp_params = JComponentHelper::getParams( 'com_joomdle' );
 
@@ -41,53 +40,52 @@ $sort_by = $params->get( 'sort_by', 'name' );
 
 switch ($sort_by)
 {
-	case 'date':
-		$order = 'created DESC';
-		break;
-	case 'sortorder':
-		$order = 'sortorder ASC';
-		break;
-	default:
-		$order = 'fullname ASC';
-		break;
+    case 'date':
+        $order = 'created DESC';
+        break;
+    case 'sortorder':
+        $order = 'sortorder ASC';
+        break;
+    default:
+        $order = 'fullname ASC';
+        break;
 }
 
 if  ( $params->get( 'latest courses only' ))
 {
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
-	$limit = $params->get( 'latest courses only' );
+    $cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
+    $limit = $params->get( 'latest courses only' );
 }
 else
 {
-	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
-	//$cursos = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
-	$cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
-	$limit = PHP_INT_MAX; //no limit
+    //$cursos = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
+    //$cursos = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
+    $cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
+    $limit = PHP_INT_MAX; //no limit
 }
 
-//print_r ($cursos);
 
 if  ( $params->get( 'courses_shown' ))
 {
-	if (is_array($params->get( 'courses_shown' )))
-		$courses_shown = $params->get( 'courses_shown' );
-	else
-		$courses_shown = array ( $params->get( 'courses_shown' ));
+    if (is_array($params->get( 'courses_shown' )))
+        $courses_shown = $params->get( 'courses_shown' );
+    else
+        $courses_shown = array ( $params->get( 'courses_shown' ));
 
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
+    $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
 }
 if  ( $params->get( 'categories_shown' ))
 {
-	if (is_array($params->get( 'categories_shown' )))
-		$cats_shown = $params->get( 'categories_shown' );
-	else
-		$cats_shown = array ( $params->get( 'categories_shown' ));
+    if (is_array($params->get( 'categories_shown' )))
+        $cats_shown = $params->get( 'categories_shown' );
+    else
+        $cats_shown = array ( $params->get( 'categories_shown' ));
 
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
+    $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
 }
 if  ( $params->get( 'free courses only' ))
 {
-	$cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cost', array (0) );
+    $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cost', array (0) );
 }
 
 $layout           = $params->get('layout', 'default');

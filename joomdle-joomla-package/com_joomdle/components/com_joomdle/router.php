@@ -14,71 +14,34 @@ defined('_JEXEC') or die('Restricted access');
 function JoomdleBuildRoute(&$query) {
        $segments = array();
 
-	if (empty($query['Itemid'])) {
+    if (empty($query['Itemid'])) {
 
-		if(isset($query['view']))
-		{
-			$segments[] = $query['view'];
-			unset( $query['view'] );
-		}
-		if(isset($query['cat_id']))
-		{
-			$segments[] = $query['cat_id'];
-			unset( $query['cat_id'] );
-		};
-		if(isset($query['course_id']))
-		{
-			$segments[] = $query['course_id'];
-			unset( $query['course_id'] );
-		};
-		if(isset($query['username']))
+        if(isset($query['view']))
+        {
+            $segments[] = $query['view'];
+            unset( $query['view'] );
+        }
+        if(isset($query['cat_id']))
+        {
+            $segments[] = $query['cat_id'];
+            unset( $query['cat_id'] );
+        };
+        if(isset($query['course_id']))
+        {
+            $segments[] = $query['course_id'];
+            unset( $query['course_id'] );
+        };
+        if(isset($query['username']))
         {
             $segments[] = $query['username'];
             unset( $query['username'] );
         };
-		if(isset($query['start_chars']))
+        if(isset($query['start_chars']))
         {
             $segments[] = $query['start_chars'];
             unset( $query['start_chars'] );
         };
-		if(isset($query['page_id']))
-        {
-            $segments[] = $query['page_id'];
-            unset( $query['page_id'] );
-        };
-		if(isset($query['id']))
-        {
-            $segments[] = $query['id'];
-            unset( $query['id'] );
-        };
-	} else {
-
-		if(isset($query['view']))
-		{
-			$segments[] = $query['view'];
-			unset( $query['view'] );
-		} 
-		if(isset($query['cat_id']))
-		{
-			$segments[] = $query['cat_id'];
-			unset( $query['cat_id'] );
-		};
-		if(isset($query['course_id']))
-		{
-			$segments[] = $query['course_id'];
-			unset( $query['course_id'] );
-		};
-		if(isset($query['username']))
-        {
-            $segments[] = $query['username'];
-            unset( $query['username'] );
-        };
-		if(isset($query['start_chars']))
-        {
-            $segments[] = $query['start_chars'];
-            unset( $query['start_chars'] );
-        };
-		if(isset($query['page_id']))
+        if(isset($query['page_id']))
         {
             $segments[] = $query['page_id'];
             unset( $query['page_id'] );
@@ -88,19 +51,56 @@ function JoomdleBuildRoute(&$query) {
             $segments[] = $query['id'];
             unset( $query['id'] );
         };
-	} 
+    } else {
+
+        if(isset($query['view']))
+        {
+            $segments[] = $query['view'];
+            unset( $query['view'] );
+        } 
+        if(isset($query['cat_id']))
+        {
+            $segments[] = $query['cat_id'];
+            unset( $query['cat_id'] );
+        };
+        if(isset($query['course_id']))
+        {
+            $segments[] = $query['course_id'];
+            unset( $query['course_id'] );
+        };
+        if(isset($query['username']))
+        {
+            $segments[] = $query['username'];
+            unset( $query['username'] );
+        };
+        if(isset($query['start_chars']))
+        {
+            $segments[] = $query['start_chars'];
+            unset( $query['start_chars'] );
+        };
+        if(isset($query['page_id']))
+        {
+            $segments[] = $query['page_id'];
+            unset( $query['page_id'] );
+        };
+        if(isset($query['id']))
+        {
+            $segments[] = $query['id'];
+            unset( $query['id'] );
+        };
+    } 
        return $segments;
 }
 /*
  * Function to convert a SEF URL back to a system URL
  */
 function JoomdleParseRoute($segments) {
-	$vars = array();
+    $vars = array();
 
 
         //Get the active menu item
-		$app        = JFactory::getApplication();
-		$menu       = $app->getMenu();
+        $app        = JFactory::getApplication();
+        $menu       = $app->getMenu();
 
         $item = $menu->getActive();
 
@@ -108,7 +108,7 @@ function JoomdleParseRoute($segments) {
         // Count route segments
         $count = count($segments);
 
-		if( !isset($item) )
+        if( !isset($item) )
         {
                 if( $count > 0 )
                 {
@@ -120,49 +120,49 @@ function JoomdleParseRoute($segments) {
                                 $vars['task'] = $segments[1]; 
                         }
                         if (array_key_exists ($count - 2, $segments))
-							$vars['cat_id']    = $segments[$count-2];
+                            $vars['cat_id']    = $segments[$count-2];
                         if (array_key_exists ($count - 1, $segments))
-						{
-							$vars['course_id'] = $segments[$count-1];
-							$vars['start_chars'] = $segments[$count-1];
-							$vars['username'] = $segments[$count-1];
-							$vars['cat_id'] = $segments[$count-1];
-						}
+                        {
+                            $vars['course_id'] = $segments[$count-1];
+                            $vars['start_chars'] = $segments[$count-1];
+                            $vars['username'] = $segments[$count-1];
+                            $vars['cat_id'] = $segments[$count-1];
+                        }
 
 
-						if ($vars['view'] == 'page')
-						{
-							$vars['course_id'] = $segments[$count-2];
-							$vars['page_id'] = $segments[$count-1];
-						}
+                        if ($vars['view'] == 'page')
+                        {
+                            $vars['course_id'] = $segments[$count-2];
+                            $vars['page_id'] = $segments[$count-1];
+                        }
 
-					return $vars;
+                    return $vars;
                 }
         }
 
 
 
-		if (!$item)
-			$item->query['view'] = 'detail';
+        if (!$item)
+            $item->query['view'] = 'detail';
 
-	    $requestedview = isset($segments[0])? $segments[0] : $item->query['view'];
+        $requestedview = isset($segments[0])? $segments[0] : $item->query['view'];
 //  print_r("<br />view: ". $requestedview . "<br />");
 
-		$vars['view'] = $requestedview;
+        $vars['view'] = $requestedview;
         switch($requestedview)
         {
                 case 'coursecategories' :
                 {
                         if($count == 2) {
-							$vars['view'] = $segments[$count-2];
-							$vars['cat_id']    = $segments[$count-1];
+                            $vars['view'] = $segments[$count-2];
+                            $vars['cat_id']    = $segments[$count-1];
                         }
 
                         if($count == 3) {
                                // $vars['view']  = 'teachers', topics, coursestats, coursegradecategories;
                                 $vars['view']  = $segments[$count-3];
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
+                                $vars['course_id']    = $segments[$count-1];
                         }
 
 
@@ -192,24 +192,24 @@ function JoomdleParseRoute($segments) {
                 {
                         if($count == 2) { // Usado por el pathway
                                 $vars['view']  = 'coursecategory';
-								$vars['cat_id']    = $segments[$count-1];
-								$vars['start_chars']    = $segments[$count-1];
-								$vars['username']    = $segments[$count-1];
-								$vars['course_id']    = $segments[$count-1];
-								$vars['view']  = $segments[$count-2];
+                                $vars['cat_id']    = $segments[$count-1];
+                                $vars['start_chars']    = $segments[$count-1];
+                                $vars['username']    = $segments[$count-1];
+                                $vars['course_id']    = $segments[$count-1];
+                                $vars['view']  = $segments[$count-2];
                         }
 
                         if($count == 3) {
                                // $vars['view']  = 'teachers', topics, coursestats, coursegradecategories;
                                 $vars['view']  = $segments[$count-3];
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
+                                $vars['course_id']    = $segments[$count-1];
 
-/*								if ($vars['view'] == 'page')
-								{
-									$vars['page_id']    = $segments[$count-1];
-									$vars['course_id']    = $segments[$count-2];
-								}
+/*                              if ($vars['view'] == 'page')
+                                {
+                                    $vars['page_id']    = $segments[$count-1];
+                                    $vars['course_id']    = $segments[$count-2];
+                                }
   */
                       }
 
@@ -219,32 +219,32 @@ function JoomdleParseRoute($segments) {
                 {
                         if($count == 2) {
                                 $vars['view']  = 'detail';
-								$vars['cat_id']    = $segments[$count-2];
+                                $vars['cat_id']    = $segments[$count-2];
                                 $vars['course_id'] = $segments[$count-1];
 
-				/*				if ($segments[0] == 'course')
-								{
-									$vars['view']  = 'course';
-									$vars['course_id'] = $segments[1];
-								}
-								if ($segments[0] == 'coursemates')
-								{
-									$vars['view']  = 'coursemates';
-									$vars['course_id'] = $segments[1];
-								}
+                /*              if ($segments[0] == 'course')
+                                {
+                                    $vars['view']  = 'course';
+                                    $vars['course_id'] = $segments[1];
+                                }
+                                if ($segments[0] == 'coursemates')
+                                {
+                                    $vars['view']  = 'coursemates';
+                                    $vars['course_id'] = $segments[1];
+                                }
 */
                         }
                         if($count == 3) {
                                // $vars['view']  = 'teachers', topics, coursestats, coursegradecategories;
                                 $vars['view']  = $segments[$count-3];
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
+                                $vars['course_id']    = $segments[$count-1];
                         }
-/*						if ($vars['view'] == 'page')
-						{
-							$vars['page_id']    = $segments[$count-1];
-							$vars['course_id']    = $segments[$count-2];
-						}
+/*                      if ($vars['view'] == 'page')
+                        {
+                            $vars['page_id']    = $segments[$count-1];
+                            $vars['course_id']    = $segments[$count-2];
+                        }
 */
                 } break;
 
@@ -253,8 +253,8 @@ function JoomdleParseRoute($segments) {
                         if($count == 3) {
                                 $vars['view']  = 'coursegrades';
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
-				}
+                                $vars['course_id']    = $segments[$count-1];
+                }
                 } break;
 
                 case 'stats' :
@@ -262,8 +262,8 @@ function JoomdleParseRoute($segments) {
                         if($count == 3) {
                                 $vars['view']  = 'coursestats';
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
-						}
+                                $vars['course_id']    = $segments[$count-1];
+                        }
                 }
 
                 case 'coursestats' :
@@ -271,11 +271,11 @@ function JoomdleParseRoute($segments) {
                         if($count == 3) {
                                 $vars['view']  = 'coursestats';
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
-						}
+                                $vars['course_id']    = $segments[$count-1];
+                        }
                 }
 
-				case 'coursesabc' :
+                case 'coursesabc' :
                 {
                         if($count == 2) {
                                 $vars['view'] = $segments[$count-2];
@@ -308,43 +308,43 @@ function JoomdleParseRoute($segments) {
                                // $vars['view']  = 'teachers', topics, coursestats, coursegradecategories;
                                 $vars['view']  = $segments[$count-3];
                                 $vars['cat_id'] = $segments[$count-2];
-								$vars['course_id']    = $segments[$count-1];
+                                $vars['course_id']    = $segments[$count-1];
                         }
                         if($count == 2) {
                                 $vars['view'] = $segments[0];
                                 $vars['course_id'] = $segments[$count-1];
-								$vars['page_id']    = $segments[$count-1];
+                                $vars['page_id']    = $segments[$count-1];
 
 }
-	/*							if ($segments[0] == 'course')
-								{
-									$vars['view']  = 'course';
-									$vars['course_id'] = $segments[1];
-								}
-								if ($segments[0] == 'coursemates')
-								{
-									$vars['view']  = 'coursemates';
-									$vars['course_id'] = $segments[1];
-								}
+    /*                          if ($segments[0] == 'course')
+                                {
+                                    $vars['view']  = 'course';
+                                    $vars['course_id'] = $segments[1];
+                                }
+                                if ($segments[0] == 'coursemates')
+                                {
+                                    $vars['view']  = 'coursemates';
+                                    $vars['course_id'] = $segments[1];
+                                }
 
-						}
-						if ($vars['view'] == 'page')
-						{
-							$vars['page_id']    = $segments[$count-1];
-							$vars['course_id']    = $segments[$count-2];
-						}
+                        }
+                        if ($vars['view'] == 'page')
+                        {
+                            $vars['page_id']    = $segments[$count-1];
+                            $vars['course_id']    = $segments[$count-2];
+                        }
 */
 
                 } 
-				break;
+                break;
 
                 case 'page' :
                 {
                         if($count == 3) {
                                 $vars['view'] = $segments[0];
                                 $vars['course_id'] = $segments[1];
-								$vars['page_id']    = $segments[2];
-						}
+                                $vars['page_id']    = $segments[2];
+                        }
                 } break;
 
                 case 'newsitem' :
@@ -365,7 +365,7 @@ function JoomdleParseRoute($segments) {
                 } break;
         }
 
-	return $vars;
+    return $vars;
 
 }
 ?>

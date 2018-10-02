@@ -14,18 +14,18 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMyevents extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$this->my_events = JoomdleHelperContent::getMyEvents();
-		$this->jump_url =  JoomdleHelperContent::getJumpURL ();
+        $this->my_events = JoomdleHelperContent::getMyEvents();
+        $this->jump_url =  JoomdleHelperContent::getJumpURL ();
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
         parent::display($tpl);
     }

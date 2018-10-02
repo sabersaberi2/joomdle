@@ -18,7 +18,7 @@ class JoomdleControllerConfig extends JControllerForm
 {
     protected $text_prefix = 'COM_JOOMDLE_CONFIG';
 
-	function __construct() {
+    function __construct() {
         $this->view_list = 'default';
         parent::__construct();
     }

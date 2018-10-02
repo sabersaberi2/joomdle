@@ -26,19 +26,19 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
 if (is_array ($this->cursos))
 foreach ($this->cursos as  $curso) : ?>
 <?php
-	$cat_id = $curso['cat_id'];
-	$course_id = $curso['remoteid'];
+    $cat_id = $curso['cat_id'];
+    $course_id = $curso['remoteid'];
 
-	if ($unicodeslugs == 1)
-	{
-		$course_slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
-		$cat_slug = JFilterOutput::stringURLUnicodeSlug($curso['cat_name']);
-	}
-	else
-	{
-		$course_slug = JFilterOutput::stringURLSafe($curso['fullname']);
-		$cat_slug = JFilterOutput::stringURLSafe($curso['cat_name']);
-	}
+    if ($unicodeslugs == 1)
+    {
+        $course_slug = JFilterOutput::stringURLUnicodeSlug($curso['fullname']);
+        $cat_slug = JFilterOutput::stringURLUnicodeSlug($curso['cat_name']);
+    }
+    else
+    {
+        $course_slug = JFilterOutput::stringURLSafe($curso['fullname']);
+        $cat_slug = JFilterOutput::stringURLSafe($curso['cat_name']);
+    }
 ?>
     <div class="joomdle_course_list_item">
         <div class="joomdle_item_title joomdle_course_list_item_title">
@@ -47,29 +47,29 @@ foreach ($this->cursos as  $curso) : ?>
         </div>
         <?php if ($curso['summary']) : ?>
         <div class="joomdle_item_content joomdle_course_list_item_description">
-				<div class="joomdle_course_description">
-				<?php
-					if (count ($curso['summary_files']))
-					{
-						foreach ($curso['summary_files'] as $file) :
-						?>
-							<img hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
-						<?php
-						endforeach;
-					}
-				?>
+                <div class="joomdle_course_description">
+                <?php
+                    if (count ($curso['summary_files']))
+                    {
+                        foreach ($curso['summary_files'] as $file) :
+                        ?>
+                            <img hspace="5" vspace="5" align="left" src="<?php echo $file['url']; ?>">
+                        <?php
+                        endforeach;
+                    }
+                ?>
                 <?php echo JoomdleHelperSystem::fix_text_format($curso['summary']); ?>
-				</div>
-				 <?php if ($show_buttons) : ?>
-				<div class="joomdle_course_buttons">
+                </div>
+                 <?php if ($show_buttons) : ?>
+                <div class="joomdle_course_buttons">
                 <?php
                     echo JoomdleHelperSystem::actionbutton ( $curso, $free_courses_button, $paid_courses_button);
                 ?>
-				</div>
-				<?php endif; ?>
+                </div>
+                <?php endif; ?>
         </div>
         <?php endif; ?>
-	</div>
+    </div>
 <?php endforeach;  ?>
 
 </div>

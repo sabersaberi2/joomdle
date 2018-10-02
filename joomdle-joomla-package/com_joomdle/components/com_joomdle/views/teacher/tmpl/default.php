@@ -17,13 +17,13 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
 
     <div class="joomdle_user">
         <div class="joomdle_user_pic">
-			<?php
-			if (array_key_exists ('profile_url', $this->user_info)) :
+            <?php
+            if (array_key_exists ('profile_url', $this->user_info)) :
             ?>
             <a href="<?php echo JRoute::_($this->user_info['profile_url']."&Itemid=$itemid"); ?>"><img height='64' width='64' src="<?php echo $this->user_info['pic_url']; ?>"></a>
-			<?php else : ?>
+            <?php else : ?>
             <img height='64' width='64' src="<?php echo $this->user_info['pic_url']; ?>">
-			<?php endif; ?>
+            <?php endif; ?>
         </div>
         <div class="joomdle_user_details">
             <?php if ((array_key_exists ('city', $this->user_info)) && ($this->user_info['city'])) : ?>

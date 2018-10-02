@@ -14,16 +14,16 @@ JFormHelper::loadFieldClass('list');
  
 class JFormFieldShopcurrency extends JFormFieldList
 {
-	/**
-	* Element name
-	*
-	* @access       protected
-	* @var          string
-	*/
-	public    $type = 'Shopcurrency';
+    /**
+    * Element name
+    *
+    * @access       protected
+    * @var          string
+    */
+    public    $type = 'Shopcurrency';
 
-	function getOptions()
-	{
+    function getOptions()
+    {
         $options = array();
 
         $params = JComponentHelper::getParams( 'com_joomdle' );
@@ -53,7 +53,7 @@ class JFormFieldShopcurrency extends JFormFieldList
         }
 
         return $options;
-	}
+    }
 }
 
 ?>

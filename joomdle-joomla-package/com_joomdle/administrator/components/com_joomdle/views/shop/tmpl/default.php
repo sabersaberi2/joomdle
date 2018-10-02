@@ -7,10 +7,15 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+JHtml::_('bootstrap.tooltip');
+JHtml::_('behavior.multiselect');
+JHtml::_('formbehavior.chosen', 'select');
+
 $i = 0;
+
 ?>
 
-<form action="index.php" method="POST" id="adminForm" name="adminForm" class="table table-stripped">
+<form action="index.php?option=com_joomdle&view=shop" method="POST" id="adminForm" name="adminForm" class="table table-stripped">
   <?php if(!empty( $this->sidebar)): ?>
         <div id="j-sidebar-container" class="span2">
         <?php echo $this->sidebar; ?>
@@ -20,61 +25,48 @@ $i = 0;
         <div id="j-main-container">
     <?php endif;?>
 
-<?php if (count ($this->bundles)) : ?>
-       <table class="table table-striped" width="100%">
-             <thead>
-                    <tr>
-                           <th width="10">ID</th>
-						  <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
-                           <th width="600"><?php echo JText::_('COM_JOOMDLE_BUNDLE'); ?></th>
-                           <th class="center"><?php echo JText::_('COM_JOOMDLE_SELL_ON_SHOP'); ?></th>
-                    </tr>
-             </thead>
-             <tbody>
-                    <?php
-                    $k = 0;
-                    $i = 0;
-                    foreach ($this->bundles as $row){
-                           $checked = JHTML::_('grid.id', $i, "bundle_".$row->id);
-						   $published      = JHTML::_('jgrid.published', $row->published, $i , 'shop.');
+        <?php
+        // Search tools bar
+        echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+        ?>
 
-               ?>
-                           <tr class="<?php echo "row$k";?>">
-                                  <td><?php echo $row->id;?></td>
-                                  <td><?php echo $checked; ?></td>
-                                  <td><a href="index.php?option=com_joomdle&view=bundle&task=bundle.edit&id=<?php echo $row->id; ?>"><?php echo $row->name;?></a></td>
-                  <td class="center"><?php echo $published; ?> </td>
-                           </tr>
-                    <?php
-                    $k = 1 - $k;
-                    $i++;
-                    }
-                    ?>
-             </tbody>
-       </table>
-<?php endif; ?>
        <table class="table table-striped" width="100%">
              <thead>
                     <tr>
                            <th width="10">ID</th>
-						  <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
+                          <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
                            <th width="600"><?php echo JText::_('COM_JOOMDLE_COURSE'); ?></th>
                            <th class="center"><?php echo JText::_('COM_JOOMDLE_SELL_ON_SHOP'); ?></th>
                     </tr>              
              </thead>
+            <tfoot>
+                        <tr>
+                                <td colspan="10">
+                                        <?php echo $this->pagination->getListFooter(); ?>
+                                </td>
+                        </tr>
+            </tfoot>
              <tbody>
                     <?php
                     $k = 0;
-                    foreach ($this->courses as $row){
+                    foreach ($this->items as $row){
+                        if ((property_exists ($row, 'is_bundle')) && ($row->is_bundle))
+                           $checked = JHTML::_('grid.id', $i, "bundle_".$row->id);
+                        else
                            $checked = JHTML::_('grid.id', $i, $row->id);
-			   $published      = JHTML::_('jgrid.published', $row->published, $i , 'shop.');
-
-			   ?>
+                           $published      = JHTML::_('jgrid.published', $row->published, $i , 'shop.');
+               ?>
                            <tr class="<?php echo "row$k";?>">
                                   <td><?php echo $row->id;?></td>
                                   <td><?php echo $checked; ?></td>
+
+                            <?php if ((property_exists ($row, 'is_bundle')) && ($row->is_bundle)) : ?>
+                                  <td><a href="index.php?option=com_joomdle&view=bundle&task=bundle.edit&id=<?php echo $row->id; ?>"><?php echo $row->name;?></a></td>
+
+                            <?php else : ?>
                                   <td><?php echo '(' . $row->shortname . ') ' . $row->fullname;?></td>
-				  <td class="center"><?php echo $published; ?> </td>
+                            <?php endif; ?>
+                                  <td class="center"><?php echo $published; ?> </td>
                            </tr>
                     <?php
                     $k = 1 - $k;

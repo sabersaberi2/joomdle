@@ -22,13 +22,13 @@ class JFormFieldQuestioncategoryList extends JFormFieldList
         */
         public    $type = 'QuestionCategoryList';
 
-		function getOptions()
+        function getOptions()
         {
-			$cats = $this->getCats ();
-			return $cats;
-		}
+            $cats = $this->getCats ();
+            return $cats;
+        }
 
-		function getCats ($options = array(), $level = 0)
+        function getCats ($options = array(), $level = 0)
         {
             $cats = JoomdleHelperContent::call_method ('quiz_get_question_categories');
 

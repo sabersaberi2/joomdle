@@ -14,37 +14,37 @@ require_once( JPATH_COMPONENT.'/helpers/users.php' );
 
 class JoomdleViewUsers extends JViewLegacy {
 
-	protected $items;
+    protected $items;
     protected $pagination;
     protected $state;
 
 
     function display($tpl = null) {
-	    global $mainframe, $option;
+        global $mainframe, $option;
 
         $this->users   = $this->get('Items');
         $this->pagination   = $this->get('Pagination');
         $this->state        = $this->get('State');
 
-		$this->filterForm = $this->get('FilterForm');
-		$this->activeFilters = $this->get('ActiveFilters');
+        $this->filterForm = $this->get('FilterForm');
+        $this->activeFilters = $this->get('ActiveFilters');
 
-		$this->addToolbar();
+        $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
-	protected function addToolbar()
+    protected function addToolbar()
     {
 
         JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_USERS_TITLE'), 'user');
 
-		JToolBarHelper::custom( 'add_to_joomla', 'new', 'new', 'COM_JOOMDLE_ADD_USERS_TO_JOOMLA', true, false );
-		JToolBarHelper::custom( 'add_to_moodle', 'new', 'new', 'COM_JOOMDLE_ADD_USERS_TO_MOODLE', true, false );
-		JToolBarHelper::custom( 'migrate_to_joomdle', 'checkin', 'checkin', 'COM_JOOMDLE_MIGRATE_USERS_TO_JOOMDLE', true, false );
-		JToolBarHelper::custom( 'sync_profile_to_moodle', 'forward', 'forward', 'COM_JOOMDLE_SYNC_MOODLE_PROFILES', true, false );
-		JToolBarHelper::custom( 'sync_profile_to_joomla', 'forward', 'forward', 'COM_JOOMDLE_SYNC_JOOMLA_PROFILES', true, false );
-		JToolBarHelper::custom( 'sync_parents_from_moodle', 'forward', 'forward', 'COM_JOOMDLE_SYNC_PARENTS_FROM_MOODLE', true, false );
+        JToolBarHelper::custom( 'add_to_joomla', 'new', 'new', 'COM_JOOMDLE_ADD_USERS_TO_JOOMLA', true, false );
+        JToolBarHelper::custom( 'add_to_moodle', 'new', 'new', 'COM_JOOMDLE_ADD_USERS_TO_MOODLE', true, false );
+        JToolBarHelper::custom( 'migrate_to_joomdle', 'checkin', 'checkin', 'COM_JOOMDLE_MIGRATE_USERS_TO_JOOMDLE', true, false );
+        JToolBarHelper::custom( 'sync_profile_to_moodle', 'forward', 'forward', 'COM_JOOMDLE_SYNC_MOODLE_PROFILES', true, false );
+        JToolBarHelper::custom( 'sync_profile_to_joomla', 'forward', 'forward', 'COM_JOOMDLE_SYNC_JOOMLA_PROFILES', true, false );
+        JToolBarHelper::custom( 'sync_parents_from_moodle', 'forward', 'forward', 'COM_JOOMDLE_SYNC_PARENTS_FROM_MOODLE', true, false );
 
         JHtmlSidebar::setAction('index.php?option=com_joomdle&view=users');
     }

@@ -15,13 +15,13 @@ jimport('joomla.application.component.controlleradmin');
  */
 class JoomdleControllerMappings extends JControllerAdmin
 {
-	/**
-	 * Proxy for getModel.
-	 * @since	1.6
-	 */
-	public function getModel($name = 'mapping', $prefix = 'JoomdleModel', $config = array())
-	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-		return $model;
-	}
+    /**
+     * Proxy for getModel.
+     * @since   1.6
+     */
+    public function getModel($name = 'mapping', $prefix = 'JoomdleModel', $config = array())
+    {
+        $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+        return $model;
+    }
 }

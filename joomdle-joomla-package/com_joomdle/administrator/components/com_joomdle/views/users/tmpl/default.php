@@ -23,49 +23,49 @@ $listDirn   = $this->state->get('list.direction');
     <?php else : ?>
         <div id="j-main-container">
     <?php endif;?>
-		<?php
+        <?php
         // Search tools bar
         echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
         ?>
 
-		<div class="clearfix"> </div>
-		<table class="table table-striped">
+        <div class="clearfix"> </div>
+        <table class="table table-striped">
              <thead>
                     <tr>
                            <th width="10">ID</th>
-						   <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
-						   <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_USERNAME', 'username', $listDirn, $listOrder ); ?></th>
-						   <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_NAME', 'name', $listDirn, $listOrder ); ?></th>
-						   <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_EMAIL', 'email', $listDirn, $listOrder ); ?></th>
+                           <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
+                           <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_USERNAME', 'username', $listDirn, $listOrder ); ?></th>
+                           <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_NAME', 'name', $listDirn, $listOrder ); ?></th>
+                           <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_EMAIL', 'email', $listDirn, $listOrder ); ?></th>
                            <th class="center"><?php echo JText::_('COM_JOOMDLE_JOOMLA_ACCOUNT'); ?></th>
                            <th class="center"><?php echo JText::_('COM_JOOMDLE_MOODLE_ACCOUNT'); ?></th>
                            <th class="center"><?php echo JText::_('COM_JOOMDLE_JOOMDLE_USER'); ?></th>
                     </tr>              
-			</thead>
-			<tfoot>
+            </thead>
+            <tfoot>
                         <tr>
                                 <td colspan="10">
                                         <?php echo $this->pagination->getListFooter(); ?>
                                 </td>
                         </tr>
-			</tfoot>
-			<tbody>
-						<?php
+            </tfoot>
+            <tbody>
+                        <?php
                     $k = 0;
                     $i = 0;
                     foreach ($this->users as $row){
                            $checked = JHTML::_('grid.id', $i, $row['id']);
-				   ?>
+                   ?>
                            <tr class="<?php echo "row$k";?>">
                                   <td><?php echo $row['id'];?></td>
                                   <td><?php if (!$row['admin']) echo $checked; ?></td>
                                   <td><?php echo $row['username'];?></td>
                                   <td><?php echo $row['name']; ?></td>
                                   <td><?php echo $row['email']; ?></td>
-								  <?php $text = "Ticked"; $image = "tick.png"; ?>
-								  <td class="center"><?php echo $row['j_account'] ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
-								  <td class="center"><?php echo $row['m_account'] ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
-								  <td class="center"><?php echo ($row['auth'] == 'joomdle') ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
+                                  <?php $text = "Ticked"; $image = "tick.png"; ?>
+                                  <td class="center"><?php echo $row['j_account'] ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
+                                  <td class="center"><?php echo $row['m_account'] ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
+                                  <td class="center"><?php echo ($row['auth'] == 'joomdle') ? JHTML::_('image', 'joomdle/' . $image , NULL, NULL, $text ): ''; ?></td>
                            </tr>
                     <?php
                     $k = 1 - $k;

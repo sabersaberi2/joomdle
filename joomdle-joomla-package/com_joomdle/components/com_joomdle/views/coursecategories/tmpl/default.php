@@ -22,10 +22,10 @@ $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
     <?php
     if (is_array($this->categories))
     foreach ($this->categories as  $cat) : ?>
-			<div class="joomdle_category_list_item">
-				<div class="joomdle_item_title joomdle_category_list_item_title">
+            <div class="joomdle_category_list_item">
+                <div class="joomdle_item_title joomdle_category_list_item_title">
                 <?php 
-				if ($unicodeslugs == 1)
+                if ($unicodeslugs == 1)
                 {
                     $slug = JFilterOutput::stringURLUnicodeSlug($cat['name']);
                 }

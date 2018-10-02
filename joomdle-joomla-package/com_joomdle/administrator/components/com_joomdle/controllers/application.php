@@ -20,10 +20,10 @@ class JoomdleControllerApplication extends JControllerForm
 {
     protected $text_prefix = 'COM_JOOMDLE_APPLICATION';
 
-	function approve ()
+    function approve ()
     {
-		$app_id   = $this->input->get('app_id', 0);
-		$course_id   = $this->input->get('course_id', 0);
+        $app_id   = $this->input->get('app_id', 0);
+        $course_id   = $this->input->get('course_id', 0);
 
         $cid = array ($app_id);
         JoomdleHelperApplications::approve_applications ($cid);
@@ -33,8 +33,8 @@ class JoomdleControllerApplication extends JControllerForm
 
     function reject ()
     {
-		$app_id   = $this->input->get('app_id', 0);
-		$course_id   = $this->input->get('course_id', 0);
+        $app_id   = $this->input->get('app_id', 0);
+        $course_id   = $this->input->get('course_id', 0);
         $cid = array ($app_id);
         JoomdleHelperApplications::reject_applications ($cid);
 

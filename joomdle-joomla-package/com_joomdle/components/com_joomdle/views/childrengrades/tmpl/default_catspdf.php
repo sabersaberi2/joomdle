@@ -23,10 +23,10 @@ foreach ($this->tasks as  $user) :
             echo $this->loadTemplate('coursepdf');
     endforeach; ?>
 
-	<?php 
-		$i++;
-		if ($i < $n)
-			echo '<br pagebreak="true" />';
-	?>
-	
+    <?php 
+        $i++;
+        if ($i < $n)
+            echo '<br pagebreak="true" />';
+    ?>
+    
 <?php endforeach; ?>

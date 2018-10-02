@@ -1,9 +1,9 @@
 <?php
 /**
-* @version		
-* @package		Joomdle
-* @copyright		Antonio Duran Terres
-* @license		GNU/GPL, see LICENSE.php
+* @version      
+* @package      Joomdle
+* @copyright        Antonio Duran Terres
+* @license      GNU/GPL, see LICENSE.php
 */
 
 // no direct access

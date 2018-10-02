@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewCoursegradecategories extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
         global $mainframe;
 
         $app                = JFactory::getApplication();
@@ -58,7 +58,7 @@ class JoomdleViewCoursegradecategories extends JViewLegacy {
                         $pathway->addItem(JText::_('COM_JOOMDLE_COURSE_GRADING_SYSTEM'), '');
                 }
 
-		$document = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $document->setTitle($this->course_info['fullname'] . ': ' . JText::_('COM_JOOMDLE_GRADING_SYSTEM'));
 
         $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));

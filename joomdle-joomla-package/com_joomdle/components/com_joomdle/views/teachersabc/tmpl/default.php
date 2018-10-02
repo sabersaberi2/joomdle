@@ -28,11 +28,11 @@ foreach ($this->teachers as  $teacher) :
     ?>
         <div class="joomdle_user_list_item">
             <div class="joomdle_user_list_item_pic">
-			<?php
-			// Use thumbs if available: no, they are too small for this view
-//			if ((array_key_exists ('thumb_url', $user_info)) && ($user_info['thumb_url'] != ''))
-//				$user_info['pic_url'] = $user_info['thumb_url'];
-			?>
+            <?php
+            // Use thumbs if available: no, they are too small for this view
+//          if ((array_key_exists ('thumb_url', $user_info)) && ($user_info['thumb_url'] != ''))
+//              $user_info['pic_url'] = $user_info['thumb_url'];
+            ?>
                 <a href="<?php echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid"); ?>"><img height='64' width='64' src="<?php echo $user_info['pic_url']; ?>"></a>
             </div>
             <div class="joomdle_user_list_item_name">

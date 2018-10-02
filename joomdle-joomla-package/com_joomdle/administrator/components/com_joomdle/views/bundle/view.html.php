@@ -19,31 +19,31 @@ class JoomdleViewBundle extends JViewLegacy {
     protected $item;
 
     function display($tpl = null) {
-	    global $mainframe, $option;
+        global $mainframe, $option;
 
-		$this->form         = $this->get('Form');
+        $this->form         = $this->get('Form');
         $this->item         = $this->get('Item');
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
-			JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
+            JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
             return false;
         }
 
         parent::display($tpl);
-		$this->addToolbar();
+        $this->addToolbar();
 
     }
 
-	protected function addToolbar()
+    protected function addToolbar()
     {
         JFactory::getApplication()->input->set('hidemainmenu', true);
 
         $isNew = ($this->item->id == 0);
 
-		JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_BUNDLE_TITLE'), 'bundle');
-		JToolbarHelper::apply('bundle.apply');
-		JToolbarHelper::save('bundle.save');
+        JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_BUNDLE_TITLE'), 'bundle');
+        JToolbarHelper::apply('bundle.apply');
+        JToolbarHelper::save('bundle.save');
 
         if (empty($this->item->id))  {
             JToolbarHelper::cancel('bundle.cancel');

@@ -33,79 +33,79 @@ if(!defined('DS'))
  */
 class JoomdleControllerShop extends JControllerAdmin {
 
-	function publish()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    function publish()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
 
-		if (count( $cid ) < 1) {
+        if (count( $cid ) < 1) {
                 $error = JText::_( 'COM_JOOMDLE_WARNING_MUST_SELECT' );
                 JFactory::getApplication()->enqueueMessage($error, 'error');
                 return;
-		}
-		JoomdleHelperShop::publish_courses ($cid);
+        }
+        JoomdleHelperShop::publish_courses ($cid);
 
-		$this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
+        $this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
 
-	}
+    }
 
-	function unpublish()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    function unpublish()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
 
-		if (count( $cid ) < 1) {
+        if (count( $cid ) < 1) {
                 $error = JText::_( 'COM_JOOMDLE_WARNING_MUST_SELECT' );
                 JFactory::getApplication()->enqueueMessage($error, 'error');
                 return;
-		}
-		JoomdleHelperShop::dont_sell_courses ($cid);
+        }
+        JoomdleHelperShop::dont_sell_courses ($cid);
 
-		$this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
+        $this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
 
-	}
+    }
 
-	function reload ()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    function reload ()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
-		JArrayHelper::toInteger($cid);
+        $cid   = $this->input->get('cid', array ());
+        JArrayHelper::toInteger($cid);
 
-		if (count( $cid ) < 1) {
+        if (count( $cid ) < 1) {
                 $error = JText::_( 'COM_JOOMDLE_WARNING_MUST_SELECT' );
                 JFactory::getApplication()->enqueueMessage($error, 'error');
                 return;
-		}
-		$real_cid = array();
-		foreach ($cid as $id)
-		{
-			// Skip bundles 
-			if ($id)
-				$real_cid[] = $id;
-		}
-		JoomdleHelperShop::reload_courses ($real_cid);
+        }
+        $real_cid = array();
+        foreach ($cid as $id)
+        {
+            // Skip bundles 
+            if ($id)
+                $real_cid[] = $id;
+        }
+        JoomdleHelperShop::reload_courses ($real_cid);
 
-		$this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
-	}
+        $this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
+    }
 
-	function delete_courses_from_shop ()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    function delete_courses_from_shop ()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cid   = $this->input->get('cid', array ());
+        $cid   = $this->input->get('cid', array ());
 
-		if (count( $cid ) < 1) {
+        if (count( $cid ) < 1) {
                 $error = JText::_( 'COM_JOOMDLE_WARNING_MUST_SELECT' );
                 JFactory::getApplication()->enqueueMessage($error, 'error');
                 return;
-		}
-		JoomdleHelperShop::delete_courses ($cid);
+        }
+        JoomdleHelperShop::delete_courses ($cid);
 
-		$this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
-	}
+        $this->setRedirect( 'index.php?option=com_joomdle&view=shop' );
+    }
 
     function new_bundle ()
     {
@@ -114,12 +114,12 @@ class JoomdleControllerShop extends JControllerAdmin {
 
     function save_bundle ()
     {
-		$bundle['courses']   = $this->input->get('cid', array ());
-		$bundle['name']   = $this->input->get('name');
-		$bundle['description']   = $this->input->get('description');
-		$bundle['cost']   = $this->input->get('cost');
-		$bundle['currency']   = $this->input->get('currency');
-		$bundle['bundle_id']   = $this->input->get('bundle_id');
+        $bundle['courses']   = $this->input->get('cid', array ());
+        $bundle['name']   = $this->input->get('name');
+        $bundle['description']   = $this->input->get('description');
+        $bundle['cost']   = $this->input->get('cost');
+        $bundle['currency']   = $this->input->get('currency');
+        $bundle['bundle_id']   = $this->input->get('bundle_id');
 
         if ($bundle_id)
             $bundle['id'] = $bundle_id;

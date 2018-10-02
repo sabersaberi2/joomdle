@@ -14,16 +14,16 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewJoomdle extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$enrollable_only = $params->get( 'enrollable_only' );
-		$show_buttons = $params->get( 'show_buttons' );
+        $enrollable_only = $params->get( 'enrollable_only' );
+        $show_buttons = $params->get( 'show_buttons' );
 
-		$sort_by = $params->get( 'sort_by', 'name' );
+        $sort_by = $params->get( 'sort_by', 'name' );
 
         switch ($sort_by)
         {
@@ -38,20 +38,20 @@ class JoomdleViewJoomdle extends JViewLegacy {
                 break;
         }
 
-		$user = JFactory::getUser();
-		$username = $user->username;
-		if (($show_buttons) && ($username))
-		{
+        $user = JFactory::getUser();
+        $username = $user->username;
+        if (($show_buttons) && ($username))
+        {
             $this->cursos = JoomdleHelperContent::getCourseList( (int) $enrollable_only,  $order, 0, $username);
-		}
-		else
+        }
+        else
             $this->cursos = JoomdleHelperContent::getCourseList( (int) $enrollable_only, $order);
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
     protected function _prepareDocument()
@@ -69,6 +69,6 @@ class JoomdleViewJoomdle extends JViewLegacy {
         } else {
             $this->params->def('page_heading', JText::_('COM_JOOMDLE_COURSES'));
         }
-	}
+    }
 }
 ?>

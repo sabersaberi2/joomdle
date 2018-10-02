@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 class JoomdleHelper {
 
 
-	public static function addSubmenu($vName)
+    public static function addSubmenu($vName)
     {
         JHtmlSidebar::addEntry(
             JText::_('COM_JOOMDLE_CONTROL_PANEL'),

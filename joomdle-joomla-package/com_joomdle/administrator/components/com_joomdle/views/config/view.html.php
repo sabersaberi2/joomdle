@@ -13,13 +13,13 @@ jimport( 'joomla.application.component.view');
 class JoomdleViewConfig extends JViewLegacy {
     function display($tpl = null) {
 
-		$form   = $this->get('Form');
+        $form   = $this->get('Form');
         $data   = $this->get('Data');
         $user = JFactory::getUser();
 
         // Check for model errors.
         if ($errors = $this->get('Errors')) {
-			JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
+            JFactory::getApplication()->enqueueMessage(implode("\n", $errors), 'error');
             return false;
         }
 
@@ -28,14 +28,14 @@ class JoomdleViewConfig extends JViewLegacy {
             $form->bind($data);
         }
 
-		$this->form   = &$form;
+        $this->form   = &$form;
 
         $this->addToolbar();
-		$this->sidebar = JHtmlSidebar::render();
+        $this->sidebar = JHtmlSidebar::render();
         parent::display($tpl);
     }
 
-	protected function addToolbar()
+    protected function addToolbar()
     {
         JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_MAILINGLIST_TITLE_CONFIGURATION'), 'config.png');
         JToolbarHelper::apply('config.apply');
@@ -43,7 +43,7 @@ class JoomdleViewConfig extends JViewLegacy {
         JToolbarHelper::cancel('config.cancel');
         JToolBarHelper::custom( 'config.regenerate_joomla_token', 'refresh', 'refresh', 'COM_JOOMDLE_REGENERATE_JOOMLA_TOKEN', false );
 
-		JHtmlSidebar::setAction('index.php?option=com_joomdle&view=courseapplications');
+        JHtmlSidebar::setAction('index.php?option=com_joomdle&view=courseapplications');
     }
 
 }

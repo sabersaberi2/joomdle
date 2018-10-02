@@ -15,20 +15,20 @@ require_once( JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/applications.
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMyapplications extends JViewLegacy {
-	function display($tpl = null) {
+    function display($tpl = null) {
 
-		$app        = JFactory::getApplication();
-		$params = $app->getParams();
-		$this->assignRef('params',              $params);
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
-		$user = JFactory::getUser ();
-		$this->cursos = JoomdleHelperApplications::get_user_applications( $user->id);
+        $user = JFactory::getUser ();
+        $this->cursos = JoomdleHelperApplications::get_user_applications( $user->id);
 
-		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-		$this->_prepareDocument();
+        $this->_prepareDocument();
 
-		parent::display($tpl);
+        parent::display($tpl);
     }
 
     protected function _prepareDocument()

@@ -14,40 +14,40 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycourses extends JViewLegacy {
-	function display($tpl = null) {
-	global $mainframe;
+    function display($tpl = null) {
+    global $mainframe;
 
-	$app        = JFactory::getApplication();
+    $app        = JFactory::getApplication();
     $params = $app->getParams();
     $this->assignRef('params',              $params);
 
 
-	$group_by_category = $params->get( 'group_by_category' );
+    $group_by_category = $params->get( 'group_by_category' );
 
-	$user = JFactory::getUser();
-	$username = $user->username;
-	if ($group_by_category)
-		$this->my_courses = JoomdleHelperContent::call_method ('my_courses', $username, 1);
-	else
-		$this->my_courses = JoomdleHelperContent::getMyCourses();
+    $user = JFactory::getUser();
+    $username = $user->username;
+    if ($group_by_category)
+        $this->my_courses = JoomdleHelperContent::call_method ('my_courses', $username, 1);
+    else
+        $this->my_courses = JoomdleHelperContent::getMyCourses();
 
-	$this->jump_url =  JoomdleHelperContent::getJumpURL ();
+    $this->jump_url =  JoomdleHelperContent::getJumpURL ();
 
-	$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+    $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
-	$this->_prepareDocument();
+    $this->_prepareDocument();
 
 
-	if ($group_by_category)
-		$tpl =  "cats";
+    if ($group_by_category)
+        $tpl =  "cats";
 
-	if ($this->my_courses)
-		parent::display($tpl);
-	else
-		echo '<span class="joomdle_nocourses_message">'.$params->get('nocourses_text') . "</span>";
+    if ($this->my_courses)
+        parent::display($tpl);
+    else
+        echo '<span class="joomdle_nocourses_message">'.$params->get('nocourses_text') . "</span>";
     }
 
-	protected function _prepareDocument()
+    protected function _prepareDocument()
     {
         $app    = JFactory::getApplication();
         $menus  = $app->getMenu();

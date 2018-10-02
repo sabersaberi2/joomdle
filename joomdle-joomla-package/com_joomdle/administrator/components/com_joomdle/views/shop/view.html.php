@@ -15,24 +15,26 @@ require_once( JPATH_COMPONENT.'/helpers/groups.php' );
 class JoomdleViewShop extends JViewLegacy {
     function display($tpl = null) {
 
-		$params = JComponentHelper::getParams( 'com_joomdle' );
+        $params = JComponentHelper::getParams( 'com_joomdle' );
 
-        $this->sidebar = JHtmlSidebar::render();
+        if ($params->get( 'shop_integration' ) == 'no')
+        {
+            JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_SHOP_TITLE'), 'shop');
+            $this->message = JText::_('COM_JOOMDLE_SHOP_INTEGRATION_NOT_ENABLED');
+            $tpl = "disabled";
+            parent::display($tpl);
+            return;
+        }
 
-		if ($params->get( 'shop_integration' ) == 'no')
-		{
-			JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_SHOP_TITLE'), 'shop');
-			$this->message = JText::_('COM_JOOMDLE_SHOP_INTEGRATION_NOT_ENABLED');
-			$tpl = "disabled";
-			parent::display($tpl);
-			return;
-		}
+        $this->items   = $this->get('Items');
+        $this->pagination   = $this->get('Pagination');
+        $this->state        = $this->get('State');
+
+        $this->filterForm = $this->get('FilterForm');
+        $this->activeFilters = $this->get('ActiveFilters');
 
         $this->addToolbar();
-
-		$this->bundles = JoomdleHelperShop::get_bundles ();
-		$this->courses = JoomdleHelperShop::getShopCourses ();
-
+        $this->sidebar = JHtmlSidebar::render();
 
         parent::display($tpl);
     }
@@ -41,12 +43,12 @@ class JoomdleViewShop extends JViewLegacy {
     {
         JToolbarHelper::title(JText::_('COM_JOOMDLE_VIEW_SHOP_TITLE'), 'shop');
 
-		JToolBarHelper::addNew('bundle.add', 'COM_JOOMDLE_NEW_BUNDLE');
-		JToolbarHelper::publish('shop.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('shop.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+        JToolBarHelper::addNew('bundle.add', 'COM_JOOMDLE_NEW_BUNDLE');
+        JToolbarHelper::publish('shop.publish', 'JTOOLBAR_PUBLISH', true);
+        JToolbarHelper::unpublish('shop.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 
-		JToolBarHelper::custom( 'shop.reload', 'refresh', 'refresh', 'COM_JOOMDLE_RELOAD_FROM_MOODLE', true, false );
-		JToolBarHelper::trash('shop.delete_courses_from_shop');
+        JToolBarHelper::custom( 'shop.reload', 'refresh', 'refresh', 'COM_JOOMDLE_RELOAD_FROM_MOODLE', true, false );
+        JToolBarHelper::trash('shop.delete_courses_from_shop');
 
 
         JHtmlSidebar::setAction('index.php?option=com_joomdle&view=shop');

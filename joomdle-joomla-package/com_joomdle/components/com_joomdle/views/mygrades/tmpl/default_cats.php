@@ -17,9 +17,9 @@ defined('_JEXEC') or die('Restricted access'); ?>
 <?php
 /* Para cada curso, mostramos sus tareas */
 foreach ($this->tasks as  $this->course) :
-		if (count ($this->course['grades']['data']) == 0)
-			continue;
-		echo $this->loadTemplate('course');
+        if (count ($this->course['grades']['data']) == 0)
+            continue;
+        echo $this->loadTemplate('course');
 endforeach; ?>
 
 </div>

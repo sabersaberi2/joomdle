@@ -10,15 +10,15 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <tr>
         <td width="90%" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
-		<b>
+        <b>
         <?php echo JText::_('COM_JOOMDLE_COURSE_TASKS'); ?>:
                 <?php echo $this->course_name; ?>
-		</b>
+        </b>
         </td>
         <td width="30" height="20" class="sectiontableheader<?php echo $this->params->get( 'pageclass_sfx' ); ?>" style="text-align:center;" nowrap="nowrap">
-		<b>
+        <b>
                 <?php echo JText::_('COM_JOOMDLE_GRADE'); ?>
-		</b>
+        </b>
         </td>
 <tr>
 <?php

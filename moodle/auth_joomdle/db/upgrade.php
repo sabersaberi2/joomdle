@@ -29,6 +29,7 @@ function xmldb_auth_joomdle_upgrade($oldversion) {
     if ($oldversion < 2008080273) {
         $sql = "DELETE FROM {events_handlers} WHERE component = 'joomdle'";
         $DB->execute($sql);
+        upgrade_plugin_savepoint (true, 2008080273, 'auth', 'joomdle');
     }
 
     // Add any new functions to the service.
@@ -38,6 +39,7 @@ function xmldb_auth_joomdle_upgrade($oldversion) {
     // Change in configuration storage
     if ($oldversion < 2008080289) {
         $joomdle_upgrade->change_config_storage ();
+        upgrade_plugin_savepoint (true, 2008080289, 'auth', 'joomdle');
     }
 
     return true;

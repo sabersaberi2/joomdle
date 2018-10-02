@@ -16,13 +16,13 @@ require_once(JPATH_SITE.'/components/com_joomdle/controllers/ws.xmlrpc.php');
 class JoomdleControllerTestws extends JControllerLegacy
 {
 
-	function test ()
-	{
-		return;
-		$params = array ('pepe');
-		$a = getUserInfo ("", $params);
-		echo "<pre>";
-		print_R ($a);
-		exit ();
-	}
+    function test ()
+    {
+        return;
+        $params = array ('pepe');
+        $a = getUserInfo ("", $params);
+        echo "<pre>";
+        print_R ($a);
+        exit ();
+    }
 }

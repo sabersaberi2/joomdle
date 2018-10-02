@@ -37,7 +37,7 @@ $i = 0;
 $odd = 0;
 if (is_array($this->gcats))
 foreach ($this->gcats as  $gcat) : 
-	$n = count ($gcat['items']);
+    $n = count ($gcat['items']);
 ?>
 <tr class="sectiontableentry<?php echo $odd + 1; ?>">
                 <?php $odd++; $odd = $odd % 2; ?>
@@ -49,30 +49,30 @@ foreach ($this->gcats as  $gcat) :
         </td>
 </tr>
                 <?php
-					foreach ($gcat['items'] as $item) :
-					?>
-					<tr>
-						<td>
-						</td>
-						<td width="40%">
-							<?php 
-								$url = "index.php?option=com_joomdle&view=rubrics&id=".$item['id'];
-								if ($item['has_rubrics'])
-									echo "<a href='$url'>".$item['name']."</a>";
-								else
-									echo $item['name']; 
-							?>
-						</td>
-						<td width="10%" style="text-align:center;">
-							<?php 
-								if ($item['due'])
-									echo JHTML::_('date', $item['due'] , JText::_('DATE_FORMAT_LC4'));
-							?>      
-						</td>
-					</tr>
-					<?php
-					endforeach;
-				?>
+                    foreach ($gcat['items'] as $item) :
+                    ?>
+                    <tr>
+                        <td>
+                        </td>
+                        <td width="40%">
+                            <?php 
+                                $url = "index.php?option=com_joomdle&view=rubrics&id=".$item['id'];
+                                if ($item['has_rubrics'])
+                                    echo "<a href='$url'>".$item['name']."</a>";
+                                else
+                                    echo $item['name']; 
+                            ?>
+                        </td>
+                        <td width="10%" style="text-align:center;">
+                            <?php 
+                                if ($item['due'])
+                                    echo JHTML::_('date', $item['due'] , JText::_('DATE_FORMAT_LC4'));
+                            ?>      
+                        </td>
+                    </tr>
+                    <?php
+                    endforeach;
+                ?>
 </tr>
 <?php endforeach; ?>
 <?php $i++;
