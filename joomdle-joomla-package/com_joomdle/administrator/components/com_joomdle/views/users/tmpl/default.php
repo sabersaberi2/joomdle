@@ -32,8 +32,10 @@ $listDirn   = $this->state->get('list.direction');
         <table class="table table-striped">
              <thead>
                     <tr>
-                           <th width="10">ID</th>
+                           <!-- edited by mjt {  -->
                            <th width="10"><input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" /></th>
+                           <th width="10"><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_ID', 'id', $listDirn, $listOrder ); ?></th>
+                           <!-- } edited by mjt  -->
                            <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_USERNAME', 'username', $listDirn, $listOrder ); ?></th>
                            <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_NAME', 'name', $listDirn, $listOrder ); ?></th>
                            <th><?php echo JHTML::_('grid.sort',   'COM_JOOMDLE_EMAIL', 'email', $listDirn, $listOrder ); ?></th>

@@ -27,6 +27,7 @@ class JoomdleModelUsers extends JModelList
     {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
+                'id' , 'id', //added by mjt
                 'name', 'name',
                 'username', 'username',
                 'email', 'email',
@@ -86,7 +87,7 @@ class JoomdleModelUsers extends JModelList
 
 
         // List state information.
-        parent::populateState('name', 'asc');
+        parent::populateState('id', 'asc'); //edited by mjt
     }
 
     /**
