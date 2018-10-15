@@ -95,9 +95,12 @@
                         <div class="profcircle jf_col grid_3 last-column joomdle_course_columns_profcircle" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); text-align: center;display: inline-block; right: 50%; position: absolute; transform: translate(50%, -50%); -ms-transform: translate(50%, -50%); border-radius: 50%;">
 <?php
                             /* require (JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/mappings.php') */
-                            $teacher_user_info = JoomdleHelperMappings::get_user_info_for_joomla ($teacher['username']);
-                            // if (!count ($teacher_user_info)) //not a Joomla user
-                                // continue;
+                            if (!empty($teacher))
+                                $teacher_user_info = JoomdleHelperMappings::get_user_info_for_joomla ($teacher['username']);
+                                // if (!count ($teacher_user_info)) //not a Joomla user
+                                    // continue;
+                            else
+                                $teacher_user_info['pic_url'] = JURI::root ().'modules/mod_joomdle_courses_grow/assets/image/anonymous_user_avatar_100.jpg';
                                 
                             // Use thumbs if available
                             if ((array_key_exists ('thumb_url', $teacher_user_info)) && ($teacher_user_info['thumb_url'] != ''))
@@ -111,7 +114,11 @@
 
                         <!-- TEACHER NAME SECTION -->
                         <div class="profnme<?php echo $course['cat_id']; ?> jf_linkhover jf_linkhover2 jf_col_fluid profnme" >
-                            <a href="<?php if($teacher['username']){ echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");} ?>"><?php if($teacher['lastname']){ echo " استاد".$teacher['lastname']; }?></a>
+                            <?php if (!empty($teacher)): ?>
+                                <a href="<?php if($teacher['username']){ echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");} ?>"><?php if($teacher['lastname']){ echo "استاد ".$teacher['lastname']; }?></a>
+                            <?php else: ?>
+                                <a href="/">استاد نامشخص</a>
+                            <?php endif ?>
                         </div>
 
                         <!-- TOPICS NUMBER SECTION -->
@@ -138,7 +145,13 @@
 
                                 <!-- POPUP TEACHER NAME SECTION -->
                                 <div class="modalprofnme modalprofnme<?php echo $course['cat_id']; ?> jf_linkhover jf_linkhover2 jf_col_fluid" >
-                                    <b><a href="<?php if($teacher['username']){ echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");} ?>"><?php if($teacher['lastname']){ echo " استاد".$teacher['lastname']; }?></a></b>
+                                    <b>
+                                    <?php if (!empty($teacher)): ?>
+                                        <a href="<?php if($teacher['username']){ echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid");} ?>"><?php if($teacher['lastname']){ echo "استاد ".$teacher['lastname']; }?></a>
+                                    <?php else: ?>
+                                        <a href="/">استاد نامشخص</a>
+                                    <?php endif ?>
+                                    </b>
                                 </div> 
 
                                 <!-- POPUP TOPICS NUMBER SECTION -->
