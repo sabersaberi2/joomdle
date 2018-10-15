@@ -3296,6 +3296,17 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                 if (in_array($key, $authplugin->userfields) || (in_array($key, $customfields))) {
                     $newuser->$key = $value;
                 }
+                // مهدی آنیلی {
+                // update custom fields :
+                // Profile_save_data() saves profile file. it's expecting a user with the correct id,
+                // and custom field to be named profile_field_"shortname".
+                if (!(in_array($key, $customfields)) && (strncmp ($key, 'cf_', 3) == 0)) {
+                    if ($cf_shortname = $DB->get_field('user_info_field', 'shortname', array('id' => substr($key,3)))) {
+                            $cbKey = 'profile_field_' . $cf_shortname;
+                            $newuser->$cbKey = $value;
+                    }
+                }
+                // } مهدی آنیلی
             }
         }
 
