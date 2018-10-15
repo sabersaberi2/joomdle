@@ -562,8 +562,10 @@ class JoomdleControllerWs extends JControllerLegacy
     xmlrpc_server_register_method($xmlrpc_server, "joomdle.moodleEvent", "moodleEvent");
 
     $request_xml = @file_get_contents('php://input');
+    file_put_contents('XXX_xmlrpc_ws.xmlrpc.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)ws.xmlrpc.php : web service xmlrpc receive request :" . PHP_EOL . $request_xml,FILE_APPEND);
 
     $response = xmlrpc_server_call_method($xmlrpc_server, $request_xml, '', array('encoding'=>'UTF-8','escaping'=>'markup'));
+    file_put_contents('XXX_xmlrpc_ws.xmlrpc.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)ws.xmlrpc.php : web service xmlrpc answer request :" . PHP_EOL . $response,FILE_APPEND);
     print_r ( $response );
 
     exit ();

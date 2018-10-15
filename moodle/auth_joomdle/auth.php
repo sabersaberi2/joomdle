@@ -363,7 +363,9 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             'header' => "Content-Type: text/xml ",
             'content' => $request
         )));
+        file_put_contents("XXX_xmlrpc_auth.txt",PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_fgc * $method > request (stream context)" . PHP_EOL . $this->var_dump_ret($context),FILE_APPEND);
         $response = file_get_contents($joomla_xmlrpc_url, false, $context);
+        file_put_contents("XXX_xmlrpc_auth.txt",PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_fgc * $method > response" . PHP_EOL . ($response) . PHP_EOL,FILE_APPEND);
 
         $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
@@ -422,8 +424,11 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, false);
         }
 
+        $info = curl_getinfo($ch);
+        file_put_contents('XXX_xmlrpc_auth.txt',PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_curl * $method > request (curl info)" . PHP_EOL . $this->var_dump_ret($info),FILE_APPEND);
         $response = curl_exec( $ch ); // Run!
         curl_close($ch);
+        file_put_contents('XXX_xmlrpc_auth.txt',PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_curl * $method > response" . PHP_EOL . ($response) . PHP_EOL,FILE_APPEND);
 
         $response = substr ($response, strripos ($response,'<?xml')); // مهدی آنیلی
         $response = trim ($response);
@@ -475,7 +480,9 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             'header' => "Content-Type: text/xml ",
             'content' => $request
         )));
+        file_put_contents("XXX_xmlrpc_auth.txt",PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_fgc_debug * $method > request (stream context)" . PHP_EOL . $this->var_dump_ret($context),FILE_APPEND);
         $response = file_get_contents($joomla_xmlrpc_url, false, $context);
+        file_put_contents("XXX_xmlrpc_auth.txt",PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_fgc_debug * $method > response" . PHP_EOL . ($response) . PHP_EOL,FILE_APPEND);
 
         // Save raw reply to file.
         $tmp_file = $CFG->dataroot.'/temp/'.'joomdle_system_check.xml';
@@ -538,8 +545,11 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, false);
         }
 
+        $info = curl_getinfo($ch);
+        file_put_contents('XXX_xmlrpc_auth.txt',PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_curl_debug * $method > request (curl info)" . PHP_EOL . $this->var_dump_ret($info),FILE_APPEND);
         $response = curl_exec( $ch ); // Run!
         curl_close($ch);
+        file_put_contents('XXX_xmlrpc_auth.txt',PHP_EOL . microtime(true) . ' # ' . "(moodle)auth.php : call_method_curl_debug * $method > response" . PHP_EOL . ($response) . PHP_EOL,FILE_APPEND);
 
         // Save raw reply to file.
         $tmp_file = $CFG->dataroot.'/temp/'.'joomdle_system_check.xml';
@@ -6848,6 +6858,14 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
     public function cron() {
         $this->update_joomla_sessions();
+    }
+
+    public function var_dump_ret($mixed = null) {
+        ob_start();
+        var_dump($mixed);
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
     }
 
 }

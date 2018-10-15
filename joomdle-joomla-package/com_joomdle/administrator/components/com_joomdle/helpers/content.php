@@ -70,8 +70,12 @@ class JoomdleHelperContent
         curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers ); # custom headers, see above
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $request );
         curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'POST' ); # This POST is special, and uses its specified Content-type
+
+        $info = curl_getinfo($ch);
+        file_put_contents('XXX_xmlrpc_content.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_curl * $method > request (curl info)" . PHP_EOL . $this->var_dump_ret($info),FILE_APPEND);
         $file = curl_exec( $ch ); # run!
         curl_close($ch); 
+        file_put_contents('XXX_xmlrpc_content.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_curl * $method > response" . PHP_EOL . ($file) . PHP_EOL,FILE_APPEND);
 
         $file = trim ($file);
         $response = xmlrpc_decode($file, 'utf8');
@@ -98,8 +102,10 @@ class JoomdleHelperContent
                     'header' => "Content-Type: text/xml",
                     'content' => $request
                         )));
+        file_put_contents("XXX_xmlrpc_content.txt",PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_fgc * $method > request (stream context)" . PHP_EOL . JoomdleHelperContent::var_dump_ret($context),FILE_APPEND);
         $file = file_get_contents($moodle_xmlrpc_server_url , false, $context);
         $file = trim ($file);
+        file_put_contents("XXX_xmlrpc_content.txt",PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_fgc * $method > response" . PHP_EOL . ($file) . PHP_EOL,FILE_APPEND);
 
         $response = xmlrpc_decode($file, 'utf8');
 
@@ -149,8 +155,10 @@ class JoomdleHelperContent
                     'header' => "Content-Type: text/xml ",
                     'content' => $request
                         )));
+        file_put_contents("XXX_xmlrpc_content.txt",PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_fgc_debug * $method > request (stream context)" . PHP_EOL . JoomdleHelperContent::var_dump_ret($context),FILE_APPEND);
         $file = @file_get_contents($moodle_xmlrpc_server_url , false, $context);
         $file = trim ($file);
+        file_put_contents("XXX_xmlrpc_content.txt",PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_fgc_debug * $method > response" . PHP_EOL . ($file) . PHP_EOL,FILE_APPEND);
         $response = xmlrpc_decode($file);
 
         // Save raw reply to log
@@ -178,8 +186,12 @@ class JoomdleHelperContent
         curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers ); # custom headers, see above
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $request );
         curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'POST' ); # This POST is special, and uses its specified Content-type
+
+        $info = curl_getinfo($ch);
+        file_put_contents('XXX_xmlrpc_content.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_curl_debug * $method > request (curl info)" . PHP_EOL . $this->var_dump_ret($info),FILE_APPEND);
         $response = curl_exec( $ch ); # run!
         curl_close($ch); 
+        file_put_contents('XXX_xmlrpc_content.txt',PHP_EOL . microtime(true) . ' # ' . "(joomla)content.php : call_method_curl_debug * $method > response" . PHP_EOL . ($response) . PHP_EOL,FILE_APPEND);
 
         // Save raw reply to log
         $config = JFactory::getConfig();
@@ -1544,6 +1556,14 @@ else
         if ($lang_known)
             return $client_lang;
         else return false;
+    }
+
+    static function var_dump_ret($mixed = null) {
+        ob_start();
+        var_dump($mixed);
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
     }
 
 }
