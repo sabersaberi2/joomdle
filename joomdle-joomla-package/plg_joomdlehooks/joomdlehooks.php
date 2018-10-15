@@ -222,6 +222,7 @@ class plgUserJoomdlehooks extends JPlugin
                         setcookie ($name, $value, 0, $cookie_path);
                 }
         }
+        fclose ($f);
         unlink ($file);
     }
 

@@ -6817,6 +6817,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                     setcookie ($name, $value, 0, $cookie_path);
             }
         }
+        fclose($f);
         unlink ($file);
     }
 
