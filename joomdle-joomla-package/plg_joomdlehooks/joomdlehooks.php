@@ -238,7 +238,16 @@ class plgUserJoomdlehooks extends JPlugin
     /* Creates Moodle user */
     function onUserAfterSave ($user, $isnew, $success, $msg)
     {
-        return plgUserJoomdlehooks::sync_user ($user, $isnew, $success, $msg);
+        // مهدی آنیلی {
+        // غیرفعال کردن ارسال اطلاعات کاربر از جوملا به مودل با ویرایش کاربر (درهر قسمتی از سایت)
+        // فرآیند ارسال اطلاعات کاربر به مودل، با به روزرسانی کاربر (درهر قسمتی از سایت)، توسط رویدادهای
+        // CB که در پلاگین جومدل در
+        // CB تعریف شده اند :
+        // \components\com_comprofiler\plugin\user\plug_joomdlehookscommuntybuilder\joomdlehookscb.php
+        // شروع میشود.
+        
+        // return plgUserJoomdlehooks::sync_user ($user, $isnew, $success, $msg);
+        // } مهدی آنیلی
     }
 
     // Made static so we can call it from other places, like CB user plugin
