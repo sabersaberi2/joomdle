@@ -118,7 +118,10 @@ if (!array_key_exists ('cost',$course_info))
 <?php   if ($show_cost) : ?>
     <?php if ($course_info['cost']) : ?>
     <div class="joomdle_course_cost">
-        <b><?php echo JText::_('COM_JOOMDLE_COST'); ?>:&nbsp;</b><?php echo $course_info['cost']."(".$course_info['currency'].")"; ?>
+        <b><?php echo JText::_('COM_JOOMDLE_COST'); ?>:&nbsp;</b><?php echo $course_info['cost']." (".
+                      ( JText::_('COM_JOOMDLE_CURRENCY_' . $course_info['currency']) == 'COM_JOOMDLE_CURRENCY_' . $course_info['currency']
+                        ? $course_info['currency'] : JText::_('COM_JOOMDLE_CURRENCY_' . $course_info['currency']) )
+                                                                                                     .")"; ?>
     </div>
     <?php endif; ?>
 <?php endif; ?>
