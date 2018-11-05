@@ -50,12 +50,17 @@ class enrol_joomdle_edit_form extends moodleform {
 		$mform->setType('cost', PARAM_RAW); // Use unformat_float to get real value.
         $mform->setDefault('cost', $plugin->get_config('cost'));
 
-        $paypalcurrencies = array('USD' => 'US Dollars',
+        $paypalcurrencies = array('IRR' => get_string('iranian_rial', 'enrol_joomdle'),// مهدی آنیلی
+                                  'IRT' => get_string('iranian_toman', 'enrol_joomdle'),// مهدی آنیلی
+                                  'AFN' => get_string('afghan_afghani', 'enrol_joomdle'),// مهدی آنیلی
+                                  'IQD' => get_string('iraqi_dinar', 'enrol_joomdle'),// مهدی آنیلی
+                                  'USD' => 'US Dollars',
                                   'EUR' => 'Euros',
                                   'JPY' => 'Japanese Yen',
                                   'GBP' => 'British Pounds',
                                   'CAD' => 'Canadian Dollars',
-                                  'AUD' => 'Australian Dollars'
+                                  'AUD' => 'Australian Dollars',
+                                  'CNY' => 'China Yuan Renminbi'
                                  );
         $mform->addElement('select', 'currency', get_string('currency', 'enrol_joomdle'), $paypalcurrencies);
         $mform->setDefault('currency', $plugin->get_config('currency'));

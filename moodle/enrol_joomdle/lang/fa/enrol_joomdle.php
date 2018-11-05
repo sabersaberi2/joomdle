@@ -32,10 +32,10 @@ $string['status_desc'] = 'Allow users to buy courses through Joomla e-commerce.'
 $string['unenrolselfconfirm'] = 'Do you really want to unenrol yourself from course "{$a}"?';
 $string['guest_enrol_message'] = 'Enrol message to show to guests';
 // مهدی آنیلی {
-$string['iranian_rial'] = 'Iranian Rial';
-$string['iranian_toman'] = 'Iranian Toman';
-$string['afghan_afghani'] = 'Afghanistan Afghani';
-$string['iraqi_dinar'] = 'Iraqi Dinar';
+$string['iranian_rial'] = 'ریال ایران';
+$string['iranian_toman'] = 'تومان ایران';
+$string['afghan_afghani'] = 'افغانی';
+$string['iraqi_dinar'] = 'دینار عراق';
 // } مهدی آنیلی
 $string['joomdle:unenrol'] = 'Unenrol users';
 $string['joomdle:config'] = 'Configure Joomdle enrol method';
