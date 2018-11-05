@@ -41,15 +41,19 @@ if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_configtext('enrol_joomdle/cost', get_string('cost', 'enrol_joomdle'), '', 0, PARAM_FLOAT, 4));
 
-    $paypalcurrencies = array('USD' => 'US Dollars',
+    $paypalcurrencies = array('IRR' => get_string('iranian_rial', 'enrol_joomdle'),// مهدی آنیلی
+                              'IRT' => get_string('iranian_toman', 'enrol_joomdle'),// مهدی آنیلی
+                              'AFN' => get_string('afghan_afghani', 'enrol_joomdle'),// مهدی آنیلی
+                              'IQD' => get_string('iraqi_dinar', 'enrol_joomdle'),// مهدی آنیلی
+                              'USD' => 'US Dollars',
                               'EUR' => 'Euros',
                               'JPY' => 'Japanese Yen',
                               'GBP' => 'British Pounds',
                               'CAD' => 'Canadian Dollars',
                               'AUD' => 'Australian Dollars',
-							  'CNY' => 'Renminbi'
+							  'CNY' => 'China Yuan Renminbi'
                              );
-    $settings->add(new admin_setting_configselect('enrol_joomdle/currency', get_string('currency', 'enrol_joomdle'), '', 'USD', $paypalcurrencies));
+    $settings->add(new admin_setting_configselect('enrol_joomdle/currency', get_string('currency', 'enrol_joomdle'), '', get_string('iranian_rial', 'enrol_joomdle'), $paypalcurrencies));// مهدی آنیلی
 
     $settings->add(new admin_setting_configtextarea('enrol_joomdle/enrol_message', get_string('enrol_message', 'enrol_joomdle'), '', 0, PARAM_RAW));
 
