@@ -43,12 +43,15 @@ class getcbmycertificatesTab extends cbTabHandler {
         $plugin     =   cbarticlesClass::getPlugin();
         $viewer     =   CBuser::getMyUserDataInstance();
 
-		if (!$this->certs)
-		{
-			$username = $user->get('username');
-			$this->certs = JoomdleHelperContent::call_method ("my_certificates", $username, 'normal');
-		}
-		$total = count ($this->certs);
+        $params = $this->params; // get parameters (plugin and related tab)
+        $cert_type = $params->get('certificate_type');
+
+        if (!$this->certs)
+        {
+            $username = $user->get('username');
+            $this->certs = JoomdleHelperContent::call_method ("my_certificates", $username, $cert_type);
+        }
+        $total = count ($this->certs);
 
         return parent::getTabTitle( $tab, $user, $ui, $postdata ) . ' <span class="badge badge-default">' . (int) $total . '</span>';
     }
