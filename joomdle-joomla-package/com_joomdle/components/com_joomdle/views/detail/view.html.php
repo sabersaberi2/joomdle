@@ -20,12 +20,10 @@ class JoomdleViewDetail extends JViewLegacy {
     function display($tpl = null) {
         global $mainframe;
 
-        $app                = JFactory::getApplication();
-        $pathway = $app->getPathWay();
-
-        $menus      = $app->getMenu();
-
-        $menu  = $menus->getActive();
+        $app      = JFactory::getApplication();
+        $pathway  = $app->getPathWay();
+        $menus    = $app->getMenu();
+        $menu     = $menus->getActive();
 
         // Load the form validation behavior
         JHTML::_('behavior.formvalidation');
@@ -47,10 +45,9 @@ class JoomdleViewDetail extends JViewLegacy {
             return;
         }
 
-        $user = JFactory::getUser();
-        $username = $user->username;
-        
-        $this->course_info = JoomdleHelperContent::getCourseInfo($id, $username);
+        $user               = JFactory::getUser();
+        $username           = $user->username;
+        $this->course_info  = JoomdleHelperContent::getCourseInfo($id, $username);
 
         /* pathway */
         $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');

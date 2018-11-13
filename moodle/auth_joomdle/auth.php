@@ -969,6 +969,8 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             co.idnumber,
             co.summary,
             co.startdate,
+            co.enddate,
+            co.lang,
             co.timecreated as created,
             co.timemodified as modified,
             ca.name        AS cat_name,
@@ -1664,6 +1666,8 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             ";
 
         $course_info['numsections'] = $DB->count_records_sql($query, $params);
+
+        $course_info['teachers'] = $this->get_course_editing_teachers($record->remoteid);
 
         $course_info['self_enrolment'] = 0;
         $course_info['guest'] = 0;

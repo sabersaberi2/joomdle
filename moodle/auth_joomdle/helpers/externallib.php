@@ -78,6 +78,10 @@ class joomdle_helpers_external extends external_api {
                     'idnumber' => new external_value(PARAM_RAW, 'idnumber'),
                     'summary' => new external_value(PARAM_RAW, 'summary'),
                     'startdate' => new external_value(PARAM_INT, 'start date'),
+					// مهدی آنیلی {
+                    'enddate' => new external_value(PARAM_INT, 'end date'),
+                    'lang' => new external_value(PARAM_RAW, 'lang'),
+					// } مهدی آنیلی
                     'created' => new external_value(PARAM_INT, 'created'),
                     'modified' => new external_value(PARAM_INT, 'modified'),
                     'cost' => new external_value(PARAM_FLOAT, 'cost', VALUE_OPTIONAL),
@@ -225,6 +229,17 @@ class joomdle_helpers_external extends external_api {
                     'enroled' => new external_value(PARAM_INT, 'user enroled'),
                     'in_enrol_date' => new external_value(PARAM_BOOL, 'in enrol date'),
                     'guest' => new external_value(PARAM_INT, 'guest access'),
+					// مهدی آنیلی {
+                    'teachers' => new external_multiple_structure(
+                        new external_single_structure(
+                           array(
+                              'firstname' => new external_value(PARAM_TEXT, 'teacher firstname'),
+							  'lastname' => new external_value(PARAM_TEXT, 'teacher lastname'),
+							  'username' => new external_value(PARAM_TEXT, 'teacher username'),
+                           )
+                        )
+                    ),
+					// } مهدی آنیلی
                     'summary_files' => new external_multiple_structure(
                         new external_single_structure(
                            array(

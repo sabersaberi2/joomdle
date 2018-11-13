@@ -32,6 +32,8 @@ class JoomdleViewMycertificates extends JViewLegacy {
 
         $this->_prepareDocument();
 
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
         parent::display($tpl);
     }
 
