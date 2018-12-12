@@ -1601,12 +1601,14 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $not_found['summary'] = "";
         $not_found['startdate'] = 0;
         $not_found['numsections'] = 0;
+        $not_found['enddate'] = 0; // مهدی آنیلی
         $not_found['lang'] = "";
         $not_found['self_enrolment'] = 0;
         $not_found['enroled'] = 0;
         $not_found['in_enrol_date'] = false;
         $not_found['guest'] = 0;
         $not_found['summary_files'] = array ();
+        $not_found['teachers'] = array (); // مهدی آنیلی
 
         $username = strtolower ($username);
 
@@ -1667,7 +1669,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
         $course_info['numsections'] = $DB->count_records_sql($query, $params);
 
-        $course_info['teachers'] = $this->get_course_editing_teachers($record->remoteid);
+        $course_info['teachers'] = $this->get_course_editing_teachers($record->remoteid); // مهدی آنیلی
 
         $course_info['self_enrolment'] = 0;
         $course_info['guest'] = 0;
@@ -5560,8 +5562,8 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                         continue;
 
                 $resource['completion_info'] = '';
+                $cm = get_coursemodule_from_id(false, $mod->id); // مهدی آنیلی
                 if ($username) {
-                    $cm = get_coursemodule_from_id(false, $mod->id);
                     if (!\core_availability\info_module::is_user_visible($cm, $user->id)) {
                         if ( empty($mod->availableinfo)) // Mod not visible, and no completion info to show.
                             continue;
@@ -5574,7 +5576,12 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                         $resource['available'] = 1;
                 }
                 else
+                    // مهدی آنیلی {
+                    if (!$cm->deletioninprogress)
                         $resource['available'] = 1;
+                    else
+                        continue;
+                    // } مهدی آنیلی
 
                 $e[$section->section]['section'] = $section->section;
                 $e[$section->section]['name'] = $section->name;

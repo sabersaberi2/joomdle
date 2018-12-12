@@ -14,37 +14,38 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycourses extends JViewLegacy {
+
     function display($tpl = null) {
-    global $mainframe;
+        global $mainframe;
 
-    $app        = JFactory::getApplication();
-    $params = $app->getParams();
-    $this->assignRef('params',              $params);
-
-
-    $group_by_category = $params->get( 'group_by_category' );
-
-    $user = JFactory::getUser();
-    $username = $user->username;
-    if ($group_by_category)
-        $this->my_courses = JoomdleHelperContent::call_method ('my_courses', $username, 1);
-    else
-        $this->my_courses = JoomdleHelperContent::getMyCourses();
-
-    $this->jump_url =  JoomdleHelperContent::getJumpURL ();
-
-    $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
-
-    $this->_prepareDocument();
+        $app        = JFactory::getApplication();
+        $params = $app->getParams();
+        $this->assignRef('params',              $params);
 
 
-    if ($group_by_category)
-        $tpl =  "cats";
+        $group_by_category = $params->get( 'group_by_category' );
 
-    if ($this->my_courses)
-        parent::display($tpl);
-    else
-        echo '<span class="joomdle_nocourses_message">'.$params->get('nocourses_text') . "</span>";
+        $user = JFactory::getUser();
+        $username = $user->username;
+        if ($group_by_category)
+            $this->my_courses = JoomdleHelperContent::call_method ('my_courses', $username, 1);
+        else
+            $this->my_courses = JoomdleHelperContent::getMyCourses();
+
+        $this->jump_url =  JoomdleHelperContent::getJumpURL ();
+
+        $this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
+        $this->_prepareDocument();
+
+
+        if ($group_by_category)
+            $tpl =  "cats";
+
+        if ($this->my_courses)
+            parent::display($tpl);
+        else
+            echo '<span class="joomdle_nocourses_message">'.$params->get('nocourses_text') . "</span>";
     }
 
     protected function _prepareDocument()
