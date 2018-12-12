@@ -31,6 +31,9 @@
         $open_in_wrapper = 1;
     else
         $open_in_wrapper = 0;
+
+    $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
+    
 ?>
     <div class="joomdlecourses<?php echo $moduleclass_sfx; ?>" style="display: block; margin: 0 auto;">
 <?php
@@ -48,6 +51,15 @@
             else
                 if (is_array ($teachers))
                     $teacher = array_shift($teachers);
+
+            if ($unicodeslugs == 1) { // Joomla SEO Settings : Unicode Aliases
+                $course_slug = JFilterOutput::stringURLUnicodeSlug($course['fullname']);
+                $cat_slug = JFilterOutput::stringURLUnicodeSlug($course['cat_name']);
+            }
+            else {
+                $course_slug = JFilterOutput::stringURLSafe($course['fullname']);
+                $cat_slug = JFilterOutput::stringURLSafe($course['cat_name']);
+            }
 
             $summary_file = $course['summary_files'];
             if (is_array ($summary_file))
@@ -83,7 +95,7 @@
                                         else {
                                             if ($joomdle_itemid)
                                                 $itemid = $joomdle_itemid;
-                                            $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$course['cat_id']."&course_id=".$course['remoteid']."&Itemid=$itemid");
+                                            $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$course['cat_id'].":".$cat_slug."&course_id=".$course['remoteid'].':'.$course_slug."&Itemid=$itemid");
                                             echo $course['fullname'];
                                         }
                                     echo '</p>';
@@ -174,27 +186,26 @@
                                             $itemid = $default_itemid;
 
                                         if ($username) {
-                                            echo "<a "."$target href=\"".$moodle_auth_land_url."?username=$username&token=$token&mtype=course&id=$id&use_wrapper=$open_in_wrapper&create_user=1&Itemid=$itemid\">اطلاعات بیشتر ...</a><br>";
+                                            echo "<a $target href=\"".$moodle_auth_land_url."?username=$username&token=$token&mtype=course&id=$id&use_wrapper=$open_in_wrapper&create_user=1&Itemid=$itemid \">اطلاعات بیشتر ...</a><br>";
                                         }
                                         else
                                             if ($open_in_wrapper)
-                                                echo "<a "."$target href=\"".$moodle_auth_land_url."?username=guest&mtype=course&id=$id&use_wrapper=$open_in_wrapper&Itemid=$itemid\">اطلاعات بیشتر ...</a><br>";
+                                                echo "<a $target href=\"".$moodle_auth_land_url."?username=guest&mtype=course&id=$id&use_wrapper=$open_in_wrapper&Itemid=$itemid \">اطلاعات بیشتر ...</a><br>";
                                             else
-                                                echo "<a "."$target href=\"".$moodle_url."/course/view.php?id=$id\">اطلاعات بیشتر...</a><br>";
+                                                echo "<a $target href=\"".$moodle_url."/course/view.php?id=$id \">اطلاعات بیشتر...</a><br>";
                                     }
                                     else {
                                         if ($joomdle_itemid)
                                             $itemid = $joomdle_itemid;
 
-                                        $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$course['cat_id'].":"."&course_id=".$course['remoteid'].':'."&Itemid=$itemid");
-                                        //	$url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$course['cat_id'].":".JFilterOutput::stringURLSafe($course['cat_name'])."&course_id=".$course['remoteid'].':'.JFilterOutput::stringURLSafe($course['fullname']));
+                                        $url = JRoute::_("index.php?option=com_joomdle&view=detail&cat_id=".$course['cat_id'].":".$cat_slug."&course_id=".$course['remoteid'].':'.$course_slug."&Itemid=$itemid");
                                     }
                                 echo '</div>';
 
                                 /* POPUP MORE LINK AND ENROLL BUTTON SECTION */
                                 echo '<div class="inlineForm center" style="padding:10px" >';
                                     echo JoomdleHelperSystem::actionbutton ( $course );
-                                    echo "<a style=\"direction:rtl\" "."href=\"".$url."\">اطلاعات بیشتر...</a><br>";
+                                    echo "<a style=\"direction:rtl\" href=\"".$url."\">اطلاعات بیشتر...</a><br>";
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>'; 

@@ -93,4 +93,5 @@ if  ( $params->get( 'free courses only' ))
 }
 
 
-require(JModuleHelper::getLayoutPath('mod_joomdle_courses_grow'));
+$layout           = $params->get('layout', 'default');
+require(JModuleHelper::getLayoutPath('mod_joomdle_courses_grow', $layout));

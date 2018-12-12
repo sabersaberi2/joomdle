@@ -48,15 +48,15 @@ class JoomdleViewDetail extends JViewLegacy {
         $user               = JFactory::getUser();
         $username           = $user->username;
         $this->course_info  = JoomdleHelperContent::getCourseInfo($id, $username);
-// custom
-		$this->teachers     = JoomdleHelperContent::getCourseTeachers($id);
+        // مهدی آنیلی {
+		$this->teachers     = $this->course_info['teachers']; //JoomdleHelperContent::getCourseTeachers($id);
 		$this->is_enroled   = $this->course_info['enroled'];
 
 		if ($this->is_enroled)
 			$this->mods     = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, $username);
 		else
 			$this->mods     = JoomdleHelperContent::call_method ( 'get_course_mods', (int) $id, '');
-// custom
+        // } مهدی آنیلی
 
         /* pathway */
         $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');
