@@ -81,7 +81,9 @@ class plgUserJoomdlehooks extends JPlugin
 
         unset($_SESSION['USER']);
         unset($_SESSION['SESSION']);
-        setcookie('MoodleSession', '',  time() - 3600, $cookie_path,'','',0);
+        setcookie('MoodleSession', '',  time() - 3600, $cookie_path, '', '', 0);
+        // setcookie('MoodleSession', '',  time() - 3600, $cookie_path, $this->app->get('cookie_domain'),'',0);
+        // setcookie('MoodleSession', '',  time() - 3600, $cookie_path, 'demo2.lmskaran.com', '', 0);
         unset($_SESSION);
 
         return true;
@@ -220,9 +222,11 @@ class plgUserJoomdlehooks extends JPlugin
                         $name = $parts[5];
                         $value = trim ($parts[6]);
                         setcookie ($name, $value, 0, $cookie_path);
+                        // setcookie ($name, $value, 0, $cookie_path, $this->app->get('cookie_domain'));
+                        // setcookie ($name, $value, 0, $cookie_path, 'demo2.lmskaran.com');
                 }
         }
-        fclose ($f);
+        fclose ($f); // مهدی آنیلی
         unlink ($file);
     }
 

@@ -1,3 +1,21 @@
+Joomdle 1.2.2 for Joomla 3.x
+-----------------------------
+- Users migrated from Moodle to Joomla keep their password
+- Fixed search by name and surname in Joomdle users view in Joomla backend
+- Fixed error when deleting user from Joomla
+- Events triggered when course is restored in Moodle
+- Removed Joomla Profile support from core, moved to new plugin
+- Removed auto-sell option from config in Moodle, that was no longer used
+- Added new options to my courses view to include/exclude specific courses/categories
+- Fixed some problems with calendar/events
+- My grades view shows 0 instead of - when activity has a 0 grade
+- Improved performance in Moodle to Joomla user sync
+- Fixed problem with course parameter in some views
+- Fixed incorrect links in My courses view when using summary and course images
+- mod_questionnaire functions adapted for newer module release
+- Fixed send certificate funcionality
+- Removed use of coursecat deprecated functions
+
 Joomdle 1.2.1 for Joomla 3.x
 -----------------------------
 - Added new view to show mentees certificates

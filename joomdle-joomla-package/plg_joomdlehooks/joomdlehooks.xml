@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="1.6" type="plugin" group="user" client="site" order="100" folder="joomdlehooks" method="upgrade">
 	<name>User hooks - Joomdle</name>
-	<author>Antonio Duran Terres</author>
-	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
+	<author>Qontori</author>
+	<authorEmail>development@joomdle.com</authorEmail>
 	<creationDate>February 2009</creationDate>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>antonio.duran.terres@gmail.com</authorEmail>
 	<authorUrl>www.joomdle.com</authorUrl>
 	<version>1.0</version>
 	<description>Performs user sync and Single Sign On</description>

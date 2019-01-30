@@ -42,8 +42,6 @@ class JFormFieldDatasource extends JFormFieldList
 
         $option = array ('value' => 'no', 'text' => JText::_ ('COM_JOOMDLE_NONE'));
         $options[] = $option;
-        $option = array ('value' => 'joomla16', 'text' => 'Joomla User profiles');
-        $options[] = $option;
 
         // Add sources added via plugins
         JPluginHelper::importPlugin( 'joomdleprofile' );

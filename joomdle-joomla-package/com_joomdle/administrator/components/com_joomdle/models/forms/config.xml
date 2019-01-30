@@ -643,16 +643,6 @@
 			label="COM_JOOMDLE_ADDITIONAL_DATA_SOURCE"
 		/>
 
-		<field name="j16_form_path" type="text"
-			description="COM_JOOMDLE_J16_FORM_PATH_DESCRIPTION"
-			label="COM_JOOMDLE_J16_FORM_PATH"
-		/>
-
-		<field name="j16_profile_plugin" type="text"
-			description="COM_JOOMDLE_J16_PROFILE_PLUGIN_DESCRIPTION"
-			label="COM_JOOMDLE_J16_PROFILE_PLUGIN"
-		/>
-
 	</fieldset>
 
 	<fieldset name="mailinglist">

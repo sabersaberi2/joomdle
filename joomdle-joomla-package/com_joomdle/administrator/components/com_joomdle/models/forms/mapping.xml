@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="mapping">
-		<field name="joomla_app" type="joomlacomponent"
+		<field name="joomla_app" type="datasource"
 			description="COM_JOOMDLE_ADDITIONAL_DATA_SOURCE_DESCRIPTION"
 			label="COM_JOOMDLE_ADDITIONAL_DATA_SOURCE"
             class="readonly"

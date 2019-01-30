@@ -9,7 +9,7 @@
 		<name>COM_JOOMDLE_TEACHERS_LAYOUT</name>
 		<description>COM_JOOMDLE_TEACHERS_LAYOUT_DESCRIPTION</description>
 		<config><fields name="params"><fieldset name="basic">
-			<field type="course" name="course_id"  label="COM_JOOMDLE_COURSE" description="COM_JOOMDLE_COURSE_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/fields" />
+			<field type="courselist" name="course_id"  label="COM_JOOMDLE_COURSE" description="COM_JOOMDLE_COURSE_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/models/fields" />
 		</fieldset></fields></config>
 		<advanced>
 

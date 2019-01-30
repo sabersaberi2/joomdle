@@ -58,14 +58,12 @@ if  ( $params->get( 'latest courses only' ))
 }
 else
 {
-    //$cursos = JoomdleHelperContent::getCourseList ( 0, 'fullname ASC', $guest_courses_only);
-    //$cursos = JoomdleHelperContent::getCourseList ( 0, 'sortorder ASC', $guest_courses_only);
     $cursos = JoomdleHelperContent::getCourseList ( 0, $order, $guest_courses_only);
     $limit = PHP_INT_MAX; //no limit
 }
 
 
-if  ( $params->get( 'courses_shown' ))
+if  ($params->get( 'courses_shown' ))
 {
     if (is_array($params->get( 'courses_shown' )))
         $courses_shown = $params->get( 'courses_shown' );
@@ -74,7 +72,7 @@ if  ( $params->get( 'courses_shown' ))
 
     $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'remoteid', $courses_shown );
 }
-if  ( $params->get( 'categories_shown' ))
+if  ($params->get( 'categories_shown' ))
 {
     if (is_array($params->get( 'categories_shown' )))
         $cats_shown = $params->get( 'categories_shown' );
@@ -83,7 +81,7 @@ if  ( $params->get( 'categories_shown' ))
 
     $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cat_id', $cats_shown );
 }
-if  ( $params->get( 'free courses only' ))
+if  ($params->get( 'free courses only' ))
 {
     $cursos = modJoomdleCoursesHelper::filter_by_value ($cursos, 'cost', array (0) );
 }

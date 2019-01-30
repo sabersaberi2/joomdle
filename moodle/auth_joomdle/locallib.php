@@ -35,6 +35,7 @@ class auth_joomdle_handler {
 
     public static function user_created (\core\event\user_created $event)
 	{
+        return;
 		global $CFG, $DB;
 
         $sync_to_joomla = get_config('auth_joomdle', 'sync_to_joomla');
@@ -235,6 +236,16 @@ class auth_joomdle_handler {
 	}
 
     public static function course_created (\core\event\course_created $event)
+    {
+        auth_joomdle_handler::new_course_event ($event);
+    }
+
+    public static function course_restored (\core\event\course_restored $event)
+    {
+        auth_joomdle_handler::new_course_event ($event);
+    }
+
+    private static function new_course_event ($event)
 	{
         global $CFG, $DB;
 
@@ -244,7 +255,6 @@ class auth_joomdle_handler {
 
         $activities = get_config('auth_joomdle', 'jomsocial_activities');
         $groups = get_config('auth_joomdle', 'jomsocial_groups');
-        $autosell = get_config('auth_joomdle', 'auto_sell');
         $joomla_user_groups = get_config('auth_joomdle', 'joomla_user_groups');
         $use_kunena_forums = get_config('auth_joomdle', 'use_kunena_forums');
 
@@ -264,12 +274,6 @@ class auth_joomdle_handler {
             $auth_joomdle->call_method ('addActivityCourse', (int) $course->id, $course->fullname,  $course->summary, (int) $course->category, $cat->name);
         if ($groups)
             $auth_joomdle->call_method ('addSocialGroup', $course->fullname,  get_string('auth_joomla_group_for_course', 'auth_joomdle') . ' ' .$course->fullname,  (int) $course->id);
-
-        if ($autosell)
-        {
-            $cid = array ($course->id);
-            $auth_joomdle->call_method ("sellCourse", array ((int) $course->id));
-        }
 
         if ($joomla_user_groups)
         {
@@ -308,7 +312,6 @@ class auth_joomdle_handler {
 		$course = $event->get_record_snapshot('course', $event->objectid);
 
         $groups_delete = get_config('auth_joomdle', 'jomsocial_groups_delete');
-        $autosell = get_config('auth_joomdle', 'auto_sell');
         $use_kunena_forums = get_config('auth_joomdle', 'use_kunena_forums');
         $joomla_user_groups = get_config('auth_joomdle', 'joomla_user_groups');
 
@@ -316,12 +319,6 @@ class auth_joomdle_handler {
 
         if ($groups_delete)
             $auth_joomdle->call_method ('deleteSocialGroup', $course->id);
-
-        if ($autosell)
-        {
-            $cid = array ($course->id);
-            $auth_joomdle->call_method ("deleteCourseShop", array ((int) $course->id));
-        }
 
         if ($joomla_user_groups)
             $auth_joomdle->call_method ("removeUserGroups", (int) $course->id);
@@ -348,18 +345,11 @@ class auth_joomdle_handler {
 		$course = $event->get_record_snapshot('course', $event->objectid);
 
         $groups = get_config('auth_joomdle', 'jomsocial_groups');
-        $autosell = get_config('auth_joomdle', 'auto_sell');
 
         $auth_joomdle = new auth_plugin_joomdle ();
 
         if ($groups)
             $auth_joomdle->call_method ('updateSocialGroup', $course->fullname,  get_string('auth_joomla_group_for_course', 'auth_joomdle') . ' ' .$course->fullname,  (int) $course->id);
-
-        if ($autosell)
-        {
-            $cid = array ($course->id);
-            $auth_joomdle->call_method ("updateCourseShop", array ((int) $course->id));
-        }
 
         // "Forward" event to Joomla
         if ($forward_events) {

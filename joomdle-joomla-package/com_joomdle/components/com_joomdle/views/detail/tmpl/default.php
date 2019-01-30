@@ -50,7 +50,7 @@ $jdoc->addStyleSheet(JURI::root ().'components/com_joomdle/views/detail/assets/c
 $unicodeslugs = JFactory::getConfig()->get('unicodeslugs');             // custom
 
 if (!array_key_exists ('cost',$course_info))
-	$course_info['cost'] = 0;
+    $course_info['cost'] = 0;
 ?>
 
 <div class="jf_col_fluid joomdle-coursedetails<?php echo $this->pageclass_sfx;?>">

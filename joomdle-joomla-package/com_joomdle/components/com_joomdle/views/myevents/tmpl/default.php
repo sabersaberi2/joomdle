@@ -34,11 +34,7 @@ foreach ($this->my_events as $id => $curso) :
         <div class="joomdle_event_list_item">
             <div class="joomdle_item_title joomdle_event_list_item_date">
             <?php
-                $day = date('d', $event['timestart']);
-                $mon = date('m', $event['timestart']);
-                $year = date('Y', $event['timestart']);
-
-                $link = $this->jump_url."&mtype=event&id=".$event['courseid']."&day=$day&mon=$mon&year=$year";
+                $link = $this->jump_url."&mtype=event&id=".$event['courseid']."&time=" . $event['timestart'];
 
                 if ($lang)
                     $link .= "&lang=$lang";

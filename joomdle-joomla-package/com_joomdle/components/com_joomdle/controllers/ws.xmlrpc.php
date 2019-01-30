@@ -104,7 +104,9 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/activities.php
         $browserVersion = $ua->browserVersion;
         $uaShort = str_replace($browserVersion, 'abcd', $uaString);
 
-        $r = md5(JUri::base() . $uaShort);
+        $r['joomla_remember_me_cookie'] = md5(JUri::base() . $uaShort);
+        // $r['joomla_session_cookie']  = session_name();
+        $r['joomla_session_cookie']     = JFactory::getSession()->getName();
 
         return $r;
     }
@@ -177,6 +179,10 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/activities.php
         $username = utf8_decode ($username);
 
         $user_id = JUserHelper::getUserId($username);
+
+        if (!$user_id)
+            return;
+
         $user = JFactory::getUser($user_id);
         $user->delete();
     }
@@ -203,34 +209,6 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/activities.php
 
         return JoomdleHelperActivities::add_activity_course_enrolment ($username, $course_id, $course_name, $cat_id, $cat_name);
     }
-
-
-/*
-    function getJSGroupId ($method, $params)
-    {
-        $name = $params[0];
-        return JoomdleHelperGroups::get_js_group_by_name ($name);
-    }
-
-    function getJSGroupImageLink ($method, $params)
-    {
-        $name = $params[0];
-        return JoomdleHelperGroups::get_js_group_image_link ($name);
-    }
-
-    function addJSGroup ($method, $params)
-    {
-        $name = $params[0];
-        $description = $params[1];
-        $course_id = $params[2];
-        $website = $params[3];
-
-   //     $name = utf8_decode ($name);
-   //     $description = utf8_decode ($description);
-
-        return JoomdleHelperGroups::addJSGroup ($name, $description, $course_id, $website);
-    }
-*/
 
     function addSocialGroup ($method, $params)
     {
@@ -277,51 +255,6 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_joomdle/helpers/activities.php
 
         return JoomdleHelperSocialGroups::remove_group_member ($username, $course_id);
     }
-
-/*
-    function updateJSGroup ($method, $params)
-    {
-        $name = $params[0];
-        $description = $params[1];
-        $course_id = $params[2];
-        $website = $params[3];
-
- //       $name = utf8_decode ($name);
- //       $description = utf8_decode ($description);
-
-        return JoomdleHelperGroups::updateJSGroup ($name, $description, $course_id, $website);
-    }
-
-    function removeJSGroup ($method, $params)
-    {
-        $name = $params[0];
-        return JoomdleHelperGroups::removeJSGroup ($name);
-    }
-
-
-   function addJSGroupMember ($method, $params)
-    {
-        $group_name = $params[0];
-        $username = $params[1];
-        $permissions = $params[2];
-        $course_id = $params[3];
-
-        $username = utf8_decode ($username);
-        $group_name = utf8_decode ($group_name);
-
-        return JoomdleHelperGroups::addJSGroupMember ($group_name, $username, $permissions, $course_id);
-    }
-
-    function removeJSGroupMember ($method, $params)
-    {
-        $group_name = $params[0];
-        $username = $params[1];
-
-//        $username = utf8_decode ($username);
-
-        return JoomdleHelperGroups::removeJSGroupMember ($group_name, $username);
-    }
-*/
 
     function addPoints ($method, $params)
     {

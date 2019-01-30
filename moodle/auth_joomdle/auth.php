@@ -44,10 +44,6 @@ require_once($CFG->dirroot.'/group/lib.php');
 require_once($CFG->dirroot.'/lib/grouplib.php');
 require_once($CFG->dirroot.'/cohort/lib.php');
 require_once($CFG->dirroot.'/grade/report/user/lib.php');
-require_once($CFG->dirroot.'/lib/coursecatlib.php');
-
-
-
 
 /**
  * Joomdle authentication plugin.
@@ -192,116 +188,6 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $user = get_complete_user_data('id', $user->id);
         return update_internal_user_password($user, $password);
     }
-
-    /**
-     * Prints a form for configuring this authentication plugin.
-     *
-     * This function is called from admin/auth.php, and outputs a full page with
-     * a form for configuring this plugin.
-     *
-     * @param array $page An object containing all the data for this page.
-     */
-    /*
-    public function config_form($config, $err, $user_fields) {
-        include("config.html");
-    }
-
-    public function process_config($config) {
-        global $DB;
-
-        if (!isset($config->joomla_url)) {
-            $config->joomla_url = '';
-        }
-        set_config('joomla_url', $config->joomla_url, 'auth/joomdle');
-
-        if (!isset($config->connection_method)) {
-            $config->connection_method = 'fgc';
-        }
-        set_config('connection_method', $config->connection_method, 'auth/joomdle');
-
-        if (!isset($config->joomla_auth_token)) {
-            $config->joomla_auth_token = '';
-        }
-        set_config('joomla_auth_token', $config->joomla_auth_token, 'auth/joomdle');
-
-        if (!isset($config->sync_to_joomla)) {
-            $config->sync_to_joomla = 0;
-        }
-        set_config('sync_to_joomla', $config->sync_to_joomla, 'auth/joomdle');
-
-        if (!isset($config->joomla_lang)) {
-            $config->joomla_lang = '';
-        }
-        set_config('joomla_lang', $config->joomla_lang, 'auth/joomdle');
-
-        if (!isset($config->joomla_sef)) {
-            $config->joomla_sef = '';
-        }
-        set_config('joomla_sef', $config->joomla_sef, 'auth/joomdle');
-
-        if (!isset($config->redirectless_sso)) {
-            $config->redirectless_sso = '';
-        }
-        set_config('redirectless_sso', $config->redirectless_sso, 'auth/joomdle');
-
-        if (!isset($config->logout_redirect_to_joomla)) {
-            $config->logout_redirect_to_joomla = '';
-        }
-        set_config('logout_redirect_to_joomla', $config->logout_redirect_to_joomla, 'auth/joomdle');
-
-        if (!isset($config->jomsocial_activities)) {
-            $config->jomsocial_activities = 0;
-        }
-        set_config('jomsocial_activities', $config->jomsocial_activities, 'auth/joomdle');
-
-        if (!isset($config->jomsocial_groups)) {
-            $config->jomsocial_groups = 0;
-        }
-        set_config('jomsocial_groups', $config->jomsocial_groups, 'auth/joomdle');
-
-        if (!isset($config->jomsocial_groups_delete)) {
-            $config->jomsocial_groups_delete = 0;
-        }
-        set_config('jomsocial_groups_delete', $config->jomsocial_groups_delete, 'auth/joomdle');
-
-        if (!isset($config->auto_sell)) {
-            $config->auto_sell = 0;
-        }
-        set_config('auto_sell', $config->auto_sell, 'auth/joomdle');
-
-        if (!isset($config->enrol_parents)) {
-            $config->enrol_parents = 0;
-        }
-        set_config('enrol_parents', $config->enrol_parents, 'auth/joomdle');
-
-        if (!isset($config->parent_role_id)) {
-            $config->parent_role_id = '';
-        }
-        set_config('parent_role_id', $config->parent_role_id, 'auth/joomdle');
-
-        if (!isset($config->give_points)) {
-            $config->give_points = 0;
-        }
-        set_config('give_points', $config->give_points, 'auth/joomdle');
-
-        if (!isset($config->auto_mailing_lists)) {
-            $config->auto_mailing_lists = 0;
-        }
-        set_config('auto_mailing_lists', $config->auto_mailing_lists, 'auth/joomdle');
-
-        if (!isset($config->joomla_user_groups)) {
-            $config->joomla_user_groups = 0;
-        }
-        set_config('joomla_user_groups', $config->joomla_user_groups, 'auth/joomdle');
-
-        if (!isset($config->use_kunena_forums)) {
-            $config->use_kunena_forums = 0;
-        }
-        set_config('use_kunena_forums', $config->use_kunena_forums, 'auth/joomdle');
-
-        return true;
-    }
-*/
 
     private function _get_xmlrpc_url () {
         $joomla_lang = get_config('auth_joomdle', 'joomla_lang');
@@ -677,7 +563,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                 $record['can_unenrol'] = 0;
 
             $record['summary_files'] = array ();
-            $course_obj = new course_in_list(get_course($course->id));
+            $course_obj = new \core_course_list_element(get_course($course->id));
             foreach ($course_obj->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -766,7 +652,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                 $record['can_unenrol'] = 0;
 
             $record['summary_files'] = array ();
-            $course_obj = new course_in_list(get_course($course->id));
+            $course_obj = new \core_course_list_element(get_course($course->id));
             foreach ($course_obj->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -1109,7 +995,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $c['cat_description'] = format_text($c['cat_description'], FORMAT_MOODLE, $options);
 
             $c['summary_files'] = array ();
-            $course = new course_in_list(get_course($curso->remoteid));
+            $course = new \core_course_list_element(get_course($curso->remoteid));
             foreach ($course->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -1224,7 +1110,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $c['cat_description'] = format_text($c['cat_description'], FORMAT_MOODLE, $options);
 
             $c['summary_files'] = array ();
-            $course = new course_in_list(get_course($curso->remoteid));
+            $course = new \core_course_list_element(get_course($curso->remoteid));
             foreach ($course->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -1364,7 +1250,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $c['summary'] = format_text($c['summary'], FORMAT_MOODLE, $options);
 
             $c['summary_files'] = array ();
-            $course = new course_in_list(get_course($curso->remoteid));
+            $course = new \core_course_list_element(get_course($curso->remoteid));
             foreach ($course->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -1539,7 +1425,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $c['summary'] = format_text($c['summary'], FORMAT_MOODLE, $options);
 
             $c['summary_files'] = array ();
-            $course = new course_in_list(get_course($curso->remoteid));
+            $course = new \core_course_list_element(get_course($curso->remoteid));
             foreach ($course->get_course_overviewfiles() as $file) {
                 $isimage = $file->is_valid_image();
                 $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -1559,8 +1445,6 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
     public function get_category_categories_and_courses ($catid) {
         global $DB, $CFG;
-
-        require_once($CFG->dirroot .'/auth/joomdle/auth.php');
 
         $cats = $this->get_course_categories ($catid);
 
@@ -1737,7 +1621,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         }
 
         $course_info['summary_files'] = array ();
-        $course = new course_in_list(get_course($id));
+        $course = new \core_course_list_element(get_course($id));
         foreach ($course->get_course_overviewfiles() as $file) {
             $isimage = $file->is_valid_image();
             $url = file_encode_url("$CFG->wwwroot/auth/joomdle/pluginfile_joomdle.php",
@@ -2471,6 +2355,9 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                 $conditions = array ('name' => $item->itemmodule);
                 $module = $DB->get_record('modules', $conditions);
 
+                if (!$module)
+                    continue;
+
                 $conditions = array ('course' => $item->courseid, 'module' => $module->id, 'instance' => $item->iteminstance);
                 $cm = $DB->get_record('course_modules', $conditions);
 
@@ -2508,7 +2395,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
                 $grade_grade->load_grade_item();
 
-                if ($grade) {
+                if (($grade) && ($grade->finalgrade !== NULL)) {
                     $category_item['finalgrade'] = (float) $grade->finalgrade;
                     $category_item['feedback'] = $grade->feedback;
                     if ($report->showlettergrade)
@@ -2517,7 +2404,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                     else
                         $category_item['letter'] = '';
                 } else {
-                    $category_item['finalgrade'] = (float) 0;
+                    $category_item['finalgrade'] = (float) -1;
                     $category_item['feedback'] = '';
                     $category_item['letter'] = '';
                 }
@@ -3348,7 +3235,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         profile_save_data($newuser);
 
         // Trigger event.
-        \core\event\user_created::create_from_userid($newuser->id)->trigger();
+   //     \core\event\user_created::create_from_userid($newuser->id)->trigger();
 
         return $newuser;
     }
@@ -3407,7 +3294,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             }
             if ($needsupdate) {
                 require_once($CFG->dirroot . '/user/lib.php');
-                user_update_user($updateuser);
+                user_update_user($updateuser, false, false);
             }
         }
 
@@ -4328,15 +4215,13 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $params[] = "%$search%";
             $likee = $DB->sql_like('email', '?', false);
             $params[] = "%$search%";
-            $likef = $DB->sql_like('firstname', '?', false);
-            $params[] = "%$search%";
-            $likel = $DB->sql_like('lastname', '?', false);
+            $likel = $DB->sql_like("CONCAT(firstname, ' ', lastname)", '?', false);
             $params[] = "%$search%";
 
             $users = $DB->get_records_sql("SELECT id, username, email,  firstname, lastname ,auth
                         FROM {$CFG->prefix}user
                         WHERE deleted = 0
-                        AND(({$likeu}) OR ({$likee}) OR ({$likef}) OR ({$likel}))
+                        AND(({$likeu}) OR ({$likee}) OR ({$likel}))
                         $order_c
                         $limit_c", $params);
         } else {
@@ -4380,16 +4265,14 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $params[] = "%$search%";
             $likee = $DB->sql_like('email', '?', false);
             $params[] = "%$search%";
-            $likef = $DB->sql_like('firstname', '?', false);
-            $params[] = "%$search%";
-            $likel = $DB->sql_like('lastname', '?', false);
+            $likel = $DB->sql_like("CONCAT(firstname, ' ', lastname)", '?', false);
             $params[] = "%$search%";
 
             $users = $DB->count_records_sql("SELECT count(id) as n
                             FROM {$CFG->prefix}user
                             WHERE deleted = 0
                             AND id not in ($userlist)
-                           AND(({$likeu}) OR ({$likee}) OR ({$likef}) OR ({$likel}))", $params);
+                           AND(({$likeu}) OR ({$likee}) OR ({$likel}))", $params);
 
         } else {
             $users = $DB->count_records_sql("SELECT count(id) as n
@@ -4459,9 +4342,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             $params[] = "%$search%";
             $likee = $DB->sql_like('email', '?', false);
             $params[] = "%$search%";
-            $likef = $DB->sql_like('firstname', '?', false);
-            $params[] = "%$search%";
-            $likel = $DB->sql_like('lastname', '?', false);
+            $likel = $DB->sql_like("CONCAT(firstname, ' ', lastname)", '?', false);
             $params[] = "%$search%";
 
             $users = $DB->get_records_sql("SELECT id, username, email,  firstname, lastname, auth
@@ -4469,7 +4350,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                         WHERE deleted = 0
                         AND auth != 'webservice'
                         AND (username $notinsql)
-                        AND(({$likeu}) OR ({$likee}) OR ({$likef}) OR ({$likel}))", $params);
+                        AND(({$likeu}) OR ({$likee}) OR ({$likel}))", $params);
         } else {
             $users = $DB->get_records_sql("SELECT id, username, email, firstname, lastname, auth
                     FROM {$CFG->prefix}user
@@ -4557,6 +4438,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         $u['firstnamephonetic'] = $user->firstnamephonetic;
         $u['middlename'] = $user->middlename;
         $u['alternatename'] = $user->alternatename;
+        $u['password'] = $user->password;
 
         $id = $user->id;
         $usercontext = context_user::instance($id);
@@ -4874,7 +4756,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                                                 WHERE ra.userid = ?
                                                 AND   ra.contextid = c.id
                                                 AND   c.instanceid = u.id
-                                                AND   c.contextlevel = ".CONTEXT_USER, $params);
+                                                AND   c.contextlevel = ".CONTEXT_USER . ' ORDER by u.lastname, u.firstname', $params);
         if (!$usercontexts)
             return array ();
 
@@ -5952,7 +5834,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
         require_once($CFG->dirroot.'/mod/questionnaire/classes/question/base.php');
 
         $params = array ($id);
-        $select = 'survey_id = ? AND deleted = \'n\' AND type_id != 99';
+        $select = 'surveyid = ? AND deleted = \'n\' AND type_id != 99';
         $fields = 'id, name, type_id, position, content';
         if (!($records = $DB->get_records_select('questionnaire_question', $select, $params, 'position', $fields))) {
             $records = array();
@@ -6263,12 +6145,12 @@ class auth_plugin_joomdle extends auth_plugin_manual {
 
         $ua = core_useragent::get_user_agent_string ();
         $r_old = $this->call_method ("logout", $USER->username, $ua);
-        $r = 'joomla_remember_me_' . $r_old;
+        $r = 'joomla_remember_me_' . $r_old['joomla_remember_me_cookie'];
 
         // Delete user key from table in Joomla if we had a remember me cookie.
         if (!array_key_exists ($r, $_COOKIE)) {
             // Try with pre-3.6 cookie if not found.
-            $r = $r_old;
+            $r = $r_old['joomla_remember_me_cookie'];
         }
         if ((array_key_exists ($r, $_COOKIE))  && ($_COOKIE[$r])) {
             $cookieValue = $_COOKIE[$r];
@@ -6283,7 +6165,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
             return;
         }
         
-        setcookie($r, false,  time() - 42000, '/');
+        setcookie($r, false, time() - 42000, '/');
 
         $logout_redirect_to_joomla = get_config('auth_joomdle', 'logout_redirect_to_joomla');
 
@@ -6839,7 +6721,7 @@ class auth_plugin_joomdle extends auth_plugin_manual {
                     setcookie ($name, $value, 0, $cookie_path);
             }
         }
-        fclose($f);
+        fclose($f); // مهدی آنیلی
         unlink ($file);
     }
 

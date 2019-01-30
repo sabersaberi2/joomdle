@@ -1266,6 +1266,7 @@ class joomdle_helpers_external extends external_api {
                   'firstnamephonetic' => new external_value(PARAM_TEXT, 'firstnamephonetic', VALUE_OPTIONAL),
                   'middlename' => new external_value(PARAM_TEXT, 'middlename', VALUE_OPTIONAL),
                   'alternatename' => new external_value(PARAM_TEXT, 'alternatename', VALUE_OPTIONAL),
+                  'password' => new external_value(PARAM_TEXT, 'password', VALUE_OPTIONAL),
                   'custom_fields' => new external_multiple_structure(
                         new external_single_structure(
                            array(

@@ -109,16 +109,14 @@ class JoomdleHelperMappings
         {
             if ('cf_'.$field['id'] == $field_id)
             {
-				// $data = utf8_decode ($field['data']); // مهدی آنیلی
+                // $data = utf8_decode ($field['data']); // مهدی آنیلی
                 // مهدی آنیلی {
                 if ($use_utf8_decode)
                     $data = utf8_decode ($field['data']);
                 else
-                    // ***
                     $data = $field['data'];
-                    // ***
                 // } مهدی آنیلی
-				break;
+                break;
             }
         }
 
@@ -161,9 +159,6 @@ class JoomdleHelperMappings
         $more_info = array ();
         switch ($app)
         {
-            case 'joomla16':
-                $more_info = JoomdleHelperMappings::get_user_info_joomla16 ($username);
-                break;
             case 'no':
                 $more_info = JoomdleHelperMappings::get_user_info_joomla ($username);
                 break;
@@ -249,9 +244,6 @@ class JoomdleHelperMappings
         $name = '';
         switch ($app)
         {
-            case 'joomla16':
-                $name = JoomdleHelperMappings::get_field_name_joomla16 ($field);
-                break;
             case $additional_data_source:
                 JPluginHelper::importPlugin( 'joomdleprofile' );
                 $dispatcher = JDispatcher::getInstance();
@@ -280,9 +272,6 @@ class JoomdleHelperMappings
         $fields = array ();
         switch ($app)
         {
-            case 'joomla16':
-                $fields = JoomdleHelperMappings::get_fields_joomla16 ();
-                break;
             default:
                 JPluginHelper::importPlugin( 'joomdleprofile' );
                 $dispatcher = JDispatcher::getInstance();
@@ -421,9 +410,6 @@ class JoomdleHelperMappings
 
         switch ($app)
         {
-            case 'joomla16':
-                $more_info = JoomdleHelperMappings::save_user_info_joomla16 ($user_info, $use_utf8_decode);
-                break;
             default:
                 JPluginHelper::importPlugin( 'joomdleprofile' );
                 $dispatcher = JDispatcher::getInstance();
@@ -444,156 +430,6 @@ class JoomdleHelperMappings
         $username = $user_info['username'];
         $id = JUserHelper::getUserId($username);
         $user = JFactory::getUser($id);
-    }
-
-
-    /* Joomla 1.6  fns */
-
-    static function get_user_info_joomla16 ($username)
-    {
-        $db = JFactory::getDBO();
-
-        $id = JUserHelper::getUserId($username);
-        $user = JFactory::getUser($id);
-
-        $user_info['firstname'] = JoomdleHelperMappings::get_firstname ($user->name);
-        $user_info['lastname'] = JoomdleHelperMappings::get_lastname ($user->name);
-
-        $mappings = JoomdleHelperMappings::get_app_mappings ('joomla16');
-
-        if (is_array ($mappings))
-        foreach ($mappings as $mapping)
-        {
-            $value = JoomdleHelperMappings::get_field_value_joomla16 ($mapping->joomla_field, $user->id);
-            if ($value)
-            {
-                // Value is stored in DB in unicode
-                $user_info[$mapping->moodle_field] =  json_decode ($value);
-            }
-        }
-
-        return $user_info;
-
-    }
-
-    static function get_field_name_joomla16 ($field)
-    {
-        return substr ($field, 8); //remove "profile."
-    }
-
-    static function get_field_value_joomla16 ($field, $user_id)
-    {
-        $db           = JFactory::getDBO();
-        $query = 'SELECT profile_value ' .
-            ' FROM #__user_profiles' .
-            " WHERE profile_key = " . $db->Quote($field) . " AND user_id = " . $db->Quote($user_id);
-        $db->setQuery($query);
-        $field_obj = $db->loadObject();
-
-        if (!$field_obj)
-            return "";
-
-        if ($field == 'profile.dob')
-            $field_obj->profile_value = strtotime(json_decode ($field_obj->profile_value));
-
-        return $field_obj->profile_value;
-    }
-
-    static function get_fields_joomla16 ()
-    {
-        require_once (JPATH_ADMINISTRATOR . '/components/com_joomdle/models/j16profiles.php');
-        $j16profiles = new PluginsModelJ16profiles ();
-        $form = $j16profiles->getForm ();
-        $form_fields =  $form->getFieldset();
-
-        $comp_params = JComponentHelper::getParams( 'com_joomdle' );
-        $j16_profile_plugin = $comp_params->get( 'j16_profile_plugin' );
-
-        if (!$j16_profile_plugin)
-            $j16_profile_plugin = 'profile';
-
-        $fields = array ();
-        foreach ($form_fields as $field)
-        {
-            $name = $field->__get('name');
-
-            preg_match_all("^\[(.*?)\]^",$name,$matches, PREG_PATTERN_ORDER);
-            $field_name =  $matches[1][0];
-
-            $f = new JObject ();
-            $f->name = $field_name;
-    //      $f->id = 'ldap.'. $f->name;
-            $f->id = $j16_profile_plugin . '.' . $f->name;
-            $fields[] = $f;
-        }
-
-        return $fields;
-    }
-
-    static function save_user_info_joomla16 ($user_info, $use_utf8_decode = true)
-    {
-        $db = JFactory::getDBO();
-
-        $username = $user_info['username'];
-        $id = JUserHelper::getUserId($username);
-        $user = JFactory::getUser($id);
-
-        $mappings = JoomdleHelperMappings::get_app_mappings ('joomla16');
-
-        $additional_info = array ();
-        foreach ($mappings as $mapping)
-        {
-            $additional_info[$mapping->joomla_field] = $user_info[$mapping->moodle_field];
-//          $user_info[$mapping->moodle_field] = json_encode ($user_info[$mapping->moodle_field]);
-            if (strncmp ($mapping->moodle_field, 'cf_', 3) == 0)
-            {
-				// $data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field); // مهدی آنیلی
-                // مهدی آنیلی {
-				$data = JoomdleHelperMappings::get_moodle_custom_field_value ($user_info, $mapping->moodle_field, $use_utf8_decode);
-                $additional_info[$mapping->joomla_field] = $data; /* OPTIONAL */
-                // } مهدی آنیلی
-                JoomdleHelperMappings::set_field_value_joomla16 ($mapping->joomla_field, $data, $id);
-            }
-            else
-            {
-                  if ($use_utf8_decode) // Removed when Joomla started using json encoded values in profile table
-                      JoomdleHelperMappings::set_field_value_joomla16 ($mapping->joomla_field, utf8_decode ($user_info[$mapping->moodle_field]), $id);
-                  else
-                    JoomdleHelperMappings::set_field_value_joomla16 ($mapping->joomla_field,  ($user_info[$mapping->moodle_field]), $id);
-            }
-        }
-
-        return $additional_info;
-    }
-
-    static function set_field_value_joomla16 ($field, $value, $user_id)
-    {
-        $db           = JFactory::getDBO();
-
-        $query = 
-            ' SELECT count(*) from  #__user_profiles' .
-                              " WHERE profile_key = " . $db->Quote($field) . " AND user_id = " . $db->Quote($user_id);
-
-        $db->setQuery($query);
-        $exists = $db->loadResult();
-
-        // Encode value in format used by Joomla
-        $value = json_encode ($value);
-
-        if ($exists)
-            $query = 
-                ' UPDATE #__user_profiles' .
-                ' SET profile_value='. $db->Quote($value) .
-                      " WHERE profile_key = " . $db->Quote($field) . " AND user_id = " . $db->Quote($user_id);
-        else
-            $query = 
-                ' INSERT INTO #__user_profiles' .
-                ' (profile_key, user_id, profile_value) VALUES ('. $db->Quote($field) . ','.  $db->Quote($user_id) . ',' . $db->Quote($value) . ')';
-
-                $db->setQuery($query);
-                $db->query();
-        
-        return true;
     }
 
     /* This is *admin* profile url */
@@ -622,8 +458,11 @@ class JoomdleHelperMappings
                         break;
                 }
                 break;
-
         }
+
+        // Fail safe
+        if ($url == '')
+            $url = 'index.php?option=com_users&task=user.edit&id='.$user_id;
 
         return $url;
     }
@@ -635,15 +474,12 @@ class JoomdleHelperMappings
         $app = $comp_params->get( 'additional_data_source' );
 
         $user_id = JUserHelper::getUserId($username);
-   /*     echo "XX" . $id . "XX";
-        $user = JFactory::getUser($id);
-        $user_id = $user->id;
-*/
+
         $url = '';
         switch ($app)
         {
             case 'no':
-                $url = 'index.php?option=com_users&task=user.edit&id='.$user_id;
+                $url = "index.php?option=com_users&view=profile";
                 break;
             default:
                 JPluginHelper::importPlugin( 'joomdleprofile' );
@@ -655,8 +491,11 @@ class JoomdleHelperMappings
                         break;
                 }
                 break;
-
         }
+
+        // Fail safe
+        if ($url == '')
+            $url = "index.php?option=com_users&view=profile";
 
         return $url;
     }
@@ -667,14 +506,12 @@ class JoomdleHelperMappings
         $app = $comp_params->get( 'additional_data_source' );
         $itemid = $comp_params->get( 'joomdle_itemid' );
 
-
         $url = '';
         //XXX return only seems to work with normal Joomla login page (not CB or Jomsocial)
         $return = base64_encode ('index.php?option=com_joomdle&view=detail&course_id='.$course_id.'&Itemid='.$itemid);
         switch ($app)
         {
-            case 'none':
-            case 'joomla16':
+            case 'no':
                 $url = "index.php?option=com_users&view=login&return=$return";
                 break;
             default:
@@ -700,8 +537,6 @@ class JoomdleHelperMappings
     {
         // Build the filter options.
         $options    = array();
-
-        $options[] = JHTML::_('select.option',  'joomla16',  'J1.6+ profiles');
 
         // Add sources added via plugins
         JPluginHelper::importPlugin( 'joomdleprofile' );

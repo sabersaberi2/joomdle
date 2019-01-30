@@ -1025,17 +1025,8 @@ else
         $moodle_user['username'] = $username;
         $user_details =JoomdleHelperContent::call_method ('user_details', $username);
 
-
         $moodle_user['name'] = $user_details['firstname'] .' '.$user_details['lastname'];
         $moodle_user['email'] = $user_details['email'];
-
-        $password = JUserHelper::genRandomPassword();
-        $password = preg_replace('/[\x00-\x1F\x7F]/', '', $password); //Disallow control chars in the email
-
-    //  $password = ''; //XXX FOR NOT CHANGING PASSWORD FOR USERS
-
-        $moodle_user['password'] = $password;
-        $moodle_user['password2'] = $password;
 
         $moodle_user['activation'] = '';
         $moodle_user['sendEmail'] = 0;
@@ -1070,9 +1061,9 @@ else
                 return false;
         }
 
-        // Send registration  mail
-       //XXX Email is already sent by joomla core
-     //   JoomdleHelperContent::send_registration_email ($user, $password);
+        // Manually store password from Moodle
+        $user->password = $user_details['password'];
+        $user->save ();
     }
 
     static function send_registration_email ($user, $password)

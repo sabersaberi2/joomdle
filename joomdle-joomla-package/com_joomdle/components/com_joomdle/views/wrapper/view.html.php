@@ -32,10 +32,7 @@ class JoomdleViewWrapper extends JViewLegacy {
 
         $id = (int) $id;
 
-        $day = $app->input->get('day');
-        $mon = $app->input->get('mon');
-        $year = $app->input->get('year');
-
+        $time = $app->input->get('time');
         $lang = $app->input->get('lang');
 
         $topic = $app->input->get('topic');
@@ -59,8 +56,6 @@ class JoomdleViewWrapper extends JViewLegacy {
                 $this->wrapper->url = $params->get( 'MOODLE_URL' ).$path.$id;
                 break;
             case "event" :
-                $date = new DateTime("$year-$mon-$day");
-                $time = $date->getTimestamp();
                 $path = "/calendar/view.php?view=day&time=$time";
                 $this->wrapper->url = $params->get( 'MOODLE_URL' ).$path;
                 break;

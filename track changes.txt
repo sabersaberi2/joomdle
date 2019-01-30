@@ -1,0 +1,107 @@
+moodle/enrol_joomdle/lang/en/enrol_joomdle.php
+    - اصلاح ترجمه اشتباه 'status'
+    - افزودن ترجمه واحدهای پولی جدید 'iranian_rial' و 'iranian_toman' و 'afghan_afghani' و 'iraqi_dinar'
+
+moodle/enrol_joomdle/lang/fa/enrol_joomdle.php
+    - افزودن زبان جدید فارسی
+
+moodle/enrol_joomdle/edit_form.php
+    - افزودن واحدهای پولی جدید 'Iranian Rial' و 'Iranian Toman' و 'Afghanistan Afghani' و 'Iraqi Dinar' و 'China Yuan Renminbi'
+
+moodle/enrol_joomdle/enrol.php
+    - بهبود نام نمایشی واحد پولی چین (CNY)
+    - افزودن واحدهای پولی جدید 'Iranian Rial' و 'Iranian Toman' و 'Afghanistan Afghani' و 'Iraqi Dinar'
+
+moodle/enrol_joomdle/settings.php
+    - بهبود نام نمایشی واحد پولی چین (CNY)
+    - افزودن واحدهای پولی جدید 'Iranian Rial' و 'Iranian Toman' و 'Afghanistan Afghani' و 'Iraqi Dinar'
+    - تغییر واحد پولی پیش فرض از دلار به ریال ایران
+
+moodle/auth_joomdle/helpers/externallib.php
+    - اضافه کردن اطلاعات 'enddate' و 'lang' و 'numsections_تعداد جلسات' و 'teachers_اساتید' درسها به تابع 'list_courses'
+    - اضافه کردن اطلاعات 'teachers_اساتید' به تابع 'get_course_info'
+    - اضافه کردن 'courseid_شناسه درس' به تابع 'teachers_abc'
+    - اصلاح فاصله گذاری کدهای داخل تابع 'multiple_add_cohort_member_parameters'
+    - اضافه کردن سرویس های خارجی جدید 'get_groups' و 'multiple_add_group_member' به XML-RPC server برای راه اندازی کامپوننت شخصی Jgroups
+
+moodle/auth_joomdle/db/services.php
+    - اضافه کردن سرویس های خارجی جدید 'get_groups' و 'multiple_add_group_member' به XML-RPC server برای راه اندازی کامپوننت شخصی Jgroups
+
+moodle/auth_joomdle/auth.php
+    - اصلاح رشته بازگشتی از XML-RPC server در توابع 'call_method_fgc' و 'call_method_curl' و 'call_method_fgc_debug' و 'call_method_curl_debug'
+    - اضافه کردن اطلاعات 'enddate' و 'lang' و 'numsections_تعداد جلسات' و 'teachers_اساتید' درسها به تابع 'list_courses'
+    - اصلاح (اضافه کردن) داده 'enddate' به آرایه 'not_found' در تابع 'get_course_info'
+    - اضافه کردن اطلاعات 'teachers_اساتید' به تابع 'get_course_info'
+    - اضافه کردن 'courseid_شناسه درس' به تابع 'teachers_abc'
+    - اصلاح کد تابع create_joomdle_user_record برای ذخیره سازی درست فیلدهای اضافی cb در فیلدهای اضافی مودل که توسط جومدل به هم متصل شده اند
+    - اصلاح کد تابع get_course_mods برای عدم نمایش ماژول های درس حذف شده برای کاربران مهمان، که فرآیند حذف قطعی آنها توسط cron هنوز اجرا نشده است
+    - اضافه کردن سرویس های خارجی جدید 'get_groups' و 'multiple_add_group_member' به XML-RPC server برای راه اندازی کامپوننت شخصی Jgroups
+    - اصلاح کد تابع log_into_joomla برای بستن فایل کوکی پیش از حذف کردن فایل کوکی
+
+joomdle-joomla-package/plg_search_coursetopics/coursetopics.xml
+    - اصلاح (حذف) کد زبان 'ro-RO' به دلیل وجود نداشتن فایل 'ro-RO.plg_search_coursetopics.ini'
+
+joomdle-joomla-package/plg_search_courses/courses.xml
+    - اصلاح (حذف) کد زبان 'ro-RO' به دلیل وجود نداشتن فایل 'ro-RO.plg_search_coursetopics.ini'
+
+joomdle-joomla-package/plg_search_coursecategories/coursecategories.xml
+    - اصلاح (حذف) کد زبان 'ro-RO' به دلیل وجود نداشتن فایل 'ro-RO.plg_search_coursetopics.ini'
+
+joomdle-joomla-package/plg_joomdlehooks/joomdlehooks.php
+    - اصلاح کد تابع log_into_moodle برای بستن فایل کوکی پیش از حذف کردن فایل کوکی
+
+joomdle-joomla-package/com_joomdle/language/en-GB/en-GB.com_joomdle.ini
+    -افزودن ترجمه واحدهای پولی جدید 'COM_JOOMDLE_CURRENCY_IRR' و 'COM_JOOMDLE_CURRENCY_IRT' و 'COM_JOOMDLE_CURRENCY_AFN' و 'COM_JOOMDLE_CURRENCY_IQD'
+    -افزودن ترجمه جدید 'COM_JOOMDLE_CERTIFICATE_ISSUANCE'
+
+joomdle-joomla-package/com_joomdle/language/fa-IR/fa-IR.com_joomdle.ini
+    - افزودن زبان جدید فارسی
+
+joomdle-joomla-package/com_joomdle/language/fa-IR/fa-IR.com_joomdlecoursemanager.ini
+    - افزودن زبان جدید فارسی
+
+joomdle-joomla-package/com_joomdle/language/fa-IR/fa-IR.com_joomdlemanager.ini
+    - افزودن زبان جدید فارسی
+
+joomdle-joomla-package/com_joomdle/components/com_joomdle/views/mycourses/view.html.php
+    - بهبود فاصله گذاری دستورات
+
+joomdle-joomla-package/com_joomdle/components/com_joomdle/views/detail/tmpl/default.php
+    - شخصی سازی کامل نمای 'detail' به همراه اضافه کردن فایل (استایل) جدید
+      joomdle-joomla-package/com_joomdle/components/com_joomdle/views/detail/assets/css/com_joomdle_views_detail.css
+
+joomdle-joomla-package/com_joomdle/components/com_joomdle/views/detail/view.html.php
+    - بهبود فاصله گذاری دستورات
+    - اضافه کردن اطلاعات 'teachers_اساتید درس' و 'is_enroled' و 'mods_ماژول های درس'
+
+joomdle-joomla-package/com_joomdle/administrator/language/pt-BR/pt-BR.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/it-IT/it-IT.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/fr-FR/fr-FR.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/es-ES/es-ES.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/en-GB/en-GB.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/el-GR/el-GR.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/language/de-DE/de-DE.com_joomdle.ini
+    - افزودن ترجمه جدید 'COM_JOOMDLE_ID'
+
+joomdle-joomla-package/com_joomdle/administrator/components/com_joomdle/views/users/tmpl/default.php
+    - افزودن قابلیت مرتب کردن لیست کاربران بر اساس 'ID'
+
+joomdle-joomla-package/com_joomdle/administrator/components/com_joomdle/models/users.php
+    - افزودن قابلیت مرتب کردن لیست کاربران بر اساس 'id'
+    - تغییر پارامتر پیش فرض مرتب سازی لیست کاربران از 'name' به 'id'
+
+joomdle-joomla-package/com_joomdle/administrator/components/com_joomdle/helpers/mappings.php
+    - اصلاح کد تابع get_moodle_custom_field_value برای جلوگیری از تبدیل شدن حروف فارسی به ؟ در فیلدهای اضافی مودل
+

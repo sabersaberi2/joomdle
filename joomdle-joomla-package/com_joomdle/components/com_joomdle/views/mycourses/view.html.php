@@ -14,23 +14,64 @@ jimport( 'joomla.application.component.view');
  * HTML View class for the Joomdle component
  */
 class JoomdleViewMycourses extends JViewLegacy {
-
-    function display($tpl = null) {
+    function display($tpl = null)
+    {
         global $mainframe;
 
-        $app        = JFactory::getApplication();
+        $app    = JFactory::getApplication();
         $params = $app->getParams();
-        $this->assignRef('params',              $params);
+        $this->assignRef('params', $params);
 
 
         $group_by_category = $params->get( 'group_by_category' );
 
-        $user = JFactory::getUser();
+        $user     = JFactory::getUser();
         $username = $user->username;
         if ($group_by_category)
             $this->my_courses = JoomdleHelperContent::call_method ('my_courses', $username, 1);
         else
             $this->my_courses = JoomdleHelperContent::getMyCourses();
+
+        if  ($params->get( 'courses_shown' ))
+        {
+            if (is_array($params->get( 'courses_shown' )))
+                $courses_shown = $params->get( 'courses_shown' );
+            else
+                $courses_shown = array ( $params->get( 'courses_shown' ));
+
+            $this->my_courses = $this->filter_by_value ($this->my_courses, 'id', $courses_shown);
+        }
+
+        if  ($params->get( 'courses_not_shown' ))
+        {
+            if (is_array($params->get( 'courses_not_shown' )))
+                $courses_not_shown = $params->get( 'courses_not_shown' );
+            else
+                $courses_not_shown = array ( $params->get( 'courses_not_shown' ));
+
+            $this->my_courses = $this->exclude_by_value ($this->my_courses, 'id', $courses_not_shown);
+        }
+
+        if  ($params->get( 'categories_shown' ))
+        {
+            if (is_array($params->get( 'categories_shown' )))
+                $cats_shown = $params->get( 'categories_shown' );
+            else
+                $cats_shown = array ( $params->get( 'categories_shown' ));
+
+            $this->my_courses = $this->filter_by_value ($this->my_courses, 'category', $cats_shown);
+        }
+
+        if  ($params->get( 'categories_not_shown' ))
+        {
+            if (is_array($params->get( 'categories_not_shown' )))
+                $cats_shown = $params->get( 'categories_not_shown' );
+            else
+                $cats_shown = array ( $params->get( 'categories_not_shown' ));
+
+            $this->my_courses = $this->exclude_by_value ($this->my_courses, 'category', $cats_shown);
+        }
+
 
         $this->jump_url =  JoomdleHelperContent::getJumpURL ();
 
@@ -65,5 +106,42 @@ class JoomdleViewMycourses extends JViewLegacy {
         }
     }
 
+    protected function filter_by_value ($array, $index, $value)
+    {
+        $newarray = array ();
+        if(is_array($array) && count($array)>0)
+        {
+            foreach(array_keys($array) as $key)
+            {
+                if (array_key_exists ($index, $array[$key]))
+                    $temp[$key] = $array[$key][$index];
+                else $temp[$key] = 0;
+
+                if (in_array ($temp[$key] ,$value)){
+                    $newarray[$key] = $array[$key];
+                }
+            }
+        }
+        return $newarray;
+    }
+
+    protected function exclude_by_value ($array, $index, $value)
+    {
+        $newarray = array ();
+        if(is_array($array) && count($array)>0)
+        {
+            foreach(array_keys($array) as $key)
+            {
+                if (array_key_exists ($index, $array[$key]))
+                    $temp[$key] = $array[$key][$index];
+                else $temp[$key] = 0;
+
+                if (!in_array ($temp[$key] ,$value)){
+                    $newarray[$key] = $array[$key];
+                }
+            }
+        }
+        return $newarray;
+    }
 }
 ?>

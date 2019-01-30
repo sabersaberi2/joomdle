@@ -11,7 +11,7 @@
 
         <fields name="request">
             <fieldset name="request">
-			<field type="course" name="course_id" label="COM_JOOMDLE_COURSE" description="COM_JOOMDLE_COURSE_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/fields" />
+			<field type="courselist" name="course_id" label="COM_JOOMDLE_COURSE" description="COM_JOOMDLE_COURSE_DESCRIPTION" addfieldpath="/administrator/components/com_joomdle/models/fields" />
             </fieldset>
         </fields>
 

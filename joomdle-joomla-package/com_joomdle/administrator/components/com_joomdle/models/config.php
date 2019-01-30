@@ -88,7 +88,7 @@ class JoomdleModelConfig extends JModelAdmin
 
             // Set Joomla component for new mappings
             if (!$item->joomla_app)
-                $item->joomla_app = 'joomla16';
+                $item->joomla_app = '';
         }
 
         return $item;

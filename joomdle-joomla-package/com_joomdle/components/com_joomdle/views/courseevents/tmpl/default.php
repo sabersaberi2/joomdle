@@ -21,15 +21,11 @@ foreach ($this->events as  $event) : ?>
           <?php
 
             $linkstarget = $this->params->get( 'linkstarget' );
-                        if ($linkstarget == "new")
-                                 $target = " target='_blank'";
-                         else $target = "";
+            if ($linkstarget == "new")
+                     $target = " target='_blank'";
+             else $target = "";
 
-            $day = date('d', $event['timestart']);
-            $mon = date('m', $event['timestart']);
-            $year = date('Y', $event['timestart']);
-
-            $link = $this->jump_url."&mtype=event&id=".$event['courseid']."&day=$day&mon=$mon&year=$year";
+            $link = $this->jump_url."&mtype=event&id=".$event['courseid']."&time=" . $event['timestart'];
             if ($lang)
                 $link .= "&lang=$lang";
 

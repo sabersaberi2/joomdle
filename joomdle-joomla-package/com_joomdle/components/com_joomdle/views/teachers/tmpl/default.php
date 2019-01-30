@@ -33,7 +33,7 @@ foreach ($this->teachers as  $teacher) : ?>
                 $user_info['pic_url'] = $user_info['thumb_url'];
             ?>
 
-            <a href="<?php echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid"); ?>"><img height='64' width='64' src="<?php echo $user_info['pic_url']; ?>"></a>
+            <a href="<?php echo JRoute::_($user_info['profile_url']."&Itemid=$itemid"); ?>"><img height='64' width='64' src="<?php echo $user_info['pic_url']; ?>"></a>
         </div>
         <div class="joomdle_user_list_item_name">
                <a href="<?php echo JRoute::_("index.php?option=com_joomdle&view=teacher&username=".$teacher['username']."&Itemid=$itemid"); ?>"><?php echo $teacher['firstname']." ".$teacher['lastname']; ?></a>

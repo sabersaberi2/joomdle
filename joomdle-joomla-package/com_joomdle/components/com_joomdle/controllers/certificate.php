@@ -24,7 +24,7 @@ class JoomdleControllerCertificate extends JControllerLegacy
         $cert_id   = $this->input->get('cert_id');
         $cert_type   = $this->input->get('cert_type');
 
-        $email   = $this->input->get('email');
+        $email   = $this->input->get('mailto', '', NULL);
         $sender   = $this->input->get('sender');
         $from   = $this->input->get('from');
         $user = JFactory::getUser();

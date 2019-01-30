@@ -64,6 +64,12 @@ $observers = array(
     ),
 
     array(
+        'eventname' => '\core\event\course_restored',
+        'callback' => 'auth_joomdle_handler::course_restored',
+        'includefile' => '/auth/joomdle/locallib.php'
+    ),
+
+    array(
         'eventname' => '\core\event\role_assigned',
         'callback' => 'auth_joomdle_handler::role_assigned',
         'includefile' => '/auth/joomdle/locallib.php'

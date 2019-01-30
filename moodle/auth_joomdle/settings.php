@@ -69,10 +69,6 @@ if ($ADMIN->fulltree) {
 		get_string('auth_joomla_jomsocial_groups_delete', 'auth_joomdle'),
 		get_string('auth_joomla_jomsocial_groups_delete_description', 'auth_joomdle'), 0));
 
-    $settings->add(new admin_setting_configcheckbox('auth_joomdle/auto_sell',
-		get_string('auth_joomla_auto_sell', 'auth_joomdle'),
-		get_string('auth_joomla_auto_sell_description', 'auth_joomdle'), 0));
-
     $settings->add(new admin_setting_configcheckbox('auth_joomdle/enrol_parents',
 		get_string('auth_joomla_enrol_parents', 'auth_joomdle'),
 		get_string('auth_joomla_enrol_parents_description', 'auth_joomdle'), 0));

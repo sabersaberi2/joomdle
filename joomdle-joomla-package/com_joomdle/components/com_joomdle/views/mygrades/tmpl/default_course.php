@@ -6,7 +6,6 @@
   */
 
 defined('_JEXEC') or die('Restricted access'); ?>
-
 <?php
 $itemid = JoomdleHelperContent::getMenuItem();
 ?>
@@ -96,7 +95,7 @@ foreach ($this->gcats['data'] as  $gcat) :
                         </td>
                         <td width="10%" align="center" class="simpletable<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
                             <?php 
-                                if ($item['finalgrade'])
+                                if ($item['finalgrade'] >= 0)
                                 {
                                     if ($this->gcats['config']['showlettergrade'])
                                         echo $item['letter'];
@@ -138,7 +137,7 @@ foreach ($this->gcats['data'] as  $gcat) :
                     </td>
                     <td align="center" class="simpletable<?php echo $this->params->get( 'pageclass_sfx' ); ?>">
                     <?php 
-                        if ($gcat['finalgrade'])
+                        if ($item['finalgrade'] >= 0)
                         {
                                 if ($this->gcats['config']['showlettergrade'])
                                     echo $item['letter'];
@@ -148,6 +147,7 @@ foreach ($this->gcats['data'] as  $gcat) :
                                     echo "%";
                                 }
                         }
+						else echo "-";
                     ?>
                     </td>
                 </tr>
